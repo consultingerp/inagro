@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="bis_type" model="ir.actions.act_window">
+            <field name="name">Bisnis Type</field>
+            <field name="res_model">bis.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="context">{}</field>
+            <!-- <field name="context">{"search_default_today":1}</field> -->
+            <!-- <field name="search_view_id" ref="hr_attendance_view_filter" /> -->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_empty_folder">
+                    No attendance records found
+                </p><p>
+                    The attendance records of your employees will be displayed here.
+                </p>
+            </field>
+        </record>
+
+        <record id="bis_type_form" model="ir.ui.view">
+            <field name="name">bis.type.form</field>
+            <field name="model">bis.type</field>
+            <field name="arch" type="xml">
+                <form string="Bisnis Type">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="direktur"/>
+                            <!-- <field name="date_time"/> -->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="bis_type_tree" model="ir.ui.view">
+            <field name="name">bis.type.tree</field>
+            <field name="model">bis.type</field>
+            <field name="arch" type="xml">
+                <tree string="Bisnis Type">
+                    <field name="name"/>
+                    <field name="direktur"/>
+                </tree>
+            </field>
+        </record>
+
+        <menuitem id="bis_type" name="Bisnis Type" parent="hr.menu_human_resources_configuration" sequence="2" action="bis_type"/>
+
+    </data>
+</odoo>

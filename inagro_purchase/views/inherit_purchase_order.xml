@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.order.form.inherit</field>
+            <field name="model">purchase.order</field>
+            <!-- <field name="priority">3</field> -->
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+
+                <data>
+
+                    <!-- <xpath expr="//form" position="attributes">
+                        <attribute name="create">false</attribute>
+                    </xpath> -->
+
+                    <!-- <field name="date_order" position="after">
+                        <field name="pr_id" readonly="1"/>
+                    </field> -->
+
+                    <field name="partner_id" position="before">
+                        <field name="pr_id" attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"/>
+                    </field>
+
+                    <field name="incoterm_id" position="after">
+                        <field name="requested_by" attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"/>
+                        <field name="department_id" attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"/>
+                        <field name="bis_type" attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"/>
+                        <!-- <field name="pr_id" attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"/> -->
+                    </field>
+
+                    <field name="notes" position="replace">
+                        <!-- <field name="notes" widget="html" string="Payment Term" placeholder="Define your terms and conditions ..."/> -->
+                    </field>
+
+                    <xpath expr="//page[@name='purchase_delivery_invoice']" position="after">
+                        <!-- <group id="payment_term">
+                            <field name="notes" widget="html" string="Payment Term" placeholder="Define your terms and conditions ..."/>
+                        </group> -->
+
+                         <page string="Payment Term" name="payment_term">
+                            <group>
+                                <field name="notes" widget="html" string="Payment Term" placeholder="Define your terms and conditions ..."/>
+                            </group>
+                        </page>
+
+                    </xpath>
+
+                    
+
+                </data>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="purchase_order_tree">
+            <field name="name">purchase.order.tree.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+            <field name="arch" type="xml">
+                <!-- <xpath expr="//tree" position="attributes">
+                    <attribute name="create">false</attribute>
+                </xpath> -->
+                <field name="name" position="replace">
+                    <field name="name" string="PO Number" />
+                </field>
+                <field name="name" position="after">
+                    <field name="pr_id" />
+                </field>
+                <field name="user_id" position="replace">
+                    <field name="requested_by" />
+                </field>
+
+                <field name="origin" position="replace">
+                    <field name="department_id" />
+                </field>
+          </field>
+        </record>
+
+
+
+
+        <record id="purchase_order_view_form_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.form.inherit2</field>
+            <field name="model">purchase.order</field>
+            <!-- <field name="priority">3</field> -->
+            <field name="inherit_id" ref="purchase_stock.purchase_order_view_form_inherit"/>
+            <field name="arch" type="xml">
+
+                <data>
+
+                    <field name="picking_type_id" position="replace">
+                    </field>
+
+                    <field name="date_order" position="after">
+                        <field name="picking_type_id" domain="[('code','=','incoming')]" options="{'no_create': True}" groups="stock.group_stock_multi_locations"/>
+                    </field>
+
+                </data>
+
+            </field>
+        </record>
+
+       
+
+       
+
+</odoo>

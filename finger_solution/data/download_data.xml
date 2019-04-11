@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<odoo noupdate="0">
+	<record forcecreate="True" id="cron_download_data_log_fingerprint" model="ir.cron">
+		<field name="name">Fingerprint download data log from machine</field>
+		<field eval="False" name="active" />
+		<field name="user_id" ref="base.user_root" />
+		<field name="interval_number">10</field>
+		<field name="interval_type">minutes</field>
+		<field name="numbercall">-1</field>
+		
+		<field name="model_id" ref="model_attendance_log" />
+		<field name="state">code</field>
+		<field name="code">model.cek_fingerprint()</field>
+	</record>
+
+	<record forcecreate="True" id="cron_get_form_log_fingerprint" model="ir.cron">
+		<field name="name">Fingerprint insert log into hr attendance odoo</field>
+		<field eval="False" name="active" />
+		<field name="user_id" ref="base.user_root" />
+		<field name="interval_number">10</field>
+		<field name="interval_type">minutes</field>
+		<field name="numbercall">-1</field>
+		
+		<field name="model_id" ref="model_hr_attendance" />
+		<field name="state">code</field>
+		<field name="code">model.get_fingerprint_log()</field>
+	</record>
+
+</odoo>

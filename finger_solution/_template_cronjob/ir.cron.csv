@@ -1,0 +1,6 @@
+"id","help","name","state","type","active","channel_ids/id","partner_ids/id","binding_model_id/id","binding_type","child_ids/id","crud_model_id/id","create_uid/id","create_date","template_id/id","interval_number","interval_type","write_uid/id","write_date","link_field_id/id","model_id/id","cron_name","nextcall","numbercall","priority","code","doall","user_id/id","sequence","ir_actions_server_id/id","usage","fields_lines/id"
+"__export__.ir_cron_5","","Cron fingerprint","code","ir.actions.server","True","","","","action","","","base.user_root","2018-08-28 10:25:06","","5","Minutes","base.user_root","2018-08-28 10:25:06","","hr_attendance.model_hr_attendance","Cron fingerprint","2018-08-28 10:28:23","'-1","5","model.cek_fingerprint()
+
+
+
+","False","base.user_root","5","__export__.ir_act_server_132","ir_cron",""

@@ -1,0 +1,21 @@
+<odoo>
+
+    <record id="hotel_invoice_form" model="ir.ui.view">
+        <field name="name">account.invoice.form.inherited.hotel</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_invoice_open']" position="replace">
+                <button name="action_invoice_open" type="object" states="draft" string="Validate" class="oe_highlight o_invoice_validate" groups="account.group_account_invoice,hotel.group_hotel_manager"/>
+            </xpath>
+
+            <xpath expr="//button[@id='account_invoice_payment_btn']" position="replace">
+                <button name="%(account.action_account_invoice_payment)d" id="account_invoice_payment_btn" type="action" attrs="{'invisible': [('state', '!=', 'open')]}" string="Register Payment" groups="account.group_account_invoice,hotel.group_hotel_manager" class="oe_highlight"/>
+            </xpath>
+
+            
+        </field>
+    </record>
+    
+
+</odoo>

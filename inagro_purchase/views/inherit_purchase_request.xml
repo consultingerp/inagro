@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_sprogroup_purchase_request_form" model="ir.ui.view">
+            <field name="name">sprogroup.purchase.request.form.inherit</field>
+            <field name="model">sprogroup.purchase.request</field>
+            <field name="priority">3</field>
+            <field name="inherit_id" ref="sprogroup_purchase_request.view_sprogroup_purchase_request_form"/>
+            <field name="arch" type="xml">
+
+                <data>
+
+                    <!-- <xpath expr="//header//button[2]" position="replace">
+                        <button name="%(account.action_account_invoice_payment)d" type="action" states="open" string="Register Payment 2" groups="base.group_system,account.group_account_manager" class="oe_highlight"/>
+                    </xpath> -->
+                    
+                    <!-- <xpath expr="//header//button[3]" position="replace">
+                        <button name="%(account.action_account_invoice_refund)d" type='action' string='Ask for a Credit Note 2' groups="base.group_system,account.group_account_manager" attrs="{'invisible': ['|',('type', 'in', ['in_refund','out_refund']),('state','not in',('open','paid'))]}"/>
+                    </xpath> -->
+
+                    <xpath expr="//button[@name='button_draft']" position="replace">
+                    </xpath>
+
+                    <xpath expr="//button[@name='button_rejected']" position="replace">
+                        <!-- <button name="button_rejected"
+                                icon="fa-remove"
+                                string="Cancel"
+                                type="object"
+                                confirm="Are you sure you want to Cancel?"
+                                attrs="{'invisible': [('can_reject', '=', False)]}"
+                        /> -->
+                    </xpath>
+
+                    <xpath expr="//button[@name='button_to_approve']" position="before">
+                        <button name="button_rejected" class="btn-danger"
+                                icon="fa-remove"
+                                string="Cancel"
+                                type="object"
+                                confirm="Are you sure you want to Cancel?"
+                                attrs="{'invisible': [('can_reject', '=', False)]}"
+                        />
+                    </xpath>
+
+                    <xpath expr="//button[@name='button_to_approve']" position="replace">
+                        <button name="button_to_approve" states="draft" icon="fa-check"
+                                string="Request Purchase" type="object" confirm="Are you sure you want to do this?"
+                                class="oe_highlight"/>
+                    </xpath>
+
+                    <xpath expr="//button[@name='button_manager_approved']" position="replace">
+                        <button name="button_manager_approved"
+                                icon="fa-check"
+                                states="to_approve"
+                                string="Purchase Approve"
+                                type="object"
+                                class="oe_highlight"
+                                confirm="Are you sure you want to do this?"
+                                groups="sprogroup_purchase_request.group_sprogroup_purchase_request_manager"
+                        />
+                    </xpath>
+
+
+                    <xpath expr="//button[@name='button_manager_approved']" position="after">
+                        <button name="button_dir_approved"
+                                icon="fa-check"
+                                states="manager_approved"
+                                string="Direktur Approve"
+                                type="object"
+                                class="oe_highlight"
+                                confirm="Are you sure you want to do this?"
+                                groups="sprogroup_purchase_request.group_sprogroup_purchase_request_direktur"
+                        />
+                    </xpath>
+
+
+                    <xpath expr="//button[@name='button_done']" position="replace">
+                    </xpath>
+                    
+
+                    <xpath expr="//button[@name='button_leader_approved']" position="replace">
+                    </xpath>
+
+                    <xpath expr="//button[@name='make_purchase_quotation']" position="replace">
+                        <button string="Make To Purchase Order" 
+                            icon="fa-arrow-right"
+                            states="dir_approved" 
+                            name="make_purchase_quotation" 
+                            type="object" 
+                            class="oe_highlight"
+                            confirm="Are you sure you want to do this?"
+                            groups="sprogroup_purchase_request.group_sprogroup_purchase_request_direktur"
+                        />
+                    </xpath>
+
+
+
+
+
+
+                    <field name="state" position="replace">
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,manager_approved,dir_approved,done,rejected"
+                               statusbar_colors='{"manager_approved":"blue"}'/>
+                    </field>
+
+                    <xpath expr="//label[@for='space']" position="replace">
+                    </xpath>
+
+                    <field name="name" position="replace">
+                        <field name="name" readonly="1"/>
+                    </field>
+
+                    <field name="department_id" position="after">
+                        <field name="bis_type" readonly="1"/>
+                    </field>
+                    
+
+                    <field name="code" position="replace">
+                    </field>
+
+                    <field name="assigned_to" position="replace">
+                    </field>
+
+                    <field name="end_start" position="replace">
+                        <field name="end_start" invisible="1"/>
+                    </field>
+
+                    <field name="end_start" position="after">
+                        <field name="currency_id" groups="base.group_multi_currency"/>
+                        <!-- <field name="currency_id" /> -->
+                    </field>
+                    
+                    <xpath expr="//field[@name='line_ids']/tree//field[@name='product_qty']" position="after">
+                        <field name="product_uom" force_save="1"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="price_unit"/>
+                        <field name="price_subtotal" widget="monetary"/>
+                    </xpath>
+
+                    <xpath expr="//field[@name='line_ids']" position="after">
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="amount_total" class="oe_subtotal_footer_separator" widget="monetary" />
+                        </group>
+                    </xpath>
+                    
+
+                    <xpath expr="//field[@name='line_ids']/tree//field[@name='date_required']" position="replace">
+                    </xpath>
+
+
+                    <xpath expr="//field[@name='line_ids']/form//field[@name='product_qty']" position="after">
+                        <field name="product_uom" force_save="1"/>
+                    </xpath>
+
+                    <xpath expr="//field[@name='line_ids']/form//field[@name='date_required']" position="before">
+                        <field name="price_unit" />
+                        <field name="price_subtotal" />
+                    </xpath>
+
+
+                   
+
+                </data>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_sprogroup_purchase_request_tree">
+            <field name="name">sprogroup.purchase.request.tree.inherit</field>
+            <field name="model">sprogroup.purchase.request</field>
+            <field name="inherit_id" ref="sprogroup_purchase_request.view_sprogroup_purchase_request_tree"/>
+            <field name="arch" type="xml">
+                <!-- <tree position="attributes">
+                    <attribute name="decoration-info">state&gt;='to_approve'</attribute>
+                    <attribute name="decoration-info">state&gt;='draft'</attribute>
+                    <attribute name="decoration-info">state&gt;='manager_approved'</attribute>
+                    <attribute name="decoration-warning">state&gt;='dir_approved'</attribute>
+                </tree> -->
+
+                <xpath expr="//tree" position="replace">
+                    <tree decoration-bf="message_needaction==True"
+                          decoration-info="state in ('draft','to_approve','manager_approved')"
+                          decoration-warning="state in ('dir_approved')"
+                          decoration-danger="state in ('rejected')"
+                          decoration-muted="state in ('done')"
+                          string="Purchase Request">
+                        <field name="message_needaction" invisible="1"/>
+                        <field name="name"/>
+                        <field name="department_id" />
+                        <field name="bis_type"/>
+                        <field name="date_start"/>
+                        <field name="requested_by"/>
+                        <field name="state"/>
+                    </tree>
+                    
+                </xpath>
+
+                <!-- <field name="name" position="after">
+                    <field name="department_id" />
+                </field>
+
+                <field name="name" position="after">
+                    <field name="message_needaction" invisible="1"/>
+                </field> -->
+
+
+          </field>
+        </record>
+
+       
+
+</odoo>
