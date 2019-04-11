@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Inagro Budget tes",
+    'name': "Inagro Budget tes lagi",
 
     'summary': """
         rayci232@gmail.com""",
