@@ -18,13 +18,19 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','inagro_purchase'],
+    'depends': ['base','inagro_purchase','account_budget'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/group.xml',
+        'security/rule.xml',
+
         'views/views.xml',
         'views/templates.xml',
+        'views/inherit_budgetary_position.xml',
+        'views/inherit_analytic_account.xml',
+        'views/menu_budget.xml',
+        'views/inherit_budget.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

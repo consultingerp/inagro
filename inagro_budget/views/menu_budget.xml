@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <menuitem id="menu_budget_inagro"
+    name="Budget"
+    action="account_budget.act_crossovered_budget_view"
+    web_icon="inagro_budget,static/src/img/budget.png"
+    groups="account.group_account_manager,inagro_budget.budget_coporate,inagro_budget.budget_coporate,inagro_budget.budget_mgr_dept,inagro_budget.budget_user_divisi"/>
+
+   
+</odoo>
