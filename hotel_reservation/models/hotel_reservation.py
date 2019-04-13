@@ -245,10 +245,17 @@ class HotelReservation(models.Model):
         Checkout date should be greater than the check-in date.
         """
         if self.checkout and self.checkin:
-            if self.checkin < self.date_order:
+            print('cek in')
+            print(self.checkin.date(),' checkin')
+            print(self.date_order.date(),' date order')
+
+            # d1 = datetime.strptime(str(self.checkin.date()), "%Y-%m-%d")
+            # d2 = datetime.strptime(str(self.date_order.date()), "%Y-%m-%d")
+
+            if self.checkin.date() < self.date_order.date():
                 raise ValidationError(_('Check-in date should be greater than \
                                          the current date.'))
-            if self.checkout < self.checkin:
+            if self.checkout.date() < self.checkin.date():
                 raise ValidationError(_('Check-out date should be greater \
                                          than Check-in date.'))
 
@@ -535,7 +542,8 @@ class HotelReservation(models.Model):
                         'checkin_date': checkin_date,
                         'checkout_date': checkout_date,
                         'product_id': r.product_id and r.product_id.id,
-                        'name': reservation['reservation_no'],
+                        # 'name': reservation['reservation_no'],
+                        'name': r.product_id.name,
                         'price_unit': r.list_price,
                         'product_uom_qty': duration,
                         'is_reserved': True}))
