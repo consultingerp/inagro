@@ -83,7 +83,9 @@
             <field name="perm_create" eval="False"/>
         </record>
 
-
+        <!-- hapus rule direktur PR -->
+        <delete model="ir.rule" id="inagro_purchase.filter_pr_by_direktur"/>
+        <delete model="ir.rule" id="inagro_purchase.filter_po_by_direktur"/>
         
 
     </data>

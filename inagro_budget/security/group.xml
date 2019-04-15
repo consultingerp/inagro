@@ -28,5 +28,8 @@
             <field name="category_id" ref="group_budget"/>
         </record>
 
+        hapus group direktur PR
+        <delete model="res.groups" id="sprogroup_purchase_request.group_sprogroup_purchase_request_direktur"/>
+
     </data>
 </odoo>

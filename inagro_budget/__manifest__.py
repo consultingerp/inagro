@@ -18,7 +18,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','inagro_purchase','account_budget'],
+    'depends': ['base','inagro_purchase','account_budget','sprogroup_purchase_request'],
 
     # always loaded
     'data': [
