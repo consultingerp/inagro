@@ -26,6 +26,39 @@
             <field name="perm_create" eval="True"/>
         </record>
 
+        <record id="hr_mgr_finance" model="ir.rule">
+            <field name="name">HR Manager Finance</field>
+            <field name="model_id" search="[('model','=','hr.department')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('account.group_account_manager'))]"/>
+            <field name="domain_force"></field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+
+        <record id="analytic_mgr_finance" model="ir.rule">
+            <field name="name">analytic Manager Finance</field>
+            <field name="model_id" search="[('model','=','account.analytic.account')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('account.group_account_manager'))]"/>
+            <field name="domain_force"></field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+
+        <record id="b_post" model="ir.rule">
+            <field name="name">Budgetary position Manager Finance</field>
+            <field name="model_id" search="[('model','=','account.budget.post')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('account.group_account_manager'))]"/>
+            <field name="domain_force"></field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+
         <!-- mgr department -->
         <record id="budget_mgr_budget" model="ir.rule">
             <field name="name">Budget Manager Dept</field>
@@ -71,7 +104,7 @@
             <field name="perm_create" eval="False"/>
         </record>
 
-        <!-- user -->
+        <!-- user budget -->
         <record id="filter_user_budget" model="ir.rule">
             <field name="name">Budget User Divisi</field>
             <field name="model_id" search="[('model','=','crossovered.budget')]" model="ir.model"/>
@@ -86,6 +119,34 @@
         <!-- hapus rule direktur PR -->
         <delete model="ir.rule" id="inagro_purchase.filter_pr_by_direktur"/>
         <delete model="ir.rule" id="inagro_purchase.filter_po_by_direktur"/>
+
+        <!-- manager PR -->
+        <record id="filter_mgr_pr" model="ir.rule">
+            <field name="name">Manager PR</field>
+            <field name="model_id" search="[('model','=','sprogroup.purchase.request')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('sprogroup_purchase_request.group_sprogroup_purchase_request_manager'))]"/>
+            <field name="domain_force">['&amp;',('requested_by.employee_ids.parent_id.id','=', user.employee_ids.id),('state','not in',['draft'])]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+
+        <!-- user pr -->
+        <record id="pr_user_budget" model="ir.rule">
+            <field name="name">purchase User budget</field>
+            <field name="model_id" search="[('model','=','crossovered.budget')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('sprogroup_purchase_request.group_sprogroup_purchase_request_user'))]"/>
+            <field name="domain_force"></field>
+        </record>
+
+        <record id="purchase_user_budget_line" model="ir.rule">
+            <field name="name">Purchase User</field>
+            <field name="model_id" search="[('model','=','crossovered.budget.lines')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('sprogroup_purchase_request.group_sprogroup_purchase_request_user'))]"/>
+            <field name="domain_force"></field>
+            <!-- <field name="domain_force">[('request_id.department_id','=', user.employee_ids.department_id.id)]</field> -->
+        </record>
         
 
     </data>

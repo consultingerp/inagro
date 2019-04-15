@@ -28,8 +28,14 @@
             <field name="category_id" ref="group_budget"/>
         </record>
 
-        hapus group direktur PR
+        <!-- hapus group direktur PR -->
         <delete model="res.groups" id="sprogroup_purchase_request.group_sprogroup_purchase_request_direktur"/>
+
+        <record id="purchase_corporate" model="res.groups">
+        <field name="name">Corporate</field>
+        <field name="implied_ids" eval="[(4, ref('sprogroup_purchase_request.group_sprogroup_purchase_request_user'))]"/>
+        <field name="category_id" ref="sprogroup_purchase_request.module_category_sprogroup_purchase_request"/>
+    </record>
 
     </data>
 </odoo>

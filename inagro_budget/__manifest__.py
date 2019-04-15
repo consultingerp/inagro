@@ -31,6 +31,7 @@
         'views/inherit_analytic_account.xml',
         'views/menu_budget.xml',
         'views/inherit_budget.xml',
+        'views/inherit_inagro_purchase.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
