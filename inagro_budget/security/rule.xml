@@ -14,6 +14,25 @@
             <field name="perm_create" eval="True"/>
         </record>
 
+        <record id="purchase_corporate_stock_picking_type" model="ir.rule">
+            <field name="name">Corporate Purchase Stock picking type</field>
+            <field name="model_id" search="[('model','=','stock.picking.type')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('inagro_budget.purchase_corporate'))]"/>
+            <field name="domain_force"></field>
+            <!-- <field name="domain_force">[('crossovered_budget_id.department_id','=', user.employee_ids.department_id.id)]</field> -->
+        </record>
+
+        <record id="purchase_corporate_stock_picking" model="ir.rule">
+            <field name="name">Corporate Purchase stock picking</field>
+            <field name="model_id" search="[('model','=','stock.picking')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('inagro_budget.purchase_corporate'))]"/>
+            <field name="domain_force"></field>
+            <!-- <field name="domain_force">[('crossovered_budget_id.department_id','=', user.employee_ids.department_id.id)]</field> -->
+        </record>
+
+
+            
+
         <!-- mgr finance -->
         <record id="budget_mgr_finance" model="ir.rule">
             <field name="name">Budget Manager Finance</field>
@@ -58,6 +77,17 @@
             <field name="perm_unlink" eval="True"/>
             <field name="perm_create" eval="True"/>
         </record>
+
+        <record id="mgr_finance_stock_picking" model="ir.rule">
+            <field name="name">Manager Finance Stock Picking</field>
+            <field name="model_id" search="[('model','=','stock.picking')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('account.group_account_manager'))]"/>
+            <field name="domain_force"></field>
+        </record>
+
+
+
+
 
         <!-- mgr department -->
         <record id="budget_mgr_budget" model="ir.rule">
@@ -144,8 +174,8 @@
             <field name="name">Purchase User</field>
             <field name="model_id" search="[('model','=','crossovered.budget.lines')]" model="ir.model"/>
             <field name="groups" eval="[(4, ref('sprogroup_purchase_request.group_sprogroup_purchase_request_user'))]"/>
-            <field name="domain_force"></field>
-            <!-- <field name="domain_force">[('request_id.department_id','=', user.employee_ids.department_id.id)]</field> -->
+            <!-- <field name="domain_force"></field> -->
+            <field name="domain_force">[('crossovered_budget_id.department_id','=', user.employee_ids.department_id.id)]</field>
         </record>
         
 

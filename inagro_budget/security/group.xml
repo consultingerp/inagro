@@ -33,7 +33,7 @@
 
         <record id="purchase_corporate" model="res.groups">
         <field name="name">Corporate</field>
-        <field name="implied_ids" eval="[(4, ref('sprogroup_purchase_request.group_sprogroup_purchase_request_user'))]"/>
+        <field name="implied_ids" eval="[(4, ref('sprogroup_purchase_request.group_sprogroup_purchase_request_user')),(4, ref('purchase.group_purchase_manager'))]"/>
         <field name="category_id" ref="sprogroup_purchase_request.module_category_sprogroup_purchase_request"/>
     </record>
 
