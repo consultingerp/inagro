@@ -18,6 +18,36 @@ class inherit_PurchaseOrder(models.Model):
 
     @api.multi
     def button_confirm(self):
+
+        self.env.cr.execute("""
+            SELECT DISTINCT budget_line_id,sum(price_subtotal) as sum_subtotal
+            FROM
+                purchase_order_line
+            WHERE
+                order_id = %s
+            GROUP BY budget_line_id"""%(int(self.id)))
+        line_distinct = self.env.cr.dictfetchall()
+
+        for line in line_distinct:
+            print(line,' line')
+            print(line['budget_line_id'],' line2')
+            budget = self.env['crossovered.budget.lines'].search([('id', '=', int(line['budget_line_id']))])
+            print(budget,' budget')
+            planned_budget = budget.planned_amount
+            sum_subtotal_pr = line['sum_subtotal']
+            new_practical_amount = budget.practical_amount-sum_subtotal_pr
+
+            print(planned_budget,' plan')
+            print(sum_subtotal_pr,' sum_subtotal_pr')
+            print(new_practical_amount,' new_practical_amount') 
+
+            # exit()
+
+            if new_practical_amount < planned_budget:
+                raise UserError(_('Value from '+budget.name+' is not enough, plese use another budget !'))
+
+        # exit()
+
         for order in self:
             if order.state not in ['draft', 'sent']:
                 continue

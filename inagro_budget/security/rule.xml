@@ -30,6 +30,20 @@
             <!-- <field name="domain_force">[('crossovered_budget_id.department_id','=', user.employee_ids.department_id.id)]</field> -->
         </record>
 
+        <record id="pr_corporate_budget" model="ir.rule">
+            <field name="name">purchase corporate cek budget budget</field>
+            <field name="model_id" search="[('model','=','crossovered.budget')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('inagro_budget.purchase_corporate'))]"/>
+            <field name="domain_force"></field>
+        </record>
+
+        <record id="pr_corporate_budget_line" model="ir.rule">
+            <field name="name">Purchase corporate cek budget</field>
+            <field name="model_id" search="[('model','=','crossovered.budget.lines')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('inagro_budget.purchase_corporate'))]"/>
+            <field name="domain_force"></field>
+        </record>
+
 
             
 
@@ -81,6 +95,20 @@
         <record id="mgr_finance_stock_picking" model="ir.rule">
             <field name="name">Manager Finance Stock Picking</field>
             <field name="model_id" search="[('model','=','stock.picking')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('account.group_account_manager'))]"/>
+            <field name="domain_force"></field>
+        </record>
+
+        <record id="pr_finance_budget" model="ir.rule">
+            <field name="name">purchase finance cek budget budget</field>
+            <field name="model_id" search="[('model','=','crossovered.budget')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('account.group_account_manager'))]"/>
+            <field name="domain_force"></field>
+        </record>
+
+        <record id="pr_finance_budget_line" model="ir.rule">
+            <field name="name">Purchase finance cek budget</field>
+            <field name="model_id" search="[('model','=','crossovered.budget.lines')]" model="ir.model"/>
             <field name="groups" eval="[(4, ref('account.group_account_manager'))]"/>
             <field name="domain_force"></field>
         </record>
