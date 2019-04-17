@@ -129,6 +129,14 @@
             <field name="perm_create" eval="True"/>
         </record>
 
+        <record id="budget_mgr_budget_line" model="ir.rule">
+            <field name="name">Budget line Manager Dept</field>
+            <field name="model_id" search="[('model','=','crossovered.budget.lines')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('inagro_budget.budget_mgr_dept'))]"/>
+            <!-- <field name="domain_force"></field> -->
+            <field name="domain_force">[('crossovered_budget_id.department_id','child_of',[user.employee_ids.department_id.id])]</field>
+        </record>
+
         <record id="budget_mgr_hr_dept" model="ir.rule">
             <field name="name">Master Dept Manager Dept</field>
             <field name="model_id" search="[('model','=','hr.department')]" model="ir.model"/>

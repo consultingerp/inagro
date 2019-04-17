@@ -11,9 +11,9 @@ _STATES = [
     # ('leader_approved', 'Leader Approved'),
     ('manager_approved', 'Manager Approved'),
     # ('dir_approved', 'Direktur Approved'),
-    ('rejected', 'Cancel'),
     ('done', 'Done'),
-    ('to_po', 'To Order')
+    ('to_po', 'To Order'),
+    ('rejected', 'Cancel')
 ]
 
 class inherit_inagro_PurchaseRequest(models.Model):
