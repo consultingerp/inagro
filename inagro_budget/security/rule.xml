@@ -195,7 +195,7 @@
             <field name="name">purchase User budget</field>
             <field name="model_id" search="[('model','=','crossovered.budget')]" model="ir.model"/>
             <field name="groups" eval="[(4, ref('sprogroup_purchase_request.group_sprogroup_purchase_request_user'))]"/>
-            <field name="domain_force"></field>
+            <field name="domain_force">[('department_id','child_of',[user.employee_ids.department_id.id])]</field>
         </record>
 
         <record id="purchase_user_budget_line" model="ir.rule">

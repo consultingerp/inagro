@@ -12,6 +12,8 @@ class inherit_analytic_account(models.Model):
     _inherit = 'account.analytic.account'
 
     department_id = fields.Many2one('hr.department', string='Department',required=False, store=True)
+    is_budget = fields.Boolean('Is Budget?', store=True)
+    is_asset = fields.Boolean('Is Asset?', store=True)
 
     
 

@@ -32,6 +32,7 @@ class inherit_CrossoveredBudgetLines(models.Model):
     _inherit = "crossovered.budget.lines"
 
     capex = fields.Boolean(string='Capex', store=True)
+    analytic_account_id = fields.Many2one('account.analytic.account', 'Analytic Account 2',domain="[('is_budget','=',True)]")
 
     @api.model
     def create(self,values):

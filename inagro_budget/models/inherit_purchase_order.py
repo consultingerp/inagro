@@ -64,6 +64,7 @@ class inherit_PurchaseOrder(models.Model):
         return True
 
 
+
 class inherit_PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 

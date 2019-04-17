@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-        <record id="view_account_analytic_account_form" model="ir.ui.view">
-            <field name="name">account.analytic.account.inherit</field>
-            <field name="model">account.analytic.account</field>
+        <record id="view_account_asset_category_form" model="ir.ui.view">
+            <field name="name">account.asset.category.form.inherit</field>
+            <field name="model">account.asset.category</field>
             <!-- <field name="priority">3</field> -->
-            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="inherit_id" ref="account_asset.view_account_asset_category_form"/>
             <field name="arch" type="xml">
                 <data>
-                    <field name="code" position="before">
-                        <field name="department_id"/>
-                        <field name="is_budget"/>
-                        <field name="is_asset"/>
+                    <field name="account_analytic_id" position="replace">
+                        <field name="account_analytic_id" groups="analytic.group_analytic_accounting"/>
                     </field>
                 </data>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="view_account_analytic_account_list">
+        <!-- <record model="ir.ui.view" id="view_account_analytic_account_list">
             <field name="name">account.analytic.account.tree.inherit</field>
             <field name="model">account.analytic.account</field>
             <field name="inherit_id" ref="analytic.view_account_analytic_account_list"/>
@@ -27,7 +25,7 @@
                 </field>
                 
             </field>
-        </record>
+        </record> -->
        
 
 </odoo>

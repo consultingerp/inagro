@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="invoice_supplier_form" model="ir.ui.view">
+            <field name="name">account.invoice.inherit_budget</field>
+            <field name="model">account.invoice</field>
+            <!-- <field name="priority">3</field> -->
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+
+                <data>
+
+                    <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='account_id']" position="before">
+                        <field name="budget_line_id"/>
+                        <field name="capex" groups="inagro_budget.purchase_corporate,account.group_account_manager,account.group_account_invoice"/>
+                    </xpath>
+                    
+
+                </data>
+
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_invoice_asset_category">
+            <field name="name">account.invoice.supplier.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account_asset.view_invoice_asset_category"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='asset_category_id']" position="after">
+                    <field name="account_asset_id" domain="[('type','=','purchase')]" context="{'default_type':'purchase'}"/>
+                </xpath>
+            </field>
+        </record>
+
+       
+
+</odoo>

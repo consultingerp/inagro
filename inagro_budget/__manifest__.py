@@ -18,7 +18,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','purchase','inagro_purchase','account_budget','sprogroup_purchase_request'],
+    'depends': ['base','purchase','inagro_purchase','account_budget','account_asset','sprogroup_purchase_request'],
 
     # always loaded
     'data': [
@@ -34,6 +34,8 @@
         'views/inherit_inagro_purchase.xml',
         'views/inherit_product.xml',
         'views/inherit_purchase_order.xml',
+        'views/inherit_invoice.xml',
+        'views/inherit_asset_category.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
