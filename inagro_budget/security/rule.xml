@@ -113,6 +113,13 @@
             <field name="domain_force"></field>
         </record>
 
+        <record id="user_pr_finance_budget_line" model="ir.rule">
+            <field name="name">Purchase user finance cek budget</field>
+            <field name="model_id" search="[('model','=','crossovered.budget.lines')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('account.group_account_invoice'))]"/>
+            <field name="domain_force"></field>
+        </record>
+
 
 
 

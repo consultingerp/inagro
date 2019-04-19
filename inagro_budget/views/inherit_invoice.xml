@@ -10,6 +10,10 @@
 
                 <data>
 
+                    <!-- <xpath expr="//button[@name='action_invoice_open']" position="replace">
+                        <button name="action_invoice_open" type="object" states="draft" string="Validate" class="oe_highlight" groups="account.group_account_manager,inagro_budget.purchase_corporate" confirm="Are you sure you want to do?"/>
+                    </xpath> -->
+
                     <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='account_id']" position="before">
                         <field name="budget_line_id"/>
                         <field name="capex" groups="inagro_budget.purchase_corporate,account.group_account_manager,account.group_account_invoice"/>

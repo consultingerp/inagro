@@ -1,8 +1,13 @@
-# -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models, SUPERUSER_ID, _
+from odoo.osv import expression
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from odoo.tools.float_utils import float_compare
+from odoo.exceptions import UserError, AccessError
+from odoo.tools.misc import formatLang
+from odoo.addons import decimal_precision as dp
 
 
 class inherit_AccountInvoice(models.Model):
@@ -45,8 +50,20 @@ class inherit_AccountInvoice(models.Model):
     def action_invoice_open(self):
         # lots of duplicate calls to action_invoice_open, so we remove those already open
 
+        # kondisi pada saat validate vendor bill
         if self.type == 'in_invoice':
             print('type in_invoice')
+            for line_invoice in self.invoice_line_ids:
+                print(line_invoice.product_id.is_asset,' asset product')
+                print(line_invoice.product_id.product_tmpl_id.is_asset,' asset template product')
+                print(len(line_invoice.asset_category_id),' id asset')
+
+                # product yg merupakan asset harus memiliki kategory asset pada saat validate vendor bill
+                if (line_invoice.product_id.is_asset==True or line_invoice.product_id.product_tmpl_id.is_asset==True) and len(line_invoice.asset_category_id) <= 0:
+                    raise UserError(_('Item '+line_invoice.product_id.name+' must have asset category !'))
+
+            # exit()
+
 
             # cek apakah budget masih ada
             self.env.cr.execute("""
@@ -74,11 +91,9 @@ class inherit_AccountInvoice(models.Model):
                 # exit()
 
                 if new_practical_amount < planned_budget:
-                    raise UserError(_('Value from '+budget.name+' is not enough, plese use another budget !'))
+                    raise UserError(_('Value from '+str(budget.name)+' is not enough, plese use another budget !'))
 
 
-
-        # exit()
         to_open_invoices = self.filtered(lambda inv: inv.state != 'open')
         if to_open_invoices.filtered(lambda inv: not inv.partner_id):
             raise UserError(_("The field Vendor is required, please complete it to validate the Vendor Bill."))
