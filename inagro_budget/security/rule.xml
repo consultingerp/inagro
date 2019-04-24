@@ -159,7 +159,8 @@
             <field name="name">Budgetary Manager Dept</field>
             <field name="model_id" search="[('model','=','account.budget.post')]" model="ir.model"/>
             <field name="groups" eval="[(4, ref('inagro_budget.budget_mgr_dept'))]"/>
-            <field name="domain_force">[('department_id','child_of',[user.employee_ids.department_id.id])]</field>
+            <!-- <field name="domain_force">[('department_id','child_of',[user.employee_ids.department_id.id])]</field> -->
+            <field name="domain_force"></field>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
             <field name="perm_unlink" eval="False"/>

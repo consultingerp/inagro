@@ -11,7 +11,7 @@ class inherit_budgetary_position(models.Model):
     # _name = 'sprogroup.purchase.request'
     _inherit = 'account.budget.post'
 
-    department_id = fields.Many2one('hr.department', string='Department',required=True, store=True)
+    # department_id = fields.Many2one('hr.department', string='Department',required=True, store=True)
     account_id = fields.Many2one('account.account', string='Account',required=True, store=True, domain=[('deprecated', '=', False)])
 
     def _check_account_ids(self, vals):

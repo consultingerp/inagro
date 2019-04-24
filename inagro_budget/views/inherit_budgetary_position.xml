@@ -18,7 +18,7 @@
                                         <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
                                     </group>
                                     <group col="2">
-                                        <field name="department_id"/>
+                                        <!-- <field name="department_id"/> -->
                                         <field name="account_id"/>
                                     </group>
                                 </group>
@@ -35,7 +35,7 @@
             <field name="inherit_id" ref="account_budget.view_budget_post_tree"/>
             <field name="arch" type="xml">
                 <field name="name" position="after">
-                    <field name="department_id"/>
+                    <!-- <field name="department_id"/> -->
                     <field name="account_id"/>
                 </field>
                 
