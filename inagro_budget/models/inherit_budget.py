@@ -37,8 +37,9 @@ class inherit_CrossoveredBudgetLines(models.Model):
     analytic_account_id = fields.Many2one('account.analytic.account', 'Analytic Account',domain="[('is_budget','=',True)]",required=True)
 
 
-    # _sql_constraints = [('analytic_account_id_uniq', 'unique (analytic_account_id)', 'Analytic account cannot used twice!')]
-
+    _sql_constraints = [('analytic_account_id_uniq', 'unique (analytic_account_id)', 'Analytic account cannot used twice!')]
+    _sql_constraints = [('analytic_account_id_uniq', 'check(1=1)', 'No error'),]
+    
     @api.model
     def create(self,values):
 
