@@ -95,6 +95,10 @@ class inherit_AccountInvoice(models.Model):
 
 
         to_open_invoices = self.filtered(lambda inv: inv.state != 'open')
+
+        # print(to_open_invoices,' open inv')
+        # exit()
+
         if to_open_invoices.filtered(lambda inv: not inv.partner_id):
             raise UserError(_("The field Vendor is required, please complete it to validate the Vendor Bill."))
         if to_open_invoices.filtered(lambda inv: inv.state != 'draft'):
