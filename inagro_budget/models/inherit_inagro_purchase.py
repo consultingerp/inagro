@@ -170,7 +170,7 @@ class inherit_inagro_PurchaseRequest(models.Model):
 class inherit_PR_line(models.Model):
     _inherit = 'sprogroup.purchase.request.line'
 
-    budget_line_id = fields.Many2one('crossovered.budget.lines', string='Budget', store=True,domain="[('crossovered_budget_id.state','=','done')]")
+    budget_line_id = fields.Many2one('crossovered.budget.lines', string='Budget', store=True,domain="[('crossovered_budget_id.state','=','validate')]")
     analytic_account_id = fields.Many2one('account.analytic.account', string='Analytic',related='budget_line_id.analytic_account_id', store=True)
 
     
