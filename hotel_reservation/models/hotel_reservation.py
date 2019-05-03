@@ -918,10 +918,10 @@ class RoomReservationSummary(models.Model):
                                             ('state', '=', 'assigned')
                                             ]))
 
-                        # tambahan dn start
+                        # tambahan dn start 
                         for reserline_ids_2 in room.room_reservation_line_ids:
 
-                            # jika jenis room adalah room function
+                            # jika jenis room adalah room function 
                             if reserline_ids_2.room_id.categ_id.id == 9:
                                 reservline_ids = (reservation_line_obj.search
                                           ([('id', 'in', reserline_ids),
