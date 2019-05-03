@@ -857,6 +857,7 @@ class RoomReservationSummary(models.Model):
         '''
         @param self: object pointer
          '''
+        print('room summary tes')
         res = {}
         all_detail = []
         room_obj = self.env['hotel.room']
@@ -908,6 +909,7 @@ class RoomReservationSummary(models.Model):
                         c = ttime.replace(tzinfo=timezone).\
                             astimezone(pytz.timezone('UTC'))
                         chk_date = c.strftime(dt)
+
                         reserline_ids = room.room_reservation_line_ids.ids
                         reservline_ids = (reservation_line_obj.search
                                           ([('id', 'in', reserline_ids),
@@ -915,23 +917,44 @@ class RoomReservationSummary(models.Model):
                                             ('check_out', '>=', chk_date),
                                             ('state', '=', 'assigned')
                                             ]))
+
+                        # tambahan dn start
+                        for reserline_ids_2 in room.room_reservation_line_ids:
+
+                            # jika jenis room adalah room function
+                            if reserline_ids_2.room_id.categ_id.id == 9:
+                                reservline_ids = (reservation_line_obj.search
+                                          ([('id', 'in', reserline_ids),
+                                            ('check_in', '<=', c.date()),
+                                            ('check_out', '>=', c.date()),
+                                            ('state', '=', 'assigned')
+                                            ]))
+                        # tambahan dn stop
+
+                        
+
                         if not reservline_ids:
                             sdt = dt
                             chk_date = datetime.strptime(chk_date, sdt)
                             chk_date = datetime.\
                                 strftime(chk_date - timedelta(days=1), sdt)
+
+                            print(chk_date,' chk_date d2')
                             reservline_ids = (reservation_line_obj.search
                                               ([('id', 'in', reserline_ids),
                                                 ('check_in', '<=', chk_date),
                                                 ('check_out', '>=', chk_date),
                                                 ('state', '=', 'assigned')]))
+
                             for res_room in reservline_ids:
                                 cid = res_room.check_in
                                 cod = res_room.check_out
                                 dur = cod - cid
                                 if room_list_stats:
+                                    # print(room_list_stats,' room_list_stats nnn')
                                     count = 0
                                     for rlist in room_list_stats:
+                                        print(rlist,' room list')
                                         cidst = datetime.strftime(cid, dt)
                                         codst = datetime.strftime(cod, dt)
                                         rm_id = res_room.room_id.id
@@ -980,6 +1003,7 @@ class RoomReservationSummary(models.Model):
                                              ('status', 'not in', chk_state)
                                              ]))
                         if reservline_ids or folio_resrv_ids:
+
                             room_list_stats.append({'state': 'Reserved',
                                                     'date': chk_date,
                                                     'room_id': room.id,
