@@ -645,6 +645,8 @@ class HotelReservationLine(models.Model):
         hotel_room_obj = self.env['hotel.room']
         hotel_room_ids = hotel_room_obj.search([('categ_id', '=',
                                                  self.categ_id.id)])
+
+
         room_ids = []
         if not self.line_id.checkin:
             raise ValidationError(_('Before choosing a room,\n You have to \
@@ -653,29 +655,71 @@ class HotelReservationLine(models.Model):
         for room in hotel_room_ids:
             assigned = False
             for line in room.room_reservation_line_ids:
+                print(room.room_reservation_line_ids,' room.room_reservation_line_ids')
                 if line.status != 'cancel':
-                    if(self.line_id.checkin <= line.check_in <=
-                        self.line_id.checkout) or (self.line_id.checkin <=
-                                                   line.check_out <=
-                                                   self.line_id.checkout):
-                        assigned = True
-                    elif(line.check_in <= self.line_id.checkin <=
-                         line.check_out) or (line.check_in <=
-                                             self.line_id.checkout <=
-                                             line.check_out):
-                        assigned = True
+                    print(self.line_id.checkin.date(),' 11')
+                    print(line.check_in,' 22')
+                    print(self.line_id.checkout,' 33')
+                    print(line.room_id.categ_id.id,' line')
+
+                    # tambahan dn start
+                    if line.room_id.categ_id.id == 9:
+                        if(self.line_id.checkin.date() <= line.check_in.date() <=
+                            self.line_id.checkout.date()) or (self.line_id.checkin.date() <=
+                                                       line.check_out.date() <=
+                                                       self.line_id.checkout.date()):
+                            assigned = True
+                        elif(line.check_in.date() <= self.line_id.checkin.date() <=
+                             line.check_out.date()) or (line.check_in.date() <=
+                                                 self.line_id.checkout.date() <=
+                                                 line.check_out.date()):
+                            assigned = True
+                    else:
+                        # tambahan dn stop
+                        if(self.line_id.checkin <= line.check_in <=
+                            self.line_id.checkout) or (self.line_id.checkin <=
+                                                       line.check_out <=
+                                                       self.line_id.checkout):
+                            assigned = True
+                        elif(line.check_in <= self.line_id.checkin <=
+                             line.check_out) or (line.check_in <=
+                                                 self.line_id.checkout <=
+                                                 line.check_out):
+                            assigned = True
+
+
             for rm_line in room.room_line_ids:
-                if rm_line.status != 'cancel':
-                    if(self.line_id.checkin <= rm_line.check_in <=
-                       self.line_id.checkout) or (self.line_id.checkin <=
-                                                  rm_line.check_out <=
-                                                  self.line_id.checkout):
-                        assigned = True
-                    elif(rm_line.check_in <= self.line_id.checkin <=
-                         rm_line.check_out) or (rm_line.check_in <=
-                                                self.line_id.checkout <=
-                                                rm_line.check_out):
-                        assigned = True
+                print(room.room_line_ids,' room.room_line_ids')
+                print(rm_line.room_id.categ_id.id,' line2')
+
+                # tambahan dn start
+                if rm_line.room_id.categ_id.id == 9:
+                    if rm_line.status != 'cancel':
+                        if(self.line_id.checkin <= rm_line.check_in <=
+                           self.line_id.checkout) or (self.line_id.checkin <=
+                                                      rm_line.check_out <=
+                                                      self.line_id.checkout):
+                            assigned = True
+                        elif(rm_line.check_in <= self.line_id.checkin <=
+                             rm_line.check_out) or (rm_line.check_in <=
+                                                    self.line_id.checkout <=
+                                                    rm_line.check_out):
+                            assigned = True
+                else:
+                    # tambahan dn stop
+                    if rm_line.status != 'cancel':
+                        if(self.line_id.checkin <= rm_line.check_in <=
+                           self.line_id.checkout) or (self.line_id.checkin <=
+                                                      rm_line.check_out <=
+                                                      self.line_id.checkout):
+                            assigned = True
+                        elif(rm_line.check_in <= self.line_id.checkin <=
+                             rm_line.check_out) or (rm_line.check_in <=
+                                                    self.line_id.checkout <=
+                                                    rm_line.check_out):
+                            assigned = True
+
+                            
             if not assigned:
                 room_ids.append(room.id)
         domain = {'reserve': [('id', 'in', room_ids)]}
