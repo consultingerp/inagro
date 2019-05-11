@@ -962,6 +962,8 @@ class RoomReservationSummary(models.Model):
                                             ('state', '=', 'assigned')
                                             ]))
 
+                        print(room.room_reservation_line_ids,' ff')
+
                         # tambahan dn start 
                         for reserline_ids_2 in room.room_reservation_line_ids:
 
@@ -983,7 +985,7 @@ class RoomReservationSummary(models.Model):
                             chk_date = datetime.\
                                 strftime(chk_date - timedelta(days=1), sdt)
 
-                            print(chk_date,' chk_date d2')
+                            # print(chk_date,' chk_date d2')
                             reservline_ids = (reservation_line_obj.search
                                               ([('id', 'in', reserline_ids),
                                                 ('check_in', '<=', chk_date),
@@ -998,7 +1000,7 @@ class RoomReservationSummary(models.Model):
                                     # print(room_list_stats,' room_list_stats nnn')
                                     count = 0
                                     for rlist in room_list_stats:
-                                        print(rlist,' room list')
+                                        # print(rlist,' room list')
                                         cidst = datetime.strftime(cid, dt)
                                         codst = datetime.strftime(cod, dt)
                                         rm_id = res_room.room_id.id
