@@ -7,15 +7,34 @@
         <field name="model">koordinasi.marketing</field>
         <field name="arch" type="xml">
             <form string="Form Discuss">
+                <header>
+                    <field name="state" widget="statusbar"
+                               statusbar_visible="cancel"
+                               statusbar_colors='{"draft":"blue"}'/>
+                </header>
                 <sheet>
+                    <h2>
+                        <field name="name"/>
+                    </h2>    
                     <group>
                         <group>
-                            <field name="name"/>
+                            <field name="date"/>
+                            <field name="partner_id"/>
+                            <field name="customer_pic"/>
+                            <field name="customer_contact"/>
                         </group>
                         <group>
-                            <field name="tanggal" />
+                            <field name="qty_participant" />
+                            <field name="qty_teacher" />
+                            <field name="qty_add_participant" />
+                            <field name="total" />
                         </group>
                     </group>
+                    <!-- <group>
+                        <group>
+                            <field name="employee_id"/>
+                        </group>
+                    </group> -->
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>
@@ -33,7 +52,7 @@
         <field name="arch" type="xml">
             <tree string="Form Discuss">
                 <field name="name"/>
-                <field name="tanggal" />
+                <field name="date" />
             </tree>
         </field>
     </record>

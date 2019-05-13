@@ -28,7 +28,7 @@
         'views/views.xml',
         'views/templates.xml',
         'views/koordinasi_marketing.xml',
-        'views/room.xml',
+        # 'views/room.xml',
         'views/form_koordinasi.xml',
     ],
     # only loaded in demonstration mode

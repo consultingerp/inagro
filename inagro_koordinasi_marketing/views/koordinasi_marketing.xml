@@ -19,10 +19,24 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="act_window_koordinasi_marketing_room">
+    <!-- <record model="ir.actions.act_window" id="act_window_koordinasi_marketing_room">
         <field name="name">Room</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">room.marketing</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to start a new room.
+          </p>
+        </field>
+    </record> -->
+
+    <record model="ir.actions.act_window" id="act_window_outdoor_activities">
+        <field name="name">Outdoor Activities</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ourdoor.activities</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <!-- <field name="context">{"search_default_requested_by":uid}</field> -->
@@ -30,10 +44,40 @@
         <!-- <field name="search_view_id" ref="view_sprogroup_purchase_request_search"/> -->
         <field name="help" type="html">
           <p class="oe_view_nocontent_create">
-            Click to start a new room.
+            Click to start a new Outdoor Activities.
           </p>
         </field>
     </record>
+
+    <record model="ir.actions.act_window" id="act_window_facilities">
+        <field name="name">Facilities</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">facilities</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="context">{"search_default_requested_by":uid}</field> -->
+        <field name="context">{}</field>
+        <!-- <field name="search_view_id" ref="view_sprogroup_purchase_request_search"/> -->
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to start a new facilities.
+          </p>
+        </field>
+    </record>
+
+    <!-- <record model="ir.actions.act_window" id="act_window_food_beverage">
+        <field name="name">F &amp; B</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">food.beverage</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to start a new F &amp; B.
+          </p>
+        </field>
+    </record> -->
 
     <menuitem id="menu_koordinasi_marketing"
     name="Marketing Coordination"
@@ -50,13 +94,48 @@
         />
 
     <menuitem
-        id="menu_koordinasi_marketing_room"
-        name="Room"
+        id="menu_config_koordinasi"
+        name="Configuration"
         sequence="2"
         parent="inagro_koordinasi_marketing.menu_koordinasi_marketing"
         groups='inagro_koordinasi_marketing.sales_koordinasi_marketing,inagro_koordinasi_marketing.ga_koordinasi_marketing'
-        action="inagro_koordinasi_marketing.act_window_koordinasi_marketing_room"
         />
+
+    <!-- <menuitem
+        id="menu_koordinasi_marketing_room"
+        name="Room"
+        sequence="1"
+        parent="inagro_koordinasi_marketing.menu_config_koordinasi"
+        groups='inagro_koordinasi_marketing.sales_koordinasi_marketing,inagro_koordinasi_marketing.ga_koordinasi_marketing'
+        action="inagro_koordinasi_marketing.act_window_koordinasi_marketing_room"
+        /> -->
+
+    <menuitem
+        id="menu_outdoor_activities"
+        name="Outdoor Activities"
+        sequence="2"
+        parent="inagro_koordinasi_marketing.menu_config_koordinasi"
+        groups='inagro_koordinasi_marketing.sales_koordinasi_marketing,inagro_koordinasi_marketing.ga_koordinasi_marketing'
+        action="inagro_koordinasi_marketing.act_window_outdoor_activities"
+        />
+
+    <menuitem
+        id="menu_facilities"
+        name="Facilities"
+        sequence="3"
+        parent="inagro_koordinasi_marketing.menu_config_koordinasi"
+        groups='inagro_koordinasi_marketing.sales_koordinasi_marketing,inagro_koordinasi_marketing.ga_koordinasi_marketing'
+        action="inagro_koordinasi_marketing.act_window_facilities"
+        />
+
+    <!-- <menuitem
+        id="menu_food_beverage"
+        name="F &amp; B"
+        sequence="4"
+        parent="inagro_koordinasi_marketing.menu_config_koordinasi"
+        groups='inagro_koordinasi_marketing.sales_koordinasi_marketing,inagro_koordinasi_marketing.ga_koordinasi_marketing'
+        action="inagro_koordinasi_marketing.act_window_food_beverage"
+        /> -->
 
    
 </odoo>
