@@ -31,6 +31,8 @@
         'views/koordinasi_marketing.xml',
         # 'views/room.xml',
         'views/form_koordinasi.xml',
+        'views/info_facilities.xml',
+        'views/info_activities.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

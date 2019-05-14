@@ -20,49 +20,50 @@
                     </h2>    
                     <group>
                         <group string='Customer'>
-                            <field name="date" attrs="{'readonly': [('state','!=', 'draft')]}"/>
-                            <field name="partner_id" attrs="{'readonly': [('state','!=', 'draft')]}"/>
-                            <field name="customer_pic" attrs="{'readonly': [('state','!=', 'draft')]}"/>
-                            <field name="customer_contact" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+                            <field name="date" attrs="{'readonly': [('flag_readonly','=', 1)]}"/>
+                            <field name="partner_id" attrs="{'readonly': [('flag_readonly','=', 1)]}"/>
+                            <field name="customer_pic" attrs="{'readonly': [('flag_readonly','=', 1)]}"/>
+                            <field name="customer_contact" attrs="{'readonly': [('flag_readonly','=', 1)]}"/>
                         </group>
                         <group string='Qty'>
-                            <field name="qty_participant" attrs="{'readonly': [('state','!=', 'draft')]}"/>
-                            <field name="qty_teacher" attrs="{'readonly': [('state','!=', 'draft')]}"/>
-                            <field name="qty_add_participant" attrs="{'readonly': [('state','!=', 'draft')]}"/>
-                            <field name="total" attrs="{'readonly': [('state','!=', 'draft')]}"/>
+                            <field name="qty_participant" attrs="{'readonly': [('flag_readonly','=', 1)]}"/>
+                            <field name="qty_teacher" attrs="{'readonly': [('flag_readonly','=', 1)]}"/>
+                            <field name="qty_add_participant" attrs="{'readonly': [('flag_readonly','=', 1)]}"/>
+                            <field name="total" attrs="{'readonly': [('flag_readonly','=', 1)]}"/>
                         </group>
                     </group>
                     <group>
                         <group id='internal' string='Internal'>
                             <field name="user_id" readonly="1"/>
                             <field name="department_id" readonly="1"/>
+                            <field name="flag_readonly" invisible="1"/>
                         </group>
                     </group>
 
                     <notebook>
                         <page string="Facilities">
-                            <field name="facilities_ids" attrs="{'readonly': [('state','!=', 'draft')]}">
+                            <field name="facilities_ids" attrs="{'readonly': [('flag_readonly','=', 1)]}">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="qty"/>
+                                    <field name="start"/>
+                                    <field name="end"/>
+                                    <field name="info"/>
+                                    <field name="state" invisible="1"/>
+                                    <field name="date_request" invisible="1"/>
+                                </tree>
+                                
+                            </field>
+                        </page>
+                        <page string="Activities">
+                            <field name="activities_ids" attrs="{'readonly': [('flag_readonly','=', 1)]}">
                                 <tree editable="bottom">
                                     <field name="name"/>
                                     <field name="qty"/>
                                     <field name="start"/>
                                     <field name="end"/>
                                     <field name="state" invisible="1"/>
-                                    <field name="date_request" readonly="1"/>
-
-                                </tree>
-                                
-                            </field>
-                        </page>
-                        <page string="Activities">
-                            <field name="activities_ids" attrs="{'readonly': [('state','!=', 'draft')]}">
-                                <tree editable="bottom">
-                                    <field name="name"/>
-                                    <field name="qty"/>
-                                    <field name="start"/>
-                                    <field name="end"/>
-                                    <field name="state" readonly="1"/>
-                                    <field name="date_request" readonly="1"/>
+                                    <field name="date_request" invisible="1"/>
                                 </tree>
                                 
                             </field>

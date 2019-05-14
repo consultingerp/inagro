@@ -115,6 +115,24 @@ class Koordinasi_marketing(models.Model):
         vals['name'] = self.env['ir.sequence'].next_by_code('koordinasi.marketing') or 'New'
         return super(Koordinasi_marketing, self).create(vals)
 
+
+    @api.one
+    def _get_flag_readonly(self):
+        print(self.env.user.has_group('inagro_koordinasi_marketing.ga_koordinasi_marketing'),' has group')
+
+        if self.state == 'draft':
+            if self.create_uid == self.env.user:
+                self.flag_readonly = 0
+            elif self.env.user.has_group('inagro_koordinasi_marketing.ga_koordinasi_marketing') == True:
+                self.flag_readonly = 0
+            else:
+                self.flag_readonly = 1
+        else:
+            self.flag_readonly = 1
+
+        # print()
+    flag_readonly = fields.Integer(string='Flag Readonly', store=False, compute = "_get_flag_readonly") 
+
     @api.multi
     def confirm_request(self):
         for fcl in self.facilities_ids:
@@ -156,9 +174,10 @@ class facilities_line(models.Model):
                              copy=False,
                              default='draft')
     fcl_id = fields.Many2one('koordinasi.marketing',
-                                 'Form Coordination',
+                                 'MK Number',
                                  ondelete='cascade', readonly=True)
     date_request = fields.Date('Date Request', readonly=True,related='fcl_id.date')
+    info = fields.Char('Information')
 
 
 class activities_line(models.Model):
@@ -177,7 +196,7 @@ class activities_line(models.Model):
                              copy=False,
                              default='draft')
     act_id = fields.Many2one('koordinasi.marketing',
-                                 'Form Coordination',
+                                 'MK Number',
                                  ondelete='cascade', readonly=True)
     date_request = fields.Date('Date Request', readonly=True,related='act_id.date')
 
