@@ -29,7 +29,7 @@
         <field name="name">facilities.line.tree</field>
         <field name="model">facilities.line</field>
         <field name="arch" type="xml">
-            <tree string="Info Facilities">
+            <tree string="Info Facilities" create="false" edit="false">
                 <field name="fcl_id"/>
                 <field name="name"/>
                 <field name="qty"/>

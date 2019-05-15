@@ -100,6 +100,17 @@
         </field>
     </record>
 
+    <!-- MK Report  -->
+    <record model="ir.actions.act_window" id="act_window_mk_report">
+        <field name="name">Report</field>
+        <field name="res_model">mk.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="context">{'search_default_orders': 1}</field>
+        <field name="view_id"></field> 
+        <field name="help">Report analisys marketing coordination</field>
+    </record>
+
     <!-- <record model="ir.actions.act_window" id="act_window_food_beverage">
         <field name="name">F &amp; B</field>
         <field name="type">ir.actions.act_window</field>
@@ -154,12 +165,20 @@
         action="inagro_koordinasi_marketing.act_window_activities_info"
         />
 
-
+    <menuitem
+        id="menu_mk_report"
+        name="Report"
+        sequence="3"
+        parent="inagro_koordinasi_marketing.menu_koordinasi_marketing"
+        groups='inagro_koordinasi_marketing.sales_koordinasi_marketing,inagro_koordinasi_marketing.ga_koordinasi_marketing'
+        action="inagro_koordinasi_marketing.act_window_mk_report"
+        />
+        
 
     <menuitem
         id="menu_config_koordinasi"
         name="Configuration"
-        sequence="3"
+        sequence="4"
         parent="inagro_koordinasi_marketing.menu_koordinasi_marketing"
         groups='inagro_koordinasi_marketing.sales_koordinasi_marketing,inagro_koordinasi_marketing.ga_koordinasi_marketing'
         />

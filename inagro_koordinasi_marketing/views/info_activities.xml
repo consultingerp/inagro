@@ -28,7 +28,7 @@
         <field name="name">activities.line.tree</field>
         <field name="model">activities.line</field>
         <field name="arch" type="xml">
-            <tree string="Info Activities">
+            <tree string="Info Activities" create="false" edit="false">
                 <field name="act_id"/>
                 <field name="name"/>
                 <field name="qty"/>

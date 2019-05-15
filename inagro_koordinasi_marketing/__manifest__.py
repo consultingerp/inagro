@@ -33,6 +33,7 @@
         'views/form_koordinasi.xml',
         'views/info_facilities.xml',
         'views/info_activities.xml',
+        'report/mk_report.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

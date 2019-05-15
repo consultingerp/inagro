@@ -40,8 +40,8 @@ class Koordinasi_marketing(models.Model):
     _name = 'koordinasi.marketing'
     _inherit = ['mail.thread']
 
-    name = fields.Char('Activity Name', readonly=True)
-    tanggal = fields.Date('Date')
+    name = fields.Char('Activity Number', readonly=True)
+    # tanggal = fields.Date('Date Request')
     partner_id = fields.Many2one('res.partner', 'Customer',
                                  index=True,
                                  required=True)
@@ -176,7 +176,7 @@ class facilities_line(models.Model):
     fcl_id = fields.Many2one('koordinasi.marketing',
                                  'MK Number',
                                  ondelete='cascade', readonly=True)
-    date_request = fields.Date('Date Request', readonly=True,related='fcl_id.date')
+    date_request = fields.Date('Date Request', readonly=True,related='fcl_id.date',store=True)
     info = fields.Char('Information')
 
 
@@ -198,6 +198,6 @@ class activities_line(models.Model):
     act_id = fields.Many2one('koordinasi.marketing',
                                  'MK Number',
                                  ondelete='cascade', readonly=True)
-    date_request = fields.Date('Date Request', readonly=True,related='act_id.date')
+    date_request = fields.Date('Date Request', readonly=True,related='act_id.date',store=True)
 
 
