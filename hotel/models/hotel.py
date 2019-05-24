@@ -739,21 +739,21 @@ class HotelFolioLine(models.Model):
         print(room,' dd')
         print(room.categ_id,' categ')
         print(room.categ_id.id,' categ ww')
-        if room.categ_id.id == 9:
-            if self.checkin_date.date() > self.checkout_date.date():
-                    print('satu-satu')
-                    raise ValidationError(_('Room line Check In Date Should be \
-                    less than the Check Out Date!'))
-        else:
-            if self.checkin_date.date() >= self.checkout_date.date():
-                    print('satu')
-                    raise ValidationError(_('Room line Check In Date Should be \
-                    less than the Check Out Date!'))
-            if self.folio_id.date_order and self.checkin_date:
-                if self.checkin_date.date() < self.folio_id.date_order.date():
-                    print('dua')
-                    raise ValidationError(_('Room line check in date should be \
-                    greater than the current date.'))
+        # if room.categ_id.id == 9:
+        #     if self.checkin_date.date() > self.checkout_date.date():
+        #             print('satu-satu')
+        #             raise ValidationError(_('Room line Check In Date Should be \
+        #             less than the Check Out Date!'))
+        # else:
+        #     if self.checkin_date.date() >= self.checkout_date.date():
+        #             print('satu')
+        #             raise ValidationError(_('Room line Check In Date Should be \
+        #             less than the Check Out Date!'))
+        #     if self.folio_id.date_order and self.checkin_date:
+        #         if self.checkin_date.date() < self.folio_id.date_order.date():
+        #             print('dua')
+        #             raise ValidationError(_('Room line check in date should be \
+        #             greater than the current date.'))
 
     @api.multi
     def unlink(self):
