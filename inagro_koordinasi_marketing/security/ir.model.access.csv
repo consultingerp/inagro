@@ -19,3 +19,12 @@ access_facilities_sales,sales_facilities,model_facilities,inagro_koordinasi_mark
 
 access_mk_report_sales,sales_mk_report,model_mk_report,inagro_koordinasi_marketing.sales_koordinasi_marketing,1,0,0,0
 access_mk_report_ga,ga_mk_report,model_mk_report,inagro_koordinasi_marketing.ga_koordinasi_marketing,1,0,0,0
+
+access_add_fc_ga,ga_add_fc,model_add_facilities,inagro_koordinasi_marketing.ga_koordinasi_marketing,1,1,1,1
+access_add_fc_sales,sales_add_fc,model_add_facilities,inagro_koordinasi_marketing.sales_koordinasi_marketing,1,0,0,0
+
+access_img_fc_ga,ga_img_fc,model_img_facilities,inagro_koordinasi_marketing.ga_koordinasi_marketing,1,1,1,1
+access_img_fc_sales,sales_img_fc,model_img_facilities,inagro_koordinasi_marketing.sales_koordinasi_marketing,1,0,0,0
+
+access_img_act_ga,ga_img_act,model_img_activities,inagro_koordinasi_marketing.ga_koordinasi_marketing,1,1,1,1
+access_img_act_sales,sales_img_act,model_img_activities,inagro_koordinasi_marketing.sales_koordinasi_marketing,1,0,0,0

@@ -19,14 +19,73 @@ _STATES = [
 class outdoor_activities(models.Model):
     _name = 'ourdoor.activities'
 
-    name = fields.Char('Name')
+    name = fields.Char('Name',required=True)
     _sql_constraints = [('activities_uniq', 'unique (name)', 'Name must be unique!')]
+
+    img_act_ids = fields.One2many('img.activities', 'act',
+                               'Image Activities',
+                               readonly=False,
+                               copy=True,
+                               track_visibility='onchange')
+
+class image_activities(models.Model):
+
+    _name = "img.activities"
+    _description = "Image Activities"
+
+    image = fields.Binary('Image', attachment=True,required=True)
+    act = fields.Many2one('ourdoor.activities',
+                                 'Activities',
+                                 ondelete='cascade', readonly=True)
 
 class facilities(models.Model):
     _name = 'facilities'
 
-    name = fields.Char('Name')
+    name = fields.Char('Name',required=True)
     _sql_constraints = [('activities_uniq', 'unique (name)', 'Name must be unique!')]
+    image = fields.Binary('Gambar')
+    image2 = fields.Binary('Gambar2')
+    # image3 = fields.Binary('Gambar3', attachment=True)
+    # image4 = fields.Binary('Gambar4', attachment=True)
+    # attachment = fields.Many2many("ir.attachment", string="Attachment")
+
+    add_fcl_ids = fields.One2many('add.facilities', 'fcl',
+                               'Additional Facilities',
+                               readonly=False,
+                               copy=True,
+                               track_visibility='onchange')
+
+    img_fcl_ids = fields.One2many('img.facilities', 'fcl',
+                               'Additional Facilities',
+                               readonly=False,
+                               copy=True,
+                               track_visibility='onchange')
+
+class additional_facilities(models.Model):
+
+    _name = "add.facilities"
+    _description = "Additional Facilities"
+
+    name = fields.Char(string='Name',required=True)
+    qty = fields.Integer('Qty')
+    fcl = fields.Many2one('facilities',
+                                 'Facilities',
+                                 ondelete='cascade', readonly=True)
+
+class image_facilities(models.Model):
+
+    _name = "img.facilities"
+    _description = "Additional Facilities"
+
+    image = fields.Binary('Image', attachment=True,required=True)
+    fcl = fields.Many2one('facilities',
+                                 'Facilities',
+                                 ondelete='cascade', readonly=True)
+
+
+
+
+
 
 # class food_beverage(models.Model):
 #     _name = 'food.beverage'

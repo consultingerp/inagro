@@ -34,6 +34,8 @@
         'views/info_facilities.xml',
         'views/info_activities.xml',
         'report/mk_report.xml',
+        'views/master_facilites.xml',
+        'views/master_activities.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
