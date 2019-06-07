@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+
+    <template id="assets_backend" name="dn enterprise assets backend" inherit_id="web_enterprise.assets_backend">
+        <!-- <xpath expr="//script[last()]" position="replace">
+            <script type="text/javascript" src="/web_enterprise/static/src/js/apps.js"></script>
+            <script type="text/javascript" src="/web_enterprise/static/src/js/control_panel.js"></script>
+            <script type="text/javascript" src="/dn_enterprise/static/src/js/home_menu.js"></script>
+            <script type="text/javascript" src="/web_enterprise/static/src/js/menu_mobile.js"></script>
+            <script type="text/javascript" src="/web_enterprise/static/src/js/views/form_renderer.js"></script>
+            <script type="text/javascript" src="/web_enterprise/static/src/js/views/form_view.js"></script>
+            <script type="text/javascript" src="/web_enterprise/static/src/js/views/relational_fields.js"></script>
+            <script type="text/javascript" src="/web_enterprise/static/src/js/views/upgrade_fields.js"></script>
+            <script type="text/javascript" src="/web_enterprise/static/src/js/widgets/debug_manager.js"></script>
+            <script type="text/javascript" src="/web_enterprise/static/src/js/widgets/user_menu.js"></script>
+            <script type="text/javascript" src="/web_enterprise/static/src/js/widgets/switch_company_menu.js"></script>
+        </xpath> -->
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/dn_enterprise/static/src/js/home_menu.js"></script>
+        </xpath>
+    </template>
+</odoo>
