@@ -629,8 +629,13 @@ class HotelFolio(models.Model):
 
     @api.multi
     def action_confirm(self):
+        print(datetime.today(),' date')
+        # exit()
+
+
         for order in self.order_id:
             order.state = 'sale'
+            order.confirmation_date = datetime.today()
             if not order.analytic_account_id:
                 for line in order.order_line:
                     if line.product_id.invoice_policy == 'cost':
