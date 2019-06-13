@@ -42,8 +42,12 @@ class inherit_AccountInvoice(models.Model):
         }
         account = invoice_line.get_invoice_line_account('in_invoice', line.product_id, line.order_id.fiscal_position_id, self.env.user.company_id)
         if account:
-            data['account_id'] = line.budget_line_id.general_budget_id.account_id.id
-            data['budget_line_id'] = line.budget_line_id.id
+            # dn cut to budget
+            # data['account_id'] = line.budget_line_id.general_budget_id.account_id.id
+            # data['budget_line_id'] = line.budget_line_id.id
+            # dn cut to budget
+            
+            data['account_id'] = account.id
         return data
 
     @api.multi
@@ -64,34 +68,36 @@ class inherit_AccountInvoice(models.Model):
 
             # exit()
 
-
+            # dn cut cek to budget
             # cek apakah budget masih ada
-            self.env.cr.execute("""
-                SELECT DISTINCT budget_line_id,sum(price_subtotal) as sum_subtotal
-                FROM
-                    account_invoice_line
-                WHERE
-                    invoice_id = %s
-                GROUP BY budget_line_id"""%(int(self.id)))
-            line_distinct = self.env.cr.dictfetchall()
+            # self.env.cr.execute("""
+            #     SELECT DISTINCT budget_line_id,sum(price_subtotal) as sum_subtotal
+            #     FROM
+            #         account_invoice_line
+            #     WHERE
+            #         invoice_id = %s
+            #     GROUP BY budget_line_id"""%(int(self.id)))
+            # line_distinct = self.env.cr.dictfetchall()
 
-            for line in line_distinct:
-                print(line,' line')
-                print(line['budget_line_id'],' line2')
-                budget = self.env['crossovered.budget.lines'].search([('id', '=', int(line['budget_line_id']))])
-                print(budget,' budget')
-                planned_budget = budget.planned_amount
-                sum_subtotal_pr = line['sum_subtotal']
-                new_practical_amount = budget.practical_amount-sum_subtotal_pr
+            # for line in line_distinct:
+            #     print(line,' line')
+            #     print(line['budget_line_id'],' line2')
+            #     budget = self.env['crossovered.budget.lines'].search([('id', '=', int(line['budget_line_id']))])
+            #     print(budget,' budget')
+            #     planned_budget = budget.planned_amount
+            #     sum_subtotal_pr = line['sum_subtotal']
+            #     new_practical_amount = budget.practical_amount-sum_subtotal_pr
 
-                print(planned_budget,' plan')
-                print(sum_subtotal_pr,' sum_subtotal_pr')
-                print(new_practical_amount,' new_practical_amount') 
+            #     print(planned_budget,' plan')
+            #     print(sum_subtotal_pr,' sum_subtotal_pr')
+            #     print(new_practical_amount,' new_practical_amount') 
 
-                # exit()
+            #     # exit()
 
-                if new_practical_amount < planned_budget:
-                    raise UserError(_('Value from '+str(budget.name)+' is not enough, plese use another budget !'))
+            #     if new_practical_amount < planned_budget:
+            #         raise UserError(_('Value from '+str(budget.name)+' is not enough, plese use another budget !'))
+
+            # dn cut cek to budget
 
 
         to_open_invoices = self.filtered(lambda inv: inv.state != 'open')

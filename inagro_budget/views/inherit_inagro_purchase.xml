@@ -33,11 +33,12 @@
                         />
                     </xpath>
                     
-
-                    <xpath expr="//field[@name='line_ids']/tree//field[@name='name']" position="after">
+                    <!-- dn cut cek to budget -->
+                    <!-- <xpath expr="//field[@name='line_ids']/tree//field[@name='name']" position="after">
                         <field name="budget_line_id" />
                         <field name="analytic_account_id" />
-                    </xpath>
+                    </xpath> -->
+                    <!-- dn cut cek to budget -->
 <!-- 
                     <field name="state" position="replace">
                         <field name="state" widget="statusbar"

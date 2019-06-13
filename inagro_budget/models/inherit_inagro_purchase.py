@@ -70,29 +70,31 @@ class inherit_inagro_PurchaseRequest(models.Model):
     @api.multi
     def button_to_approve(self):
 
-        self.env.cr.execute("""
-            SELECT DISTINCT budget_line_id,sum(price_subtotal) as sum_subtotal
-            FROM
-                sprogroup_purchase_request_line
-            WHERE
-                request_id = %s
-            GROUP BY budget_line_id"""%(int(self.id)))
-        line_distinct = self.env.cr.dictfetchall()
+        # dn cut cek to budget
+        # self.env.cr.execute("""
+        #     SELECT DISTINCT budget_line_id,sum(price_subtotal) as sum_subtotal
+        #     FROM
+        #         sprogroup_purchase_request_line
+        #     WHERE
+        #         request_id = %s
+        #     GROUP BY budget_line_id"""%(int(self.id)))
+        # line_distinct = self.env.cr.dictfetchall()
 
-        for line in line_distinct:
-            print(line,' line')
-            print(line['budget_line_id'],' line2')
-            budget = self.env['crossovered.budget.lines'].search([('id', '=', int(line['budget_line_id']))])
-            planned_budget = budget.planned_amount
-            sum_subtotal_pr = line['sum_subtotal']
-            new_practical_amount = budget.practical_amount-sum_subtotal_pr
+        # for line in line_distinct:
+        #     print(line,' line')
+        #     print(line['budget_line_id'],' line2')
+        #     budget = self.env['crossovered.budget.lines'].search([('id', '=', int(line['budget_line_id']))])
+        #     planned_budget = budget.planned_amount
+        #     sum_subtotal_pr = line['sum_subtotal']
+        #     new_practical_amount = budget.practical_amount-sum_subtotal_pr
 
-            print(planned_budget,' plan')
-            print(sum_subtotal_pr,' sum_subtotal_pr')
-            print(new_practical_amount,' new_practical_amount') 
+        #     print(planned_budget,' plan')
+        #     print(sum_subtotal_pr,' sum_subtotal_pr')
+        #     print(new_practical_amount,' new_practical_amount') 
 
-            if new_practical_amount < planned_budget:
-                raise UserError(_('Value from '+budget.name+' is not enough, plese use another budget !'))
+        #     if new_practical_amount < planned_budget:
+        #         raise UserError(_('Value from '+budget.name+' is not enough, plese use another budget !'))
+        # dn cut cek to budget
 
         return self.write({'state': 'to_approve'})
 
