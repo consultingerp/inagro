@@ -1,0 +1,97 @@
+<odoo>
+
+    
+
+    <!-- Reservation  -->
+    <record model="ir.actions.act_window" id="act_window_report_reservation">
+        <field name="name">Reservation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hotel.folio.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,pivot,form,calendar</field>
+        <!-- <field name="context">{"search_default_requested_by":uid}</field> -->
+        <field name="context">{}</field>
+        <!-- <field name="search_view_id" ref="view_sprogroup_purchase_request_search"/> -->
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+          </p>
+        </field>
+    </record>
+
+    <record id="view_hotel_folio_tree" model="ir.ui.view">
+        <field name="name">Reservation</field>
+        <field name="model">hotel.folio.line</field>
+        <field name="arch" type="xml">
+            <tree string="Reservation">
+                <field name="product_id" string="Room No" />
+                <field name="checkin_date" />
+                <field name="checkout_date" />
+                <field name="state" />
+                <field name="price_unit" string="Rent" />
+                <field name="discount" />
+                <field name="price_subtotal" sum="Total"/>
+                
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hotel_folio_calendar" model="ir.ui.view">
+        <field name="name">Reservation Calendar</field>
+        <field name="model">hotel.folio.line</field>
+        <field name="arch" type="xml">
+            <calendar string="Folios" date_start="checkin_date" color="state"
+                date_stop="checkout_date">
+                <field name="product_id" string="Room No" />
+                <field name="state" />
+                <field name="price_subtotal" widget="monetary"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Room Reservation  -->
+    <record model="ir.actions.act_window" id="act_window_room_reservation_report_analysis">
+        <field name="name">Room Reservation Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">reservation.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">pivot,form,calendar</field>
+        <!-- <field name="context">{"search_default_requested_by":uid}</field> -->
+        <field name="context">{}</field>
+        <!-- <field name="search_view_id" ref="view_sprogroup_purchase_request_search"/> -->
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+          </p>
+        </field>
+    </record>
+
+    
+
+
+    <!-- <record model="ir.ui.view" id="act_window_report_reservation_pivot">
+        <field name="name">koordinasi.marketing.pivot</field>
+        <field name="model">koordinasi.marketing</field>
+        <field name="arch" type="xml">
+            <pivot string="Form Discuss" display_quantity="True">
+                <field name="name"/>
+                <field name="date" />
+            </pivot>
+        </field>
+    </record> -->
+
+    <menuitem id="hotel_report" name="Report"
+        sequence="19" parent="hotel.hotel_management_menu" groups="inagro_hotel.group_hotel_corporate"/>
+
+    <!-- <menuitem id="hotel.hotel_report_reservation" name="Reservation Report"
+        sequence="1" 
+        parent="hotel_report" 
+        action="inagro_hotel.act_window_report_reservation"
+        groups="inagro_hotel.group_hotel_corporate"/> -->
+
+    <menuitem id="hotel.hotel_reservation_analysis" name="Room Reservation"
+        sequence="2" 
+        parent="hotel_report" 
+        action="inagro_hotel.act_window_room_reservation_report_analysis"
+        groups="inagro_hotel.group_hotel_corporate"/>
+   
+
+</odoo>

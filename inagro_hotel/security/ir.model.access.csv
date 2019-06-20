@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_koordinasi_marketing_user,group_hotel_corporate,model_reservation_report,inagro_hotel.group_hotel_corporate,1,0,0,0
