@@ -12,6 +12,7 @@ class Room_reservation_report(models.Model):
     room_type = fields.Char('Room Type', readonly=True)
     checkin = fields.Datetime('Checkin', readonly=True, oldname='date')
     checkout = fields.Datetime('Checkout', readonly=True, oldname='date')
+    duration_day = fields.Float('Number of days', digits=(16, 0), readonly=True)
     qty = fields.Float('Quantity', digits=(16, 0), readonly=True)
     unit_price = fields.Float('Unit Price', readonly=True)
     discounts_percent = fields.Float('Discount (%)', readonly=True)
@@ -45,6 +46,13 @@ class Room_reservation_report(models.Model):
                 hrt.name as room_type,
                 fl.checkin_date as checkin,
                 fl.checkout_date as checkout,
+                CASE
+                  WHEN hrt. NAME  = 'Function Rooms' THEN
+                     (to_date(to_char(fl.checkout_date,'yyyy-mm-dd'),'yyyy-mm-dd')-to_date(to_char(fl.checkin_date,'yyyy-mm-dd'),'yyyy-mm-dd'))+1
+                  ELSE
+                     (to_date(to_char(fl.checkout_date,'yyyy-mm-dd'),'yyyy-mm-dd')-to_date(to_char(fl.checkin_date,'yyyy-mm-dd'),'yyyy-mm-dd'))
+                  END
+                as duration_day,
                 sl.product_uom_qty as qty,
                 sl.price_unit as unit_price,
                 sl.discount as discounts_percent,
