@@ -28,3 +28,7 @@ access_img_fc_sales,sales_img_fc,model_img_facilities,inagro_koordinasi_marketin
 
 access_img_act_ga,ga_img_act,model_img_activities,inagro_koordinasi_marketing.ga_koordinasi_marketing,1,1,1,1
 access_img_act_sales,sales_img_act,model_img_activities,inagro_koordinasi_marketing.sales_koordinasi_marketing,1,0,0,0
+
+access_act_tkhl_user,user_act_tkhl,model_tkhl_activities,inagro_koordinasi_marketing.user_koordinasi_marketing,1,0,0,0
+access_act_tkhl_sales,sales_act_tkhl,model_tkhl_activities,inagro_koordinasi_marketing.sales_koordinasi_marketing,1,0,0,0
+access_act_tkhl_ga,ga_act_tkhl,model_tkhl_activities,inagro_koordinasi_marketing.ga_koordinasi_marketing,1,1,1,1

@@ -22,6 +22,15 @@
                                 </tree>
                             </field>
                         </page>
+                        <page string="TKHL Activities">
+                            <field name="tkhl_ids" >
+                                <tree editable="bottom">
+                                     <field name="min_participants"/>
+                                     <field name="max_participants"/>
+                                     <field name="tkhl"/>
+                                </tree>
+                            </field>
+                        </page>
                     </notebook>
                 </sheet>
             </form>

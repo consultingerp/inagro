@@ -27,6 +27,11 @@ class outdoor_activities(models.Model):
                                readonly=False,
                                copy=True,
                                track_visibility='onchange')
+    tkhl_ids = fields.One2many('tkhl.activities', 'act',
+                               'TKHL for Activities',
+                               readonly=False,
+                               copy=True,
+                               track_visibility='onchange')
 
 class image_activities(models.Model):
 
@@ -37,6 +42,19 @@ class image_activities(models.Model):
     act = fields.Many2one('ourdoor.activities',
                                  'Activities',
                                  ondelete='cascade', readonly=True)
+
+class tkhl_activities(models.Model):
+
+    _name = "tkhl.activities"
+    _description = "TKHL Activities"
+
+    min_participants = fields.Float('Min Participants', digits=(16, 0))
+    max_participants = fields.Float('Max Participants', digits=(16, 0))
+    tkhl = fields.Float('TKHL', digits=(16, 0))
+    act = fields.Many2one('ourdoor.activities',
+                                 'Tkhl Activities',
+                                 ondelete='cascade', readonly=True)
+
 
 class facilities(models.Model):
     _name = 'facilities'
