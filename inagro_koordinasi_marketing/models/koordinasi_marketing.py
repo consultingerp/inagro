@@ -316,7 +316,7 @@ class activities_line(models.Model):
         tkhl= vals.get('tkhl') or self.tkhl
 
         print(qty,'qty')
-        # exit()
+        # exit() 
 
         select = self.env.cr.execute("""select ac.row_number,ac.id,ac.min_participants,ac.max_participants,ac.tkhl
                                         from (

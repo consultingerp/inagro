@@ -34,7 +34,7 @@
                     </group>
                     <group>
                         <group id='internal' string='Internal'>
-                            <field name="user_id" readonly="1"/>
+                            <field name="user_id" readonly="1"/> 
                             <field name="department_id" readonly="1"/>
                             <field name="flag_readonly" invisible="1"/>
                         </group>
