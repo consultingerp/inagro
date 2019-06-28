@@ -140,7 +140,7 @@ class Koordinasi_marketing(models.Model):
             return
 
         employee = self.env['hr.employee'].search([('user_id', '=', self.user_id.id)])
-        print(employee,' emp')
+        # print(employee,' emp')
         if (len(employee) > 0):
             self.department_id = employee[0].department_id.id
         else:
@@ -163,7 +163,7 @@ class Koordinasi_marketing(models.Model):
 
     @api.onchange('qty_participant', 'qty_teacher', 'qty_add_participant')
     def amount_total(self):
-        print('tes change')
+        # print('tes change')
         self.total = self.qty_participant+self.qty_teacher+self.qty_add_participant
 
     facilities_ids = fields.One2many('facilities.line', 'fcl_id',
@@ -186,7 +186,7 @@ class Koordinasi_marketing(models.Model):
         @param vals: dictionary of fields value.
         """
 
-        print('create')
+        # print('create')
         if not vals:
             vals = {}
         vals['name'] = self.env['ir.sequence'].next_by_code('koordinasi.marketing') or 'New'
@@ -266,6 +266,7 @@ class activities_line(models.Model):
     qty = fields.Integer('Number of participants')
     start = fields.Datetime('Start')
     end = fields.Datetime('End')
+    tkhl = fields.Integer('TKHL')
     state = fields.Selection(selection=_STATES,
                              string='State',
                              index=True,
@@ -276,5 +277,66 @@ class activities_line(models.Model):
                                  'MK Number',
                                  ondelete='cascade', readonly=True)
     date_request = fields.Date('Date Request', readonly=True,related='act_id.date',store=True)
+
+
+    @api.model
+    def create(self, vals):
+
+        activities = self.env['ourdoor.activities'].search([('id', '=', int(vals.get('name')))]) 
+
+        select = self.env.cr.execute("""select ac.row_number,ac.id,ac.min_participants,ac.max_participants,ac.tkhl
+                                        from (
+                                        select ROW_NUMBER () OVER (),id,min_participants,max_participants,tkhl
+                                        from tkhl_activities
+                                        where act = %s
+                                        and (min_participants <= %s 
+                                        and max_participants >= %s)
+                                        order by id asc
+                                        )as ac where ac.row_number = 1""",(int(vals.get('name')),int(vals.get('qty')),int(vals.get('qty'))))
+        hasil = self.env.cr.fetchone()
+        print(hasil,'data')
+        if hasil == None:
+            raise UserError(_('TKHL '+str(activities.name)+' is not set for '+str(vals.get('qty'))+' participants '))
+        else:
+            # print(round(hasil[4]),' master')
+            # print(int(vals.get('tkhl')), 'trans')
+            if int(vals.get('tkhl')) > round(hasil[4]):
+                raise UserError(_('TKHL '+str(activities.name)+' max is '+str(round(hasil[4])) ))
+
+        return super(activities_line, self).create(vals)
+
+
+    @api.multi
+    def write(self, vals):
+        print (self.name,self.name.name)
+        print(vals.get('tkhl'))
+        print('tkhl 2 edit')
+
+        qty = vals.get('qty') or self.qty
+        tkhl= vals.get('tkhl') or self.tkhl
+
+        print(qty,'qty')
+        # exit()
+
+        select = self.env.cr.execute("""select ac.row_number,ac.id,ac.min_participants,ac.max_participants,ac.tkhl
+                                        from (
+                                        select ROW_NUMBER () OVER (),id,min_participants,max_participants,tkhl
+                                        from tkhl_activities
+                                        where act = %s
+                                        and (min_participants <= %s 
+                                        and max_participants >= %s)
+                                        order by id asc
+                                        )as ac where ac.row_number = 1""",(int(self.name),int(qty),int(qty)))
+        hasil = self.env.cr.fetchone()
+        print(hasil,'data')
+        if hasil == None:
+            raise UserError(_('TKHL '+str(self.name.name)+' is not set for '+str(qty)+' participants '))
+        else:
+            # print(round(hasil[4]),' master')
+            # print(int(vals.get('tkhl')), 'trans')
+            if int(tkhl) > round(hasil[4]):
+                raise UserError(_('TKHL '+str(self.name.name)+' max is '+str(round(hasil[4])) ))
+
+        return super(activities_line, self).write(vals)
 
 

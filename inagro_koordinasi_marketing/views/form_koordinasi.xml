@@ -62,6 +62,7 @@
                                     <field name="qty"/>
                                     <field name="start"/>
                                     <field name="end"/>
+                                    <field name="tkhl"/>
                                     <field name="state" invisible="1"/>
                                     <field name="date_request" invisible="1"/>
                                 </tree>
