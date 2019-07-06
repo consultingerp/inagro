@@ -657,10 +657,10 @@ class HotelReservationLine(models.Model):
             for line in room.room_reservation_line_ids:
                 print(room.room_reservation_line_ids,' room.room_reservation_line_ids')
                 if line.status != 'cancel':
-                    print(self.line_id.checkin.date(),' 11')
-                    print(line.check_in,' 22')
-                    print(self.line_id.checkout,' 33')
-                    print(line.room_id.categ_id.id,' line')
+                    # print(self.line_id.checkin.date(),' 11')
+                    # print(line.check_in,' 22')
+                    # print(self.line_id.checkout,' 33')
+                    # print(line.room_id.categ_id.id,' line')
 
                     # tambahan dn start
                     if line.room_id.categ_id.id == 9:
@@ -689,8 +689,9 @@ class HotelReservationLine(models.Model):
 
 
             for rm_line in room.room_line_ids:
-                print(room.room_line_ids,' room.room_line_ids')
-                print(rm_line.room_id.categ_id.id,' line2')
+                # print(room.room_line_ids,' room.room_line_ids')
+                # print(rm_line.room_id.categ_id.id,' line2')
+                # print(rm_line,'cccc')
 
                 # tambahan dn start
                 if rm_line.room_id.categ_id.id == 9:
@@ -723,6 +724,8 @@ class HotelReservationLine(models.Model):
             if not assigned:
                 room_ids.append(room.id)
         domain = {'reserve': [('id', 'in', room_ids)]}
+        # print(domain)
+        # print('domain room')
         return {'domain': domain}
 
     @api.multi
