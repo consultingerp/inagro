@@ -14,6 +14,9 @@
                             groups="base.group_user"
                             string="Add set"/>
             </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='name']" position="after">
+                <field name="product_set_id" readonly="1"/>
+            </xpath>
         </field>
     </record>
 </odoo>

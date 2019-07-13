@@ -30,12 +30,40 @@ class SaleOrder(models.Model):
     @api.one
     @api.constrains('order_line')
     def check_constraint_quantity(self):
+        # print('constraint cek')
         for record in self:
             if record.order_line:
                 for product_ids in record.order_line:
                     product = product_ids.product_id.id 
                     minimum_order_qty = self.env['product.product'].browse(product).minimum_order_quantity 
                     if product_ids.product_uom_qty < minimum_order_qty: 
-                        raise ValidationError(_('Minimum order quantity of the product' +product_ids.name+' is ' +str(minimum_order_qty)))
+                        raise ValidationError(_('Minimum order quantity of the product ' +product_ids.name+' is ' +str(minimum_order_qty)))
+
+
+    @api.multi
+    def action_confirm(self):
+        for record in self:
+            if record.order_line:
+                for product_ids in record.order_line:
+                    product = product_ids.product_id.id 
+                    minimum_order_qty = self.env['product.product'].browse(product).minimum_order_quantity 
+                    if product_ids.product_uom_qty < minimum_order_qty: 
+                        raise ValidationError(_('Minimum order quantity of the product ' +product_ids.name+' is ' +str(minimum_order_qty)))
+
+        if self._get_forbidden_state_confirm() & set(self.mapped('state')):
+            raise UserError(_(
+                'It is not allowed to confirm an order in the following states: %s'
+            ) % (', '.join(self._get_forbidden_state_confirm())))
+
+        for order in self.filtered(lambda order: order.partner_id not in order.message_partner_ids):
+            order.message_subscribe([order.partner_id.id])
+        self.write({
+            'state': 'sale',
+            'confirmation_date': fields.Datetime.now()
+        })
+        self._action_confirm()
+        if self.env['ir.config_parameter'].sudo().get_param('sale.auto_done_setting'):
+            self.action_done()
+        return True
    
   

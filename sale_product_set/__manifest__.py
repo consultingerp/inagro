@@ -10,7 +10,7 @@
     'website': 'https://github.com/OCA/sale-workflow',
     'summary': "Sale product set",
     'depends': [
-        'sale',
+        'sale','abs_so_minimum_quantity'
     ],
     'data': [
         'security/ir.model.access.csv',
