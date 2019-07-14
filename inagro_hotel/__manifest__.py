@@ -27,6 +27,7 @@
         'security/ir.model.access.csv',
         'views/hotel_view.xml',
         'report/reservation_room_view.xml',
+        'report/info_booking.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

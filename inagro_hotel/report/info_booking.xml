@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_info_booking" model="ir.ui.view">
+        <field name="name">Info Booking</field>
+        <field name="model">info.booking</field>
+        <field name="arch" type="xml">
+            <calendar string="Info Booking" date_start="checkin" color="state" date_stop="checkout" mode="month">
+                <field name="reservation_no" />
+                <!-- <field name="nama_ruangan" /> -->
+            </calendar>
+        </field>
+    </record>
+        
+
+</odoo>

@@ -1,27 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-        <!-- <record model="ir.ui.view" id="view_mk_report_pivot">
-            <field name="name">mk.report.pivot</field>
-            <field name="model">mk.report</field>
-            <field name="arch" type="xml">
-                <pivot string="Analisys" disable_linking="True">
-                    <field name="facilities" type="row"/>
-                    <field name="tgl_mk"  type="col"/>
-                    <field name="mk_number"  type="col"/>
-                </pivot>
-            </field>
-        </record>
-        <record model="ir.ui.view" id="view_mk_report_graph">
-            <field name="name">mk.report.graph</field>
-            <field name="model">mk.report</field>
-            <field name="arch" type="xml">
-                <graph string="Analisys">
-                    <field name="facilities" type="row"/>
-                    <field name="tgl_mk"  type="col"/>
-                </graph>
-            </field>
-        </record>
- -->
 
     <record id="view_room_reservation_report_calendar" model="ir.ui.view">
         <field name="name">Reservation Calendar</field>

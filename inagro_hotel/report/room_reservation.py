@@ -86,3 +86,80 @@ class Room_reservation_report(models.Model):
                 sl.state
         """
         return group_by_str
+
+
+
+class info_booking_marketing(models.Model):
+    _name = "info.booking"
+    _description = "Info booking"
+    _auto = False
+    # _order = 'date_order desc, price_total desc'
+
+    reservation_no = fields.Char('Reservation No', readonly=True)
+    nama_partner = fields.Char('Customer', readonly=True)
+    checkin = fields.Datetime('Checkin', readonly=True, oldname='date')
+    checkout = fields.Datetime('Checkout', readonly=True, oldname='date')
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('confirm', 'Confirm'),
+        ('cancel', 'Cancel'),
+        ('done', 'Done'),
+        ], string='Status', readonly=True)
+    nama_user = fields.Char('User', readonly=True)
+    nama_ruangan = fields.Char('Room', readonly=True)
+    room_type = fields.Char('Room Category', readonly=True)
+
+    @api.model_cr
+    def init(self):
+        # self._table = sale_report
+        tools.drop_view_if_exists(self.env.cr, self._table)
+        self.env.cr.execute("""CREATE or REPLACE VIEW %s as (
+            %s
+            FROM %s
+            %s
+            )""" 
+            % (self._table, self._select(), self._from(), self._group_by()))
+
+    def _select(self):
+        select_str = """
+            SELECT
+                min(hr.id) as id,
+                hr.reservation_no,
+                rp. NAME AS nama_partner,
+                hr.checkin,
+                hr.checkout,
+                hr. STATE,
+                rpu. NAME AS nama_user,
+                pt. NAME AS nama_ruangan,
+                rm_tp.name as room_type
+        """
+        return select_str
+
+    def _from(self):
+        from_str = """
+            hotel_reservation hr
+            LEFT JOIN res_partner rp ON hr.partner_id = rp. ID
+            LEFT JOIN res_users ru ON hr.create_uid = ru. ID
+            LEFT JOIN res_partner rpu ON ru.partner_id = rpu. ID
+            LEFT JOIN hotel_reservation_line hrl ON hr. ID = hrl.line_id
+            LEFT JOIN hotel_reservation_line_room_rel hrl_r ON hrl. ID = hrl_r.hotel_reservation_line_id
+            LEFT JOIN hotel_room room ON hrl_r.room_id = room. ID
+            LEFT JOIN hotel_room_type rm_tp on room.categ_id = rm_tp.id
+            LEFT JOIN product_product pp ON room.product_id = pp. ID
+            LEFT JOIN product_template pt ON pp.product_tmpl_id = pt. ID
+        """
+        return from_str
+
+    def _group_by(self):
+        group_by_str = """
+            GROUP BY
+                hr.reservation_no,
+                rp. NAME,
+                hr.checkin,
+                hr.checkout,
+                hr. STATE,
+                rpu. NAME,
+                pt. NAME,
+                rm_tp.name
+        """
+        return group_by_str
