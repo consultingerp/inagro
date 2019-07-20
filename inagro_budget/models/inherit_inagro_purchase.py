@@ -47,8 +47,10 @@ class inherit_inagro_PurchaseRequest(models.Model):
 
         employee = self.env['hr.employee'].search([('work_email', '=', self.requested_by.email)])
         if (len(employee) > 0):
+            self.department_id = employee[0].department_id.id
             self.bis_type = employee[0].department_id.bis_type
         else:
+            self.department_id = None
             self.bis_type = None
 
     bis_type = fields.Many2one('bis.type', 'Business Type', compute='_compute_bis_type', store=True, required=False)
@@ -133,12 +135,15 @@ class inherit_inagro_PurchaseRequest(models.Model):
 
             product_line = (0, 0, {'product_id' : line.product_id.id,
                                     'budget_line_id' : line.budget_line_id.id,
-                                    'account_analytic_id' : line.analytic_account_id.id,
+                                    # 'account_analytic_id' : line.analytic_account_id.id,
                                    'state' : 'draft',
                                    'product_uom' : line.product_id.uom_po_id.id,
-                                    'price_unit' : line.price_unit,
+                                    # 'price_unit' : line.price_unit,
+                                    'price_unit' : 0,
                                    'date_planned' :  datetime.today().strftime(DEFAULT_SERVER_DATETIME_FORMAT),
                                    # 'taxes_id' : ((6,0,[taxes_id.id])),
+                                   'currency_id' : line.currency_id,
+                                   'company_id' : self.env.user.company_id.id,
                                    'product_qty' : line.product_qty,
                                    'name' : line.product_id.name
                                    })
@@ -160,7 +165,8 @@ class inherit_inagro_PurchaseRequest(models.Model):
             'bis_type': self.bis_type.id,
             'picking_type_id' : 1,
             'requested_by': int(self.requested_by),
-            'department_id': int(self.department_id)
+            'department_id': int(self.department_id),
+            'company_id' : self.env.user.company_id.id
         }
         
         po = self.env['purchase.order'].create(vals)
@@ -175,7 +181,6 @@ class inherit_PR_line(models.Model):
     budget_line_id = fields.Many2one('crossovered.budget.lines', string='Budget', store=True,domain="[('crossovered_budget_id.state','=','validate')]")
     analytic_account_id = fields.Many2one('account.analytic.account', string='Analytic',related='budget_line_id.analytic_account_id', store=True)
 
-    
 
 
     
