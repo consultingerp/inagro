@@ -163,3 +163,104 @@ class info_booking_marketing(models.Model):
                 rm_tp.name
         """
         return group_by_str
+
+
+class price_room(models.Model):
+    _name = "price.room"
+    _description = "Room Price"
+    _auto = False
+    # _order = 'date_order desc, price_total desc'
+
+    price_room = fields.Float('Room Price', readonly=True)
+    nama_ruangan = fields.Char('Room', readonly=True)
+    room_type = fields.Char('Room Category', readonly=True)
+
+
+    @api.model_cr
+    def init(self):
+        # self._table = sale_report
+        tools.drop_view_if_exists(self.env.cr, self._table)
+        self.env.cr.execute("""CREATE or REPLACE VIEW %s as (
+            %s
+            FROM %s
+            %s
+            )""" 
+            % (self._table, self._select(), self._from(), self._group_by()))
+
+    def _select(self):
+        select_str = """
+            SELECT
+                min(pt.id) as id,
+                pt.name AS nama_ruangan,
+                rm_tp.name as room_type,
+                pt.list_price as price_room
+        """
+        return select_str
+
+    def _from(self):
+        from_str = """
+            hotel_room room 
+            LEFT JOIN hotel_room_type rm_tp on room.categ_id = rm_tp.id
+            LEFT JOIN product_product pp ON room.product_id = pp. ID
+            LEFT JOIN product_template pt ON pp.product_tmpl_id = pt. ID
+        """
+        return from_str
+
+    def _group_by(self):
+        group_by_str = """
+            GROUP BY
+                pt.name,
+                rm_tp.name,
+                pt.list_price
+        """
+        return group_by_str
+
+class price_service(models.Model):
+    _name = "price.service"
+    _description = "Service Price"
+    _auto = False
+    # _order = 'date_order desc, price_total desc'
+
+    price_service = fields.Float('Service Price', readonly=True)
+    nama_service = fields.Char('Service', readonly=True)
+    service_type = fields.Char('Service Category', readonly=True)
+
+
+    @api.model_cr
+    def init(self):
+        # self._table = sale_report
+        tools.drop_view_if_exists(self.env.cr, self._table)
+        self.env.cr.execute("""CREATE or REPLACE VIEW %s as (
+            %s
+            FROM %s
+            %s
+            )""" 
+            % (self._table, self._select(), self._from(), self._group_by()))
+
+    def _select(self):
+        select_str = """
+            SELECT
+                min(pt.id) as id,
+                pt. NAME AS nama_service,
+                sv_tp.name as service_type,
+                pt.list_price as price_service
+        """
+        return select_str
+
+    def _from(self):
+        from_str = """
+            hotel_services sv 
+            LEFT JOIN hotel_service_type sv_tp on sv.categ_id = sv_tp.id
+            LEFT JOIN product_product pp ON sv.product_id = pp. ID
+            LEFT JOIN product_template pt ON pp.product_tmpl_id = pt. ID
+        """
+        return from_str
+
+    def _group_by(self):
+        group_by_str = """
+            GROUP BY
+                pt.name,
+                sv_tp.name,
+                pt.list_price
+        """
+        return group_by_str

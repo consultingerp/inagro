@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_koordinasi_marketing_user,group_hotel_corporate,model_reservation_report,inagro_hotel.group_hotel_corporate,1,0,0,0
 access_info_corporate,group_hotel_corporate,model_info_booking,inagro_hotel.group_hotel_corporate,1,0,0,0
+user_room_price,group_user_room_price,model_price_room,hotel.group_hotel_user,1,0,0,0
+user_service_price,group_user_service_price,model_price_service,hotel.group_hotel_user,1,0,0,0

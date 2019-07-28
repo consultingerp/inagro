@@ -8,6 +8,14 @@ from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT as dt
 from odoo.exceptions import ValidationError, UserError
 import pytz
 
+class HotelFolio_so(models.Model):
+
+    _inherit = 'sale.order'
+    # _order = 'reservation_id desc'
+
+    hotel_folio_id = fields.One2many('hotel.folio', 'order_id',
+                                 readonly=True,)
+    folio_reservation_uid = fields.Many2one('res.users',string='Sales Hotel',related='hotel_folio_id.reservation_id.create_uid')
 
 class HotelFolio(models.Model):
 
@@ -16,6 +24,7 @@ class HotelFolio(models.Model):
 
     reservation_id = fields.Many2one('hotel.reservation',
                                      string='Reservation Id')
+    reservation_uid = fields.Many2one('res.users',string='Sales',related='reservation_id.create_uid')
 
     @api.multi
     def write(self, vals):

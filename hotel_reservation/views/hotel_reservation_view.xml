@@ -17,7 +17,7 @@
                     <button name="create_folio" string="Create Folio" states="confirm"
                         class="oe_highlight" type="object" />
                     <button name="cancel_reservation" string="Cancel Reservation"
-                        states="draft,confirm" class="oe_highlight" type="object" />
+                        states="draft,confirm,done" class="oe_highlight" type="object" groups="hotel.group_hotel_manager"/>
                     <button name="set_to_draft_reservation" string="Set to Draft"
                         states="cancel" class="oe_highlight" type="object" />
                     <field name="state" widget="statusbar" />
@@ -97,6 +97,7 @@
                 colors="blue:state == 'draft';gray:state == 'done';lightgray:state == 'cancel';">
                 <field name="reservation_no" />
                 <field name="partner_id" />
+                <field name="create_uid" />
                 <field name="checkin" />
                 <field name="checkout" />
                 <field name="state" />
@@ -213,7 +214,11 @@
         <field name="inherit_id" ref="hotel.view_hotel_folio_form" />
         <field name="arch" type="xml">
             <field name="name" position='after'>
-                <field name="reservation_id" readonly='1' />
+                <field name="reservation_id" readonly='0' />
+            </field>
+            <field name="user_id" position='replace'>
+                <field name="user_id" string="Admin" />
+                <field name="reservation_uid" />
             </field>
         </field>
     </record>
@@ -225,6 +230,8 @@
         <field name="arch" type="xml">
             <field name="name" position='after'>
                 <field name="reservation_id" />
+                <field name="reservation_uid" />
+                <field name="user_id" string="Admin" />
             </field>
         </field>
     </record>
@@ -303,6 +310,32 @@
             </form>
         </field>
     </record>
+
+    <!-- sale order -->
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">sale.order.hotel.tree.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="user_id" position='after'>
+                <field name="hotel_folio_id" />
+                <field name="folio_reservation_uid" />
+            </field>
+        </field>
+    </record>
+
+    <!-- sale order quotation -->
+    <!-- <record id="view_quotation_tree_with_onboarding" model="ir.ui.view">
+        <field name="name">sale.order.hotel.tree.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding" />
+        <field name="arch" type="xml">
+            <field name="user_id" position='after'>
+                <field name="hotel_folio_id" />
+                <field name="folio_reservation_uid" />
+            </field>
+        </field>
+    </record> -->
 
     <!-- Action for Room Reservation Summary -->
     <record id="action_hotel_reservation_summary" model="ir.actions.act_window">

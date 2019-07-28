@@ -28,6 +28,8 @@
         'views/hotel_view.xml',
         'report/reservation_room_view.xml',
         'report/info_booking.xml',
+        'report/folio_report.xml',
+        'report/folio_report_template.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
