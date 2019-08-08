@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="crm_case_form_view_oppor" model="ir.ui.view">
+            <field name="name">crm.lead.form.opportunity.form.inherit</field>
+            <field name="model">crm.lead</field>
+            <!-- <field name="priority">3</field> -->
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="phone" position="after">
+                        <field name="number_student" />
+                        <field name="tuition_fee" class="oe_inline" widget='monetary' options="{'currency_field': 'company_currency'}"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <record id="quick_create_opportunity_form" model="ir.ui.view">
+            <field name="name">crm.lead.inherit.form.quick_create</field>
+            <field name="model">crm.lead</field>
+            <!-- <field name="priority">3</field> -->
+            <field name="inherit_id" ref="crm.quick_create_opportunity_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="planned_revenue" position="after">
+                        <field name="number_student" />
+                        <field name="tuition_fee" class="oe_inline" widget='monetary' options="{'currency_field': 'company_currency'}"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="crm_case_kanban_view_leads">
+            <field name="name">crm.lead.inherit.kanban.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+            <field name="model">crm.lead</field>
+            <field name="arch" type="xml">
+                <xpath expr='//kanban/templates/t/div/div[2]/div[3]/t[@t-if="record.planned_revenue.raw_value"]' position="after">
+                    <t t-if="record.number_student.value">
+                        <field name="number_student"/>
+                        <span t-if="record.number_student.value">,</span>
+                    </t>
+                    <t t-if="record.partner_id.value">
+                        <field name="tuition_fee" widget="monetary" options="{'currency_field': 'company_currency'}"/>
+                        <span t-if="record.partner_id.value">,</span>
+                    </t>
+                    
+                </xpath>
+            </field>
+        </record>
+
+</odoo>

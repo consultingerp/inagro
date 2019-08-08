@@ -317,11 +317,6 @@ class inherit_PurchaseOrder(models.Model):
         return True
 
 
-# class inherit_PurchaseOrder_line(models.Model):
-#     _inherit = "purchase.order.line"
-
-#     product_qty = fields.Float(string='Quantity',digits=(16,2), required=True)
-
 
 
     
