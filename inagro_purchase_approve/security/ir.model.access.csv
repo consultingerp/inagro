@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_inagro_purchase_approve_inagro_purchase_approve,inagro_purchase_approve.inagro_purchase_approve,model_inagro_purchase_approve_inagro_purchase_approve,,1,0,0,0

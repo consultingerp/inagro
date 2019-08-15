@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="purchase_order_form" model="ir.ui.view">
+            <field name="name">purchase.order.form.inagro_purchase_approve</field>
+            <field name="model">purchase.order</field>
+            <!-- <field name="priority">3</field>  -->
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+
+                <data>
+                    <!-- <xpath expr="//button[@name='button_draft']" position="replace"> -->
+
+                    <xpath expr="//header/button[@name='action_rfq_send']" position='replace'>
+                        <button name="action_rfq_send" states="spv_confirm" string="Send by Email" type="object" context="{'send_rfq':True}" class="oe_highlight"/>
+                    </xpath>
+
+                    <xpath expr="//header/button[@name='action_rfq_send']" position='before'>
+                        <button string="SPV Confirm" type="object" name="btn_spv_confirm" states="draft" groups="inagro_purchase_approve.group_purchase_spv" class="oe_highlight"/>
+                    </xpath>
+
+                    <xpath expr="//button[@id='draft_confirm']" position='replace'>
+                        <button name="button_confirm" type="object" states="spv_confirm" string="Confirm Order" id="draft_confirm" groups="purchase.group_purchase_manager" />
+                    </xpath>
+
+                    <xpath expr="//button[@name='button_cancel']" position='replace'>
+                        <button name="button_cancel" states="draft,spv_confirm,to approve,sent,purchase" string="Cancel" type="object" />
+                    </xpath>
+
+                    
+
+                    <field name="state" position="replace">
+                        <field name="state" widget="statusbar" statusbar_visible="draft,spv_confirm,sent,purchase" readonly="1"/>
+                    </field>
+
+                </data>
+
+            </field>
+        </record>
+
+
+        <!-- <record model="ir.ui.view" id="view_hotel_reservation_tree">
+            <field name="name">hotel.reservation.tree.inherit</field>
+            <field name="model">hotel.reservation</field>
+            <field name="inherit_id" ref="hotel_reservation.view_hotel_reservation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="create">false</attribute>
+                </xpath>
+                <field name="reservation_no" position="after">
+                    <field name="partner_company_type"/>
+                </field>
+          </field>
+        </record> -->
+       
+
+</odoo>
