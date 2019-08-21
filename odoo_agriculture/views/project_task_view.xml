@@ -9,10 +9,14 @@
        <xpath expr="//field[@name='project_id']" position="after">
          <field name="custom_request_id"/>
        </xpath>
+       <field name="user_id" position="after">
+            <field name="is_cropping_request"  invisible="0"/>
+        </field>
+
 			 <xpath expr="//page[last()]" position="after">
                     <page string="Crop Incidents" name='crop_incident_information'>
 						<field name="crop_incident_ids" widget="section_and_note_one2many" mode="tree" editable="bottom"/>
-                        <field name="is_cropping_request"  invisible="1"/>
+                        <!-- <field name="is_cropping_request"  invisible="0"/> -->
 					</page> 
                     <page string="Crop Equipments" name='crop_equipments_information'>
                         <field name="equipment_ids"/>
@@ -51,6 +55,7 @@
            <field name="arch" type="xml">
              <xpath expr="//page[@name='settings']/group/field[@name='user_id']" position="after">
                     <field name="custom_request_id"/>
+                    <field name="is_agriculture"/>
              </xpath>
              <xpath expr="//button[@name='toggle_active']" position="before">
                     <button name="action_crops_requests"
@@ -74,7 +79,7 @@
             <field name="res_model">project.project</field>
             <field name="view_mode">kanban,tree,form,pivot,graph,activity</field>
             <field name="search_view_id" ref="project.view_project_project_filter"/>
-            <field name="domain">[]</field>
+            <field name="domain">[('is_agriculture','=',True)]</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a new project

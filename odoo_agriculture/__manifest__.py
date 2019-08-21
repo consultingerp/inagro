@@ -45,7 +45,7 @@ Farm Management Software
     'depends': [
                'project',
                'stock',
-               'website_customer',
+               # 'website_customer',
                'maintenance',
                'fleet'
                 ],

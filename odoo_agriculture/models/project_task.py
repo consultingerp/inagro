@@ -53,6 +53,11 @@ class Project(models.Model):
 		string="Crop Count"
 	)
 
+	is_agriculture = fields.Boolean(
+		string='Is Agriculture?',
+		copy=True
+	)
+
 	@api.multi
 	def action_crops_requests(self):
 		action = self.env.ref('odoo_agriculture.action_farmer_cropping_request').read()[0]

@@ -7,6 +7,8 @@ from odoo import api, fields, models, _
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT, float_compare
 from odoo.exceptions import UserError
 
+from odoo.addons import decimal_precision as dp
+
 
 class inagro_SaleOrder(models.Model):
     _inherit = "sale.order"
@@ -22,3 +24,10 @@ class inagro_SaleOrder(models.Model):
         'stock.warehouse', string='Warehouse',
         required=True, readonly=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
         default=_default_warehouse_id)
+
+
+
+# class inagro_SaleOrderLine(models.Model):
+#     _inherit = 'sale.order.line'
+
+#     product_uom_qty = fields.Float(string='Ordered Quantity', required=True, default=1.0,digits=(16,1))

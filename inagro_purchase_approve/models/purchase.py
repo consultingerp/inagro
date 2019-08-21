@@ -52,6 +52,8 @@ class PurchaseOrder_inherit_approve(models.Model):
     def button_confirm(self):
         # print('tes confirm')
         for order in self:
+            order.confirm_id = self.env['res.users'].browse(self.env.uid)
+            print(order.confirm_id,'dddddddddd')
             if order.state not in ['spv_confirm', 'sent']:
                 continue
             order._add_supplier_to_product()

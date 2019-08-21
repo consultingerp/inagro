@@ -15,12 +15,12 @@ class signature_PurchaseOrder(models.Model):
 
     @api.multi
     def button_confirm(self):
-        # print(self.partner_id,'dddddddddd')
+        print(self.partner_id,'dddddddddd nnn')
 
 
         for order in self:
             order.confirm_id = self.env['res.users'].browse(self.env.uid)
-            # print(order.partner_id,'dddddddddd')
+            print(order.confirm_id,'dddddddddd')
 
             if len(order.partner_id) <= 0:
                 raise UserError(_('Vendor has not been selected.'))
