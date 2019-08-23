@@ -61,7 +61,7 @@ Farm Management Software
         'views/crops_dieases_view.xml',
         'views/project_task_view.xml',
         'views/crops_animals_view.xml',
-        'views/google_map_template_view.xml',
+        # 'views/google_map_template_view.xml',
         'views/crops_fleet_view.xml',
         'views/crops_incident_view.xml',
         'views/crops_tasks_template_view.xml',

@@ -23,13 +23,13 @@
                     <field name='crop_ids'/>
                 </page>
 			 </xpath>
-             <xpath expr="//button[@name='website_publish_button']" position="before">
+             <!-- <xpath expr="//button[@name='website_publish_button']" position="before">
                 <button name="get_location_url"
                    type="object"
                    class="oe_stat_button"
                    icon="fa-pencil-square-o"
                    string="Google Map"/>
-             </xpath>
+             </xpath> -->
 		   </field>
 	</record>
 
