@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+		<record id="action_crop_category" model="ir.actions.act_window">
+	        <field name="name">Crop Category</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">crop.category</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	        <field name="help" type="html">
+	          <p class="o_view_nocontent_smiling_face">
+	            Create a new category
+	          </p>
+	        </field>
+		</record>
+
+		<record id="action_crop_varieties" model="ir.actions.act_window">
+	        <field name="name">Crop Varieties</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">crop.varieties</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	        <field name="help" type="html">
+	          <p class="o_view_nocontent_smiling_face">
+	            Create a new varieties
+	          </p>
+	        </field>
+		</record>
+
+		<record id="action_crop_master_activity" model="ir.actions.act_window">
+	        <field name="name">Activity</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">crop.masteractivity</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	        <field name="help" type="html">
+	          <p class="o_view_nocontent_smiling_face">
+	            Create a new master activity
+	          </p>
+	        </field>
+		</record>
+
+		<record id="action_crop_activity" model="ir.actions.act_window">
+	        <field name="name">Activity</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">crop.activity</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	        <field name="help" type="html">
+	          <p class="o_view_nocontent_smiling_face">
+	            Create a new activity
+	          </p>
+	        </field>
+		</record>
+
+	   
+	  	<menuitem 
+	  	id="crop_master_menu"
+	  	name="Crop"
+	  	sequence='2' 
+	  	parent="odoo_agriculture.configuration_topmenu"
+	  	groups="inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"/>
+
+	  	<menuitem 
+	  	id="crop_category"
+	  	name="Crop Category"
+	  	sequence='1' 
+	  	action="inagro_agriculture.action_crop_category"
+	  	parent="crop_master_menu"
+	  	groups="inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"/>
+
+	  	<menuitem 
+	  	id="crop_varieties"
+	  	name="Crop Varieties"
+	  	sequence='2' 
+	  	action="inagro_agriculture.action_crop_varieties"
+	  	parent="crop_master_menu"
+	  	groups="inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"/>
+
+	  	<menuitem 
+	  	id="crop_master_activity"
+	  	name="Activity"
+	  	sequence='2' 
+	  	parent="odoo_agriculture.configuration_topmenu"
+	  	action="inagro_agriculture.action_crop_master_activity"
+	  	groups="inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"/>
+
+	  	<menuitem 
+	  	id="activity" 
+	  	name="Activity" 
+	  	sequence='2'
+	  	parent="odoo_agriculture.agricultural_management_topmenu"/>
+
+	  	<menuitem 
+	  	id="crop_activity"
+	  	name="Activity"
+	  	sequence='2' 
+	  	parent="inagro_agriculture.activity"
+	  	action="inagro_agriculture.action_crop_activity"/>
+
+</odoo>

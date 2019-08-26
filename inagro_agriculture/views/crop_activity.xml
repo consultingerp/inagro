@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+                             
+        <record id="view_activity_form" model="ir.ui.view">
+            <field name="name">Activity Form View</field>
+            <field name="model">crop.activity</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,confirm,done,cancel"
+                               statusbar_colors='{"cancel":"red"}'/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name='name'/>
+                                <field name='category_id'/>
+                                <field name='varieties_id'/>
+                            </group>
+                            <group>
+                                <field name='area_location_id'/>
+                                <field name='date'/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="activity_line" string="Activity Detail">
+                                <field name="line_ids" widget="section_and_note_one2many" mode="tree">
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name='line_id' invisible='1'/>
+                                                    <field name='name'/>
+                                                    <field name='description'/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                    <tree string="Activity Detail" editable="bottom"> 
+                                        <field name='name'/>
+                                        <field name='description'/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+    </data>
+
+</odoo>
+
+

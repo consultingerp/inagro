@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+act_user,group_act_user,model_crop_activity,odoo_agriculture.group_agriculture_user,1,1,1,1
+act_line_user,group_act_line_user,model_crop_activity_line,odoo_agriculture.group_agriculture_user,1,1,1,1
+
+cr_ct_spv,group_spv_cr_ct,model_crop_category,inagro_agriculture.group_agriculture_spv,1,1,1,1
+cr_vr_spv,group_spv_cr_vr,model_crop_varieties,inagro_agriculture.group_agriculture_spv,1,1,1,1
+cr_mas_act_spv,group_spv_cr_mas_act,model_crop_masteractivity,inagro_agriculture.group_agriculture_spv,1,1,1,1
+act_spv,group_act_spv,model_crop_activity,inagro_agriculture.group_agriculture_spv,1,1,1,1
+act_line_spv,group_act_line_spv,model_crop_activity_line,inagro_agriculture.group_agriculture_spv,1,1,1,1
+
+cr_ct_mgr,group_mgr_cr_ct,model_crop_category,odoo_agriculture.group_agriculture_manager,1,1,1,1
+cr_vr_mgr,group_mgr_cr_vr,model_crop_varieties,odoo_agriculture.group_agriculture_manager,1,1,1,1
+cr_mas_act_mgr,group_mgr_cr_mas_act,model_crop_masteractivity,odoo_agriculture.group_agriculture_manager,1,1,1,1
+act_mgr,group_act_mgr,model_crop_activity,odoo_agriculture.group_agriculture_manager,1,1,1,1
+act_line_mgr,group_act_line_mgr,model_crop_activity_line,odoo_agriculture.group_agriculture_manager,1,1,1,1

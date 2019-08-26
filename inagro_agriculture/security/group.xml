@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+
+        <record id="group_agriculture_spv" model="res.groups">
+            <field name="name">Supervisor</field>
+            <field name="implied_ids" 
+            	eval="[(4,ref('project.group_project_manager'))]"/>
+            <field name="category_id" ref="odoo_agriculture.module_inagro_agriculture"/>
+        </record>
+
+        <record id="agriculture_spv" model="ir.rule">
+            <field name="name">Agriculture Supervisor</field>
+            <field name="model_id" ref="odoo_agriculture.model_farmer_cropping_request"/>
+            <field name="global" eval="True"/>
+            <field name="groups" eval="[(4, ref('inagro_agriculture.group_agriculture_spv'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
+        <record id="agriculture_spv_cr_ct" model="ir.rule">
+            <field name="name">Agriculture Supervisor</field>
+            <field name="model_id" ref="model_crop_category"/>
+            <field name="global" eval="True"/>
+            <field name="groups" eval="[(4, ref('inagro_agriculture.group_agriculture_spv'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
+        <record id="agriculture_spv_cr_vr" model="ir.rule">
+            <field name="name">Agriculture Supervisor</field>
+            <field name="model_id" ref="model_crop_varieties"/>
+            <field name="global" eval="True"/>
+            <field name="groups" eval="[(4, ref('inagro_agriculture.group_agriculture_spv'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
+        <record id="agriculture_mgr_cr_ct" model="ir.rule">
+            <field name="name">Agriculture Manager</field>
+            <field name="model_id" ref="model_crop_category"/>
+            <field name="global" eval="True"/>
+            <field name="groups" eval="[(4, ref('odoo_agriculture.group_agriculture_manager'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
+        <record id="agriculture_mgr_cr_vr" model="ir.rule">
+            <field name="name">Agriculture Manager</field>
+            <field name="model_id" ref="model_crop_varieties"/>
+            <field name="global" eval="True"/>
+            <field name="groups" eval="[(4, ref('odoo_agriculture.group_agriculture_manager'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
+	</data>
+</odoo>
