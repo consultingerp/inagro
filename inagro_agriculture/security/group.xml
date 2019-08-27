@@ -10,6 +10,14 @@
             <field name="category_id" ref="odoo_agriculture.module_inagro_agriculture"/>
         </record>
 
+        <record id="agriculture_user_activity" model="ir.rule">
+            <field name="name">Activity user</field>
+            <field name="model_id" ref="inagro_agriculture.model_crop_activity"/>
+            <field name="global" eval="True"/>
+            <field name="groups" eval="[(4, ref('odoo_agriculture.group_agriculture_user'))]"/>
+            <field name="domain_force">[('create_uid','=',user.id)]</field>
+        </record>
+
         <record id="agriculture_spv" model="ir.rule">
             <field name="name">Agriculture Supervisor</field>
             <field name="model_id" ref="odoo_agriculture.model_farmer_cropping_request"/>
@@ -34,6 +42,14 @@
             <field name="domain_force">[(1,'=',1)]</field>
         </record>
 
+        <record id="agriculture_spv_activity" model="ir.rule">
+            <field name="name">Activity Spv</field>
+            <field name="model_id" ref="inagro_agriculture.model_crop_activity"/>
+            <field name="global" eval="True"/>
+            <field name="groups" eval="[(4, ref('inagro_agriculture.group_agriculture_spv'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
         <record id="agriculture_mgr_cr_ct" model="ir.rule">
             <field name="name">Agriculture Manager</field>
             <field name="model_id" ref="model_crop_category"/>
@@ -45,6 +61,14 @@
         <record id="agriculture_mgr_cr_vr" model="ir.rule">
             <field name="name">Agriculture Manager</field>
             <field name="model_id" ref="model_crop_varieties"/>
+            <field name="global" eval="True"/>
+            <field name="groups" eval="[(4, ref('odoo_agriculture.group_agriculture_manager'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
+        <record id="agriculture_mgr_activity" model="ir.rule">
+            <field name="name">Activity Mgr</field>
+            <field name="model_id" ref="inagro_agriculture.model_crop_activity"/>
             <field name="global" eval="True"/>
             <field name="groups" eval="[(4, ref('odoo_agriculture.group_agriculture_manager'))]"/>
             <field name="domain_force">[(1,'=',1)]</field>

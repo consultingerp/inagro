@@ -8,6 +8,26 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
+                        <button name="button_confirm" states="draft"
+                                string="Confirm" type="object"
+                                class="oe_highlight"
+                                groups="odoo_agriculture.group_agriculture_user" />
+
+                        <button name="button_validate" states="confirm"
+                                string="Validate" type="object"
+                                class="oe_highlight"
+                                groups="inagro_agriculture.group_agriculture_spv" />
+
+                        <button name="button_cancel" states="done"
+                                string="Cancel" type="object"
+                                class="oe_highlight"
+                                groups="inagro_agriculture.group_agriculture_spv" />
+
+                        <button name="button_draft" states="cancel"
+                                string="Set To Draft" type="object"
+                                class="oe_highlight"
+                                groups="inagro_agriculture.group_agriculture_spv" />
+
                         <field name="state" widget="statusbar"
                                statusbar_visible="draft,confirm,done,cancel"
                                statusbar_colors='{"cancel":"red"}'/>
@@ -15,18 +35,18 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name='name'/>
+                                <field name='name' attrs="{'readonly': [('state','!=', 'draft')]}"/>
                                 <field name='category_id'/>
                                 <field name='varieties_id'/>
                             </group>
                             <group>
                                 <field name='area_location_id'/>
-                                <field name='date'/>
+                                <field name='date' attrs="{'readonly': [('state','!=', 'draft')]}"/>
                             </group>
                         </group>
                         <notebook>
                             <page name="activity_line" string="Activity Detail">
-                                <field name="line_ids" widget="section_and_note_one2many" mode="tree">
+                                <field name="line_ids" widget="section_and_note_one2many" mode="tree" attrs="{'readonly': [('state','!=', 'draft')]}">
                                     <form>
                                         <sheet>
                                             <group>
@@ -48,6 +68,23 @@
                     </sheet>
                 </form>
             </field>
+        </record>
+
+
+        <record id="view_activity_tree" model="ir.ui.view">
+                <field name="name">Activity Tree View</field>
+                <field name="model">crop.activity</field>
+                <field name="arch" type="xml">
+                    <tree>
+                        <field name='name'/>
+                        <field name='varieties_id'/>
+                        <field name='category_id'/>
+                        <field name='area_location_id'/>
+                        <field name='date'/>
+                        <field name='state'/>
+                        <field name='create_uid'/>
+                    </tree>
+                </field>
         </record>
     
     </data>

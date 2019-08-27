@@ -1,4 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+cr_ct_user,group_user_cr_ct,model_crop_category,odoo_agriculture.group_agriculture_user,1,0,0,0
+cr_vr_user,group_user_cr_vr,model_crop_varieties,odoo_agriculture.group_agriculture_user,1,0,0,0
+cr_mas_act_user,group_user_cr_mas_act,model_crop_masteractivity,odoo_agriculture.group_agriculture_user,1,0,0,0
 act_user,group_act_user,model_crop_activity,odoo_agriculture.group_agriculture_user,1,1,1,1
 act_line_user,group_act_line_user,model_crop_activity_line,odoo_agriculture.group_agriculture_user,1,1,1,1
 
