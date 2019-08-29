@@ -4,6 +4,7 @@ from odoo import models, fields, api
 
 class inagro_crop_activity(models.Model):
     _name = 'crop.activity'
+    _inherit = ['mail.thread']
 
     name = fields.Many2one('farmer.location.crops',string='Crop Code',domain="[('active','=',True)]",required=True)
     category_id = fields.Many2one('crop.category',string='Category',related="name.category_id",store=True)

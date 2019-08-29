@@ -6,3 +6,4 @@ from . import crop_varietes
 from . import master_activity
 from . import crop
 from . import crop_activity
+from . import harvest_plan

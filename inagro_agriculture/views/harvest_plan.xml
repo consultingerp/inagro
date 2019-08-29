@@ -2,23 +2,23 @@
 <odoo>
     <data>
                              
-        <record id="view_activity_form" model="ir.ui.view">
-            <field name="name">Activity Form View</field>
-            <field name="model">crop.activity</field>
+        <record id="view_harvest_plan_form" model="ir.ui.view">
+            <field name="name">Harvest Plan Form View</field>
+            <field name="model">harvest.plan</field>
             <field name="arch" type="xml">
                 <form>
                     <header>
                         <button name="button_confirm" states="draft"
                                 string="Confirm" type="object"
                                 class="oe_highlight"
-                                groups="odoo_agriculture.group_agriculture_user" />
+                                groups="inagro_agriculture.group_agriculture_spv" />
 
                         <button name="button_validate" states="confirm"
                                 string="Validate" type="object"
                                 class="oe_highlight"
-                                groups="inagro_agriculture.group_agriculture_spv" />
+                                groups="odoo_agriculture.group_agriculture_manager" />
 
-                        <button name="button_cancel" states="done"
+                        <!-- <button name="button_cancel" states="done"
                                 string="Cancel" type="object"
                                 class="oe_highlight"
                                 groups="inagro_agriculture.group_agriculture_spv" />
@@ -26,26 +26,32 @@
                         <button name="button_draft" states="cancel"
                                 string="Set To Draft" type="object"
                                 class="oe_highlight"
-                                groups="inagro_agriculture.group_agriculture_spv" />
+                                groups="inagro_agriculture.group_agriculture_spv" /> -->
 
                         <field name="state" widget="statusbar"
-                               statusbar_visible="draft,confirm,done,cancel"
-                               statusbar_colors='{"cancel":"red"}'/>
+                               statusbar_visible="draft,confirm,done"
+                               statusbar_colors='{"confirm":"blue"}'/>
                     </header>
                     <sheet>
-                        <group>
+                        <!-- <group>
                             <group>
-                                <field name='name' attrs="{'readonly': [('state','!=', 'draft')]}"/>
-                                <field name='category_id'/>
-                                <field name='varieties_id'/>
+                                
+                                <div class="oe_edit_only">
+                                    <label for="name" class="oe_inline"/>
+                                </div>
+                                <h1>
+                                    <field name='name' attrs="{'readonly': [('state','!=', 'draft')]}"/>
+                                </h1>
                             </group>
-                            <group>
-                                <field name='area_location_id'/>
-                                <field name='date' attrs="{'readonly': [('state','!=', 'draft')]}"/>
-                            </group>
-                        </group>
+                        </group> -->
+                        <div class="oe_edit_only">
+                            <label for="name" class="oe_inline"/>
+                        </div>
+                        <h1>
+                            <field name='name' attrs="{'readonly': [('state','!=', 'draft')]}"/>
+                        </h1>
                         <notebook>
-                            <page name="activity_line" string="Activity Detail">
+                            <page name="harvest_plan_line" string="Harvest Plan Detail">
                                 <field name="line_ids" widget="section_and_note_one2many" mode="tree" attrs="{'readonly': [('state','!=', 'draft')]}">
                                     <form>
                                         <sheet>
@@ -53,14 +59,18 @@
                                                 <group>
                                                     <field name='line_id' invisible='1'/>
                                                     <field name='name'/>
-                                                    <field name='description'/>
+                                                    <field name='product_id'/>
+                                                    <field name='product_uom'/>
+                                                    <field name='product_qty'/>
                                                 </group>
                                             </group>
                                         </sheet>
                                     </form>
                                     <tree string="Activity Detail" editable="bottom"> 
                                         <field name='name'/>
-                                        <field name='description'/>
+                                        <field name='product_id'/>
+                                        <field name='product_uom'/>
+                                        <field name='product_qty'/>
                                     </tree>
                                 </field>
                             </page>
@@ -75,18 +85,13 @@
         </record>
 
 
-        <record id="view_activity_tree" model="ir.ui.view">
-                <field name="name">Activity Tree View</field>
-                <field name="model">crop.activity</field>
+        <record id="view_harvest_plan_tree" model="ir.ui.view">
+                <field name="name">Harvest Plan Tree View</field>
+                <field name="model">harvest.plan</field>
                 <field name="arch" type="xml">
                     <tree>
                         <field name='name'/>
-                        <field name='varieties_id'/>
-                        <field name='category_id'/>
-                        <field name='area_location_id'/>
-                        <field name='date'/>
                         <field name='state'/>
-                        <field name='create_uid'/>
                     </tree>
                 </field>
         </record>
