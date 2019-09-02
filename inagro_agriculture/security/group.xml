@@ -18,6 +18,16 @@
             <field name="domain_force">[('create_uid','=',user.id)]</field>
         </record>
 
+        <record id="agriculture_stock_picking_user" model="ir.rule">
+            <field name="name">Stock picking user</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="global" eval="True"/>
+            <field name="groups" eval="[(4, ref('odoo_agriculture.group_agriculture_user'))]"/>
+            <field name="domain_force">[('create_uid','=',user.id)]</field>
+        </record>
+
+
+
         <record id="agriculture_spv" model="ir.rule">
             <field name="name">Agriculture Supervisor</field>
             <field name="model_id" ref="odoo_agriculture.model_farmer_cropping_request"/>
@@ -58,6 +68,16 @@
             <field name="domain_force">[(1,'=',1)]</field>
         </record>
 
+        <record id="agriculture_stock_picking_spv" model="ir.rule">
+            <field name="name">Stock picking spv</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
+            <field name="global" eval="True"/>
+            <field name="groups" eval="[(4, ref('inagro_agriculture.group_agriculture_spv'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
+
+
         <record id="agriculture_mgr_cr_ct" model="ir.rule">
             <field name="name">Agriculture Manager</field>
             <field name="model_id" ref="model_crop_category"/>
@@ -85,6 +105,14 @@
         <record id="agriculture_mgr_harvest_plan" model="ir.rule">
             <field name="name">Activity Mgr(harvest plan)</field>
             <field name="model_id" ref="model_harvest_plan"/>
+            <field name="global" eval="True"/>
+            <field name="groups" eval="[(4, ref('odoo_agriculture.group_agriculture_manager'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
+        <record id="agriculture_stock_picking_mgr" model="ir.rule">
+            <field name="name">Stock picking mgr</field>
+            <field name="model_id" ref="stock.model_stock_picking"/>
             <field name="global" eval="True"/>
             <field name="groups" eval="[(4, ref('odoo_agriculture.group_agriculture_manager'))]"/>
             <field name="domain_force">[(1,'=',1)]</field>

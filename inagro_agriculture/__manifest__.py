@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','odoo_agriculture','product'],
+    'depends': ['base','odoo_agriculture','product','stock'],
 
     # always loaded
     'data': [
@@ -32,6 +32,7 @@
         'views/inherit_crops.xml',
         'views/crop_activity.xml',
         'views/harvest_plan.xml',
+        'views/stock_picking.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

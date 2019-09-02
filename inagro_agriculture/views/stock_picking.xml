@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="view_picking_form" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//button[@name='button_validate']" position="replace">
+                <button name="button_validate" attrs="{'invisible': ['|', ('state', 'in', ('waiting','confirmed')), ('show_validate', '=', False)]}" string="Validate" type="object" class="oe_highlight" groups="stock.group_stock_user,inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"/>
+            </xpath>
+            
+            <field name="location_dest_id" position="after">
+                <field name="crop_id" attrs="{'invisible': [('is_cultivation', '=', False)],'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="varieties_id" attrs="{'invisible': [('is_cultivation', '=', False)],'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="category_id" attrs="{'invisible': [('is_cultivation', '=', False)],'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="area_location_id" attrs="{'invisible': [('is_cultivation', '=', False)],'readonly': [('state', '!=', 'draft')]}"/>
+            </field>
+
+            <field name="origin" position="replace">
+                <field name="origin" attrs="{'invisible': [('is_cultivation', '=', True)]}"/>
+            </field>
+
+            <field name="move_type" position="after">
+                <field name="is_cultivation" readonly="1" attrs="{'invisible': [('is_cultivation', '=', False)]}"/>
+            </field>
+
+        </field>
+	</record>
+
+    <record model="ir.ui.view" id="vpicktree">
+        <field name="name">stock.picking.tree.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <field name="location_dest_id" position="after">
+                <field name="crop_id" attrs="{'invisible': [('is_cultivation', '=', False)]}"/>
+                <field name="is_cultivation" invisible="1" />
+            </field>
+
+            <field name="origin" position="replace">
+                <field name="origin" attrs="{'invisible': [('is_cultivation', '=', True)]}"/>
+            </field>
+
+            <field name="backorder_id" position="replace">
+                <field name="backorder_id" attrs="{'invisible': [('is_cultivation', '=', True)]}"/>
+            </field>
+            
+      </field>
+    </record>
+
+	
+        
+</odoo>
+
