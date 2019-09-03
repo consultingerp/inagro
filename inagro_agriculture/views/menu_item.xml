@@ -85,6 +85,21 @@
 	        </field>
 		</record>
 
+		<record id="action_harvest_real" model="ir.actions.act_window">
+	        <field name="name">Harvest Real</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">stock.picking</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{'default_is_harvest':1}</field>
+            <field name="domain">[('is_harvest','=',True)]</field>
+	        <field name="help" type="html">
+	          <p class="o_view_nocontent_smiling_face">
+	            Create a new harvest real
+	          </p>
+	        </field>
+		</record>
+
 	   
 	  	<menuitem 
 	  	id="crop_master_menu"
@@ -152,5 +167,13 @@
 	  	sequence='1' 
 	  	parent="inagro_agriculture.harvest"
 	  	action="inagro_agriculture.action_harvest_plan"/>
+
+	  	<menuitem 
+	  	id="harvest_real"
+	  	name="Harvest Real"
+	  	sequence='2' 
+	  	parent="inagro_agriculture.harvest"
+	  	groups="odoo_agriculture.group_agriculture_user,inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"
+	  	action="inagro_agriculture.action_harvest_real"/>
 
 </odoo>

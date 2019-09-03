@@ -28,6 +28,11 @@ class inagro_agriculture_Picking_cultivation(models.Model):
         copy=True
     )
 
+    is_harvest = fields.Boolean(
+        string='Is Harvest?',
+        copy=True
+    )
+
     crop_id = fields.Many2one(
         'farmer.location.crops',
         domain="[('active','=',True)]",

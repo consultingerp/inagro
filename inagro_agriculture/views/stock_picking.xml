@@ -19,7 +19,7 @@
             </field>
 
             <field name="partner_id" position="replace">
-                <field name="partner_id" attrs="{'invisible': [('is_cultivation', '=', True)]}"/>
+                <field name="partner_id" attrs="{'invisible': ['|',('is_cultivation', '=', True),('is_harvest', '=', True)]}"/>
             </field>
 
             <field name="origin" position="replace">
@@ -28,6 +28,7 @@
 
             <field name="move_type" position="after">
                 <field name="is_cultivation" readonly="1" attrs="{'invisible': [('is_cultivation', '=', False)]}"/>
+                <field name="is_harvest" readonly="1" attrs="{'invisible': [('is_harvest', '=', False)]}"/>
             </field>
 
         </field>
