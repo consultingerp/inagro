@@ -30,6 +30,7 @@ class inagro_agriculture_Picking_cultivation(models.Model):
 
     crop_id = fields.Many2one(
         'farmer.location.crops',
+        domain="[('active','=',True)]",
         string='Crop Code'
     )
 
