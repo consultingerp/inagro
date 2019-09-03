@@ -64,9 +64,17 @@ class inagro_agriculture_Picking_cultivation(models.Model):
     def action_confirm(self):
 
         if self.is_cultivation == True:
-            print (self.crop_id)
+            # print (self.crop_id)
             if len(self.crop_id) <= 0:
                 raise UserError(_('Crop code can not be empty'))
+
+
+        for order in self:
+            if order.is_harvest == True:
+                for line in order.move_ids_without_package:
+                    if len(line.varieties_id) <= 0:
+                        raise UserError(_('Varieties can not be empty'))
+
 
 
         self.mapped('package_level_ids').filtered(lambda pl: pl.state == 'draft' and not pl.move_ids)._generate_moves()
