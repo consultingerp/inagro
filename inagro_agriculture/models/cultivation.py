@@ -79,3 +79,14 @@ class inagro_agriculture_Picking_cultivation(models.Model):
             .mapped('move_lines')._action_assign()
         return True
 
+
+class inagro_agriculture_StockMove(models.Model):
+    _inherit = "stock.move"
+
+    varieties_id = fields.Many2one(
+        'crop.varieties',
+        string='Varieties'
+    )
+
+
+
