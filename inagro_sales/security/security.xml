@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="filter_admin_stock_wh" model="ir.rule">
+            <field name="name">Inagro filter admin stock</field>
+            <field name="model_id" search="[('model','=','stock.warehouse')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('base.group_system'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
+        <record id="filter_user_stock_wh" model="ir.rule">
+            <field name="name">Inagro filter user stock</field>
+            <field name="model_id" search="[('model','=','stock.warehouse')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman')),(4, ref('sales_team.group_sale_salesman_all_leads')),(4, ref('sales_team.group_sale_manager'))]"/>
+            <field name="domain_force">[('id','in', [ p.id for p in user.sales_warehouse_ids ])]</field>
+        </record>
+
+        <record id="filter_mngr_lead_sale" model="ir.rule">
+            <field name="name">Inagro filter mgr/lead sale</field>
+            <field name="model_id" search="[('model','=','sale.order')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman_all_leads')),(4, ref('sales_team.group_sale_manager'))]"/>
+            <field name="domain_force">[('user_id','in', [ p.id for p in user.sales_child_ids ])]</field>
+        </record>
+
+    </data>
+</openerp>
