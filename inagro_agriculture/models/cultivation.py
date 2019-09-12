@@ -33,47 +33,58 @@ class inagro_agriculture_Picking_cultivation(models.Model):
         copy=True
     )
 
-    crop_id = fields.Many2one(
-        'farmer.location.crops',
-        domain="[('active','=',True)]",
-        string='Crop Code'
-    )
+    # crop_id = fields.Many2one(
+    #     'farmer.location.crops',
+    #     domain="[('active','=',True)]",
+    #     string='Crop Code'
+    # )
 
-    varieties_id = fields.Many2one(
-        'crop.varieties',
-        string='Varieties',
-        related="crop_id.varieties_id",
-        readonly=True
-    )
+    # varieties_id = fields.Many2one(
+    #     'crop.varieties',
+    #     string='Varieties',
+    #     # related="crop_id.varieties_id",
+    #     readonly=True
+    # )
 
-    category_id = fields.Many2one(
-        'crop.category',
-        string='Category',
-        related="crop_id.category_id",
-        readonly=True
-    )
+    # category_id = fields.Many2one(
+    #     'crop.category',
+    #     string='Category',
+    #     related="varieties_id.category_id",
+    #     readonly=True
+    # )
 
-    area_location_id = fields.Many2one(
-        'res.partner',
-        string='Location Area',
-        related="crop_id.area_location_id",
-        readonly=True
-    )
+    # area_location_id = fields.Many2one(
+    #     'res.partner',
+    #     string='Location Area',
+    #     # related="crop_id.area_location_id",
+    #     # readonly=True
+    # )
 
     @api.multi
     def action_confirm(self):
 
-        if self.is_cultivation == True:
-            # print (self.crop_id)
-            if len(self.crop_id) <= 0:
-                raise UserError(_('Crop code can not be empty'))
-
+        # if self.is_cultivation == True:
+        #     # print (self.crop_id)
+        #     if len(self.crop_id) <= 0:
+        #         raise UserError(_('Crop code can not be empty'))
 
         for order in self:
             if order.is_harvest == True:
+                if order.picking_type_id.is_harvest == False:
+                    raise UserError(_('Operation Type is not compatible'))
+
+        for order in self:
+            if order.is_cultivation == True:
+                if order.picking_type_id.is_cultivation == False:
+                    raise UserError(_('Operation Type is not compatible'))
+
+
+
+        for order in self:
+            if order.is_harvest == True or order.is_cultivation == True:
                 for line in order.move_ids_without_package:
-                    if len(line.varieties_id) <= 0:
-                        raise UserError(_('Varieties can not be empty'))
+                    if len(line.varieties_id) <= 0 or len(line.area_location_id) <= 0:
+                        raise UserError(_('Varieties or Location Area can not be empty'))
 
 
 
@@ -94,6 +105,14 @@ class inagro_agriculture_StockMove(models.Model):
     varieties_id = fields.Many2one(
         'crop.varieties',
         string='Varieties'
+    )
+
+    area_location_id = fields.Many2one(
+        'res.partner',
+        domain="[('is_location','=',True)]",
+        string='Location Area'
+        # related="crop_id.area_location_id",
+        # readonly=True
     )
 
 

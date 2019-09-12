@@ -39,17 +39,17 @@
                                 <div class="oe_edit_only">
                                     <label for="name" class="oe_inline"/>
                                 </div>
-                                <h1>
+                                <h3>
                                     <field name='name' attrs="{'readonly': [('state','!=', 'draft')]}"/>
-                                </h1>
+                                </h3>
                             </group>
                         </group> -->
                         <div class="oe_edit_only">
                             <label for="name" class="oe_inline"/>
                         </div>
-                        <h1>
+                        <h3>
                             <field name='name' attrs="{'readonly': [('state','!=', 'draft')]}"/>
-                        </h1>
+                        </h3>
                         <notebook>
                             <page name="harvest_plan_line" string="Harvest Plan Detail">
                                 <field name="line_ids" widget="section_and_note_one2many" mode="tree" attrs="{'readonly': [('state','!=', 'draft')]}">

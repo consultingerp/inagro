@@ -17,4 +17,9 @@ class inherit_HotelReservation(models.Model):
     partner_company_type = fields.Selection(string='Company Type',related="partner_id.company_type",
         selection=[('person', 'Individual'), ('company', 'Company')],store=True)
 
+    # warehouse_id = fields.Many2one('stock.warehouse', 'Hotel', readonly=True,
+    #                                index=True,
+    #                                required=True,
+    #                                states={'draft': [('readonly', False)]})
+
 

@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','odoo_agriculture','product','stock'],
+    'depends': ['base','odoo_agriculture','product','stock','account'],
 
     # always loaded
     'data': [
@@ -33,6 +33,7 @@
         'views/crop_activity.xml',
         'views/harvest_plan.xml',
         'views/stock_picking.xml',
+        'views/stock_picking_type.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
