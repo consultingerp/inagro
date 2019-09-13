@@ -9,3 +9,4 @@ from . import crop_activity
 from . import harvest_plan
 from . import cultivation
 from . import stock_picking_type
+from . import res_partner

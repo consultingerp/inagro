@@ -34,6 +34,7 @@
         'views/harvest_plan.xml',
         'views/stock_picking.xml',
         'views/stock_picking_type.xml',
+        'views/res_partner.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

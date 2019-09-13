@@ -52,6 +52,7 @@
                                             <group>
                                                 <group>
                                                     <field name='line_id' invisible='1'/>
+                                                    <field name='farmer_id'/>
                                                     <field name='name'/>
                                                     <field name='description'/>
                                                 </group>
@@ -59,6 +60,7 @@
                                         </sheet>
                                     </form>
                                     <tree string="Activity Detail" editable="bottom"> 
+                                        <field name='farmer_id'/>
                                         <field name='name'/>
                                         <field name='description'/>
                                     </tree>

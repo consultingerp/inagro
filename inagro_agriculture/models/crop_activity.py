@@ -40,3 +40,10 @@ class inagro_crop_activity_line(models.Model):
     name = fields.Many2one('crop.masteractivity','Activity', required=True)
     description = fields.Text(string='Description')
     line_id = fields.Many2one('crop.activity','Activity',ondelete='cascade', readonly=True)
+
+    farmer_id = fields.Many2one(
+        'res.partner',
+        string='Farmer',
+        domain="[('is_farmer','=',True)]",
+        required=True
+    )
