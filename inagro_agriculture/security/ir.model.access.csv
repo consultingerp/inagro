@@ -22,6 +22,7 @@ stock_move_spv,group_stock_move_spv,stock.model_stock_move,inagro_agriculture.gr
 stock_picking_type_spv,group_stock_picking_type_spv,stock.model_stock_picking_type,inagro_agriculture.group_agriculture_spv,1,0,0,0
 access_farmer_location_crops_spv,access_farmer_location_crops_spv,odoo_agriculture.model_farmer_location_crops,inagro_agriculture.group_agriculture_spv,1,1,1,1
 account_move_line_spv,account_move_line_location_crops_spv,account.model_account_move_line,inagro_agriculture.group_agriculture_spv,1,0,0,0
+activity_report_spv,crop_activity_report_spv,model_crop_activity_report,inagro_agriculture.group_agriculture_spv,1,0,0,0
 
 
 cr_ct_mgr,group_mgr_cr_ct,model_crop_category,odoo_agriculture.group_agriculture_manager,1,1,1,1
@@ -35,4 +36,5 @@ product_mgr,group_product_mgr,product.model_product_product,odoo_agriculture.gro
 stock_picking_mgr,group_stock_picking_mgr,stock.model_stock_picking,odoo_agriculture.group_agriculture_manager,1,1,0,0
 stock_move_mgr,group_stock_move_mgr,stock.model_stock_move,odoo_agriculture.group_agriculture_manager,1,1,0,0
 stock_picking_type_mgr,group_stock_picking_type_mgr,stock.model_stock_picking_type,odoo_agriculture.group_agriculture_manager,1,0,0,0
+activity_report_mgr,crop_activity_report_mgr,model_crop_activity_report,odoo_agriculture.group_agriculture_manager,1,0,0,0
 

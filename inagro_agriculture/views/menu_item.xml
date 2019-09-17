@@ -100,6 +100,94 @@
 	        </field>
 		</record>
 
+
+
+		<record model="ir.actions.act_window" id="action_activity_report">
+	        <field name="name">Activity Report</field>
+	        <field name="res_model">crop.activity_report</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">pivot,graph,tree</field>
+	        <field name="context">{'search_default_orders': 1}</field>
+	        <field name="view_id"></field> 
+	        <field name="help">Report Activity</field>
+	    </record>
+
+
+	    <!-- <record id="action_cultivation_report" model="ir.actions.act_window">
+            <field name="name">Cultivation Report</field>
+            <field name="res_model">stock.move</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="domain" eval="[('picking_id.is_cultivation','=',True)]"/>
+            <field name="context">{'product_receive': True, 'search_default_future': True}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Register a product receipt
+              </p>
+            </field>
+        </record> -->
+
+
+        <record id="action_cultivation_report" model="ir.actions.act_window">
+            <field name="name">Cultivation Report</field>
+            <field name="res_model">stock.move</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="stock.view_move_tree"/>
+            <field name="search_view_id" ref="stock.view_move_search"/>
+            <field name="view_mode">tree,kanban,graph,form</field>
+            <field name="domain" eval="[('picking_id.is_cultivation','=',True)]"/>
+            <field name="context">{'search_default_done': 1, 'search_default_groupby_location_id': 1}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new cultivation
+              </p><p>
+                This menu gives you the full traceability of inventory
+                operations on a specific product. You can filter on the product
+                to see all the past or future movements for the product.
+              </p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="inagro_action_stock_move_tree_all">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="stock.view_move_tree"/>
+            <field name="act_window_id" ref="action_cultivation_report"/>
+        </record>
+
+        
+
+        <record id="action_harvest_report" model="ir.actions.act_window">
+            <field name="name">Harvest Report</field>
+            <field name="res_model">stock.move</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="stock.view_move_tree"/>
+            <field name="search_view_id" ref="stock.view_move_search"/>
+            <field name="view_mode">tree,kanban,graph,form</field>
+            <field name="domain" eval="[('picking_id.is_harvest','=',True)]"/>
+            <field name="context">{'search_default_done': 1, 'search_default_groupby_location_id': 1}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new harvest
+              </p><p>
+                This menu gives you the full traceability of inventory
+                operations on a specific product. You can filter on the product
+                to see all the past or future movements for the product.
+              </p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="inagro_harvest_action_stock_move_tree_all">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="stock.view_move_tree"/>
+            <field name="act_window_id" ref="action_harvest_report"/>
+        </record>
+
+
 	   
 	  	<menuitem 
 	  	id="crop_master_menu"
@@ -131,6 +219,9 @@
 	  	parent="odoo_agriculture.configuration_topmenu"
 	  	action="inagro_agriculture.action_crop_master_activity"
 	  	groups="inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"/>
+
+
+
 
 	  	<menuitem 
 	  	id="activity" 
@@ -175,5 +266,44 @@
 	  	parent="inagro_agriculture.harvest"
 	  	groups="odoo_agriculture.group_agriculture_user,inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"
 	  	action="inagro_agriculture.action_harvest_real"/>
+
+
+	  	<menuitem 
+	  	id="report_agriculture" 
+	  	name="Report" 
+	  	sequence='2'
+	  	groups="inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"
+	  	parent="odoo_agriculture.agricultural_management_topmenu"/>
+
+	  	<menuitem 
+	  	id="activity_report"
+	  	name="Activity"
+	  	sequence='1' 
+	  	parent="inagro_agriculture.report_agriculture"
+	  	groups="inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"
+	  	action="inagro_agriculture.action_activity_report"/>
+
+	  	<menuitem 
+	  	id="cultivation_report"
+	  	name="Cultivation"
+	  	sequence='2' 
+	  	parent="inagro_agriculture.report_agriculture"
+	  	groups="inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"
+	  	action="inagro_agriculture.action_cultivation_report"/>
+
+	  	<menuitem 
+	  	id="harvest_report"
+	  	name="Harvest"
+	  	sequence='3' 
+	  	parent="inagro_agriculture.report_agriculture"
+	  	groups="inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"/>
+
+	  	<menuitem 
+	  	id="harvest_real_report"
+	  	name="Real"
+	  	sequence='2' 
+	  	parent="inagro_agriculture.harvest_report"
+	  	groups="inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"
+	  	action="inagro_agriculture.action_harvest_report"/>
 
 </odoo>

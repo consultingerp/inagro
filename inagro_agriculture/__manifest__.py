@@ -35,6 +35,8 @@
         'views/stock_picking.xml',
         'views/stock_picking_type.xml',
         'views/res_partner.xml',
+        'report/activity.xml',
+        'report/stock_move.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

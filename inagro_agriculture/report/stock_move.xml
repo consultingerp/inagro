@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_move_tree" model="ir.ui.view">
+            <field name="name">stock.move.tree.inagro_agri</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_tree"/>
+            <field name="arch" type="xml">
+                <field name="date" position="replace">
+                    <field name="date"/>
+                    <!-- <field name="parent.scheduled_date" /> -->
+                    <!-- <field name="picking_id.scheduled_date" widget="many2one"/> -->
+                </field>
+            </field>
+        </record>
+       
+
+</odoo>
