@@ -43,3 +43,5 @@ class inagro_hasvest_plan_line(models.Model):
     product_uom = fields.Many2one('uom.uom',related="product_id.uom_id", string='Unit of Measure',store=True)
     # description = fields.Text(string='Description')
     line_id = fields.Many2one('harvest.plan','Harvest',ondelete='cascade', readonly=True)
+    year = fields.Selection([(num, str(num)) for num in range(2010, (datetime.now().year)+5 )], 'Year',store=True,related="line_id.name")
+    state = fields.Selection([('draft', 'Draft'), ('confirm', 'Confirm'),('cancel', 'Cancel'), ('done', 'Done')],'State', readonly=True,store=True,related="line_id.state")

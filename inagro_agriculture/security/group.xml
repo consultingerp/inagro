@@ -84,13 +84,13 @@
             <field name="domain_force">[(1,'=',1)]</field>
         </record>
 
-        <record id="agriculture_stock_picking_type_spv" model="ir.rule">
+        <!-- <record id="agriculture_stock_picking_type_spv" model="ir.rule">
             <field name="name">Stock picking type spv</field>
             <field name="model_id" ref="stock.model_stock_picking_type"/>
             <field name="global" eval="True"/>
             <field name="groups" eval="[(4, ref('inagro_agriculture.group_agriculture_spv'))]"/>
             <field name="domain_force">[(1,'=',1)]</field>
-        </record>
+        </record> -->
 
 
 
@@ -134,13 +134,13 @@
             <field name="domain_force">[(1,'=',1)]</field>
         </record>
 
-        <record id="agriculture_stock_picking_type_mgr" model="ir.rule">
+        <!-- <record id="agriculture_stock_picking_type_mgr" model="ir.rule">
             <field name="name">Stock picking type mgr</field>
             <field name="model_id" ref="stock.model_stock_picking_type"/>
             <field name="global" eval="True"/>
             <field name="groups" eval="[(4, ref('odoo_agriculture.group_agriculture_manager'))]"/>
             <field name="domain_force">[(1,'=',1)]</field>
-        </record>
+        </record> -->
 
 	</data>
 </odoo>

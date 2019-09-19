@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+                             
+
+        <record id="view_harvest_plan_report_tree" model="ir.ui.view">
+                <field name="name">Harvest Plan Report View</field>
+                <field name="model">harvest.plan.line</field>
+                <field name="arch" type="xml">
+                    <tree create="false" edit="false">
+                        <field name='line_id'/>
+                        <field name='name'/>
+                        <field name='product_id'/>
+                        <field name='product_qty'/>
+                        <field name='product_uom'/>
+                    </tree>
+                </field>
+        </record>
+    
+    </data>
+
+</odoo>
+
+

@@ -81,10 +81,16 @@ class inagro_agriculture_Picking_cultivation(models.Model):
 
 
         for order in self:
-            if order.is_harvest == True or order.is_cultivation == True:
+            if order.is_cultivation == True:
                 for line in order.move_ids_without_package:
                     if len(line.varieties_id) <= 0 or len(line.area_location_id) <= 0:
                         raise UserError(_('Varieties or Location Area can not be empty'))
+
+        for order in self:
+            if order.is_harvest == True:
+                for line in order.move_ids_without_package:
+                    if len(line.crop_id) <= 0:
+                        raise UserError(_('Crop Code can not be empty'))
 
 
 
@@ -102,6 +108,33 @@ class inagro_agriculture_Picking_cultivation(models.Model):
 class inagro_agriculture_StockMove(models.Model):
     _inherit = "stock.move"
 
+    crop_id = fields.Many2one(
+        'farmer.location.crops',
+        domain="[('active','=',True)]",
+        string='Crop Code'
+    )
+
+    crop_varieties_id = fields.Many2one(
+        'crop.varieties',
+        string='Crop Varieties',
+        related="crop_id.varieties_id"
+    )
+
+    crop_category_id = fields.Many2one(
+        'crop.category',
+        string='Crop Category',
+        related="crop_id.category_id",
+        readonly=True
+    )
+
+    crop_area_location_id = fields.Many2one(
+        'res.partner',
+        domain="[('is_location','=',True)]",
+        string='Crop Location Area',
+        related="crop_id.area_location_id",
+        # readonly=True
+    )
+
     varieties_id = fields.Many2one(
         'crop.varieties',
         string='Varieties'
@@ -113,6 +146,18 @@ class inagro_agriculture_StockMove(models.Model):
         string='Location Area'
         # related="crop_id.area_location_id",
         # readonly=True
+    )
+
+    is_cultivation = fields.Boolean(
+        related="picking_id.is_cultivation",
+        string='Is Cultivation?',
+        store=True
+    )
+
+    is_harvest = fields.Boolean(
+        related="picking_id.is_harvest",
+        string='Is Harvest?',
+        store=True
     )
 
 

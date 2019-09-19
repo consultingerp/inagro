@@ -157,21 +157,16 @@
             <field name="act_window_id" ref="action_cultivation_report"/>
         </record>
 
-        
 
-        <record id="action_harvest_report" model="ir.actions.act_window">
-            <field name="name">Harvest Report</field>
-            <field name="res_model">stock.move</field>
+        <record id="action_harvest_plan_report" model="ir.actions.act_window">
+            <field name="name">Harvest Plan Report</field>
+            <field name="res_model">harvest.plan.line</field>
             <field name="type">ir.actions.act_window</field>
             <field name="view_type">form</field>
-            <field name="view_id" ref="stock.view_move_tree"/>
-            <field name="search_view_id" ref="stock.view_move_search"/>
             <field name="view_mode">tree,kanban,graph,form</field>
-            <field name="domain" eval="[('picking_id.is_harvest','=',True)]"/>
-            <field name="context">{'search_default_done': 1, 'search_default_groupby_location_id': 1}</field>
             <field name="help" type="html">
               <p class="o_view_nocontent_smiling_face">
-                Create a new harvest
+                Create a new harvest plan
               </p><p>
                 This menu gives you the full traceability of inventory
                 operations on a specific product. You can filter on the product
@@ -180,11 +175,15 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window.view" id="inagro_harvest_action_stock_move_tree_all">
-            <field name="sequence" eval="1"/>
-            <field name="view_mode">tree</field>
-            <field name="view_id" ref="stock.view_move_tree"/>
-            <field name="act_window_id" ref="action_harvest_report"/>
+        
+
+        <record id="action_harvest_report" model="ir.actions.act_window">
+            <field name="name">Harvest Real Report</field>
+	        <field name="res_model">report.harvest_real</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">pivot,graph,tree</field>
+	        <field name="view_id"></field> 
+	        <field name="help">Report Harvest Real</field>
         </record>
 
 
@@ -297,6 +296,14 @@
 	  	sequence='3' 
 	  	parent="inagro_agriculture.report_agriculture"
 	  	groups="inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"/>
+
+	  	<menuitem 
+	  	id="harvest_plan_report"
+	  	name="Plan"
+	  	sequence='1' 
+	  	parent="inagro_agriculture.harvest_report"
+	  	groups="inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"
+	  	action="inagro_agriculture.action_harvest_plan_report"/>
 
 	  	<menuitem 
 	  	id="harvest_real_report"

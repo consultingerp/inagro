@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record model="ir.ui.view" id="view_harvest_real_report_pivot">
+            <field name="name">report.harvest_real.pivot</field>
+            <field name="model">report.harvest_real</field>
+            <field name="arch" type="xml">
+                <pivot string="Analisys" disable_linking="True">
+                    <field name="date_move" type="row"/>
+                    <field name="name_crop" type="row"/>
+                    <field name="surce_location" type="row"/>
+                    <field name="product_name" type="row"/>
+                    <field name="dest_location"  type="col"/>
+                    <field name="name_uom"  type="col"/>
+                </pivot>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_harvest_real_report_graph">
+            <field name="name">report.harvest_real.graph</field>
+            <field name="model">report.harvest_real</field>
+            <field name="arch" type="xml">
+                <graph string="Analisys harvest">
+                    <field name="date_move" type="row"/>
+                    <field name="name_crop" type="row"/>
+                    <field name="surce_location" type="row"/>
+                    <field name="product_name" type="row"/>
+                    <field name="dest_location"  type="col"/>
+                    <field name="name_uom"  type="col"/>
+                </graph>
+            </field>
+        </record>
+       
+
+</odoo>

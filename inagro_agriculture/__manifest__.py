@@ -23,10 +23,10 @@
 
     # always loaded
     'data': [
+        'security/group.xml',
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'security/group.xml',
         'views/menu_item.xml',
         'views/crop_varieties.xml',
         'views/inherit_crops.xml',
@@ -36,7 +36,9 @@
         'views/stock_picking_type.xml',
         'views/res_partner.xml',
         'report/activity.xml',
-        'report/stock_move.xml',
+        # 'report/stock_move.xml',
+        'report/harvest_plan_report.xml',
+        'report/harvest_real_report.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

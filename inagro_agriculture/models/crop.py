@@ -41,6 +41,11 @@ class inherit_FarmerLocationCrops(models.Model):
 		required=True
 	)
 
+
+	_sql_constraints = [
+        ('name_unique', 'unique(name)', 'Code already exists!')
+    ]
+
 	@api.onchange('category_id')
 	def _onchange_category(self):
 		print('tes')
