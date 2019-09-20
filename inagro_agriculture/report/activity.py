@@ -15,7 +15,7 @@ class inagro_agri_activity_report(models.Model):
     varietas = fields.Char('Varieties', readonly=True)
     category = fields.Char('Category', readonly=True)
     area = fields.Char('Area', readonly=True)
-    date_act = fields.Datetime('Date', readonly=True, oldname='date')
+    date_acti = fields.Datetime('Date', readonly=True)
     state_act = fields.Selection([('draft', 'Draft'), ('confirm', 'Confirm'),('cancel', 'Cancel'), ('done', 'Done')],'State', readonly=True)
 
 
@@ -41,7 +41,7 @@ class inagro_agri_activity_report(models.Model):
                 cv. NAME AS varietas,
                 cc. NAME AS category,
                 area. NAME AS area,
-                ca. date as date_act,
+                ca. date as date_acti,
                 ca.state as state_act
         """
         return select_str

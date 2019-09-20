@@ -2,12 +2,11 @@
 <odoo>
 
 
-        <record model="ir.ui.view" id="view_harvest_real_report_tree">
-                <field name="name">report.harvest_real.tree</field>
-                <field name="model">report.harvest_real</field>
+        <record model="ir.ui.view" id="view_cultivation_report_tree">
+                <field name="name">report.cultivation.tree</field>
+                <field name="model">report.cultivation</field>
                 <field name="arch" type="xml">
                     <tree>
-                        <field name="name_crop"/>
                         <field name="crop_category"/>
                         <field name="name_varieties"/>
                         <field name="crop_location"/>
@@ -22,13 +21,13 @@
                 </field>
         </record>
 
-        <record model="ir.ui.view" id="view_harvest_real_report_pivot">
-            <field name="name">report.harvest_real.pivot</field>
-            <field name="model">report.harvest_real</field>
+        <record model="ir.ui.view" id="view_cultivation_report_pivot">
+            <field name="name">report.cultivation.pivot</field>
+            <field name="model">report.cultivation</field>
             <field name="arch" type="xml">
                 <pivot string="Analisys" disable_linking="True">
                     <field name="date_move" type="row"/>
-                    <field name="name_crop" type="row"/>
+                    <field name="name_varieties" type="row"/>
                     <field name="surce_location" type="row"/>
                     <field name="product_name" type="row"/>
                     <field name="dest_location"  type="col"/>
@@ -36,13 +35,13 @@
                 </pivot>
             </field>
         </record>
-        <record model="ir.ui.view" id="view_harvest_real_report_graph">
-            <field name="name">report.harvest_real.graph</field>
-            <field name="model">report.harvest_real</field>
+        <record model="ir.ui.view" id="view_cultivation_report_graph">
+            <field name="name">report.cultivation.graph</field>
+            <field name="model">report.cultivation</field>
             <field name="arch" type="xml">
                 <graph string="Analisys harvest">
                     <field name="date_move" type="row"/>
-                    <field name="name_crop" type="col"/>
+                    <field name="name_varieties" type="col"/>
                 </graph>
             </field>
         </record>

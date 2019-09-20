@@ -39,6 +39,7 @@
         # 'report/stock_move.xml',
         'report/harvest_plan_report.xml',
         'report/harvest_real_report.xml',
+        'report/cultivation_report.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
