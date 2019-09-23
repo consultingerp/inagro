@@ -31,6 +31,7 @@
         'report/folio_report.xml',
         'report/folio_report_template.xml',
         'views/reservasi.xml',
+        'views/hotel_folio_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

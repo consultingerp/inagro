@@ -12,6 +12,7 @@ import pytz
 class inherit_HotelReservation(models.Model):
 
     _inherit = "hotel.reservation"
+    # _inherit = ['mail.thread']
 
     # is_company = fields.Boolean(string='Is a Company',related="partner_id.is_company",store=True)
     partner_company_type = fields.Selection(string='Company Type',related="partner_id.company_type",
@@ -22,4 +23,13 @@ class inherit_HotelReservation(models.Model):
     #                                required=True,
     #                                states={'draft': [('readonly', False)]})
 
+
+
+
+class inherit_Hotel_Folio(models.Model):
+
+    # _inherit = "hotel.folio"
+    # _inherit = ['mail.thread']
+    _name = "hotel.folio"
+    _inherit = ['hotel.folio','mail.thread']
 
