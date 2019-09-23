@@ -3,3 +3,4 @@
 from . import models
 # from . import sale_order
 from . import inherit_user
+from . import sale_report
