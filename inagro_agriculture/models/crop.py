@@ -32,6 +32,7 @@ class inherit_FarmerLocationCrops(models.Model):
 
 	old_code_id = fields.Many2one(
 		'farmer.location.crops',
+		domain="[('active','=',False)]",
 		string='Old Code'
 	)
 
