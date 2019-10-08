@@ -15,7 +15,7 @@ class inagro_agri_activity_report(models.Model):
     varietas = fields.Char('Varieties', readonly=True)
     category = fields.Char('Category', readonly=True)
     area = fields.Char('Area', readonly=True)
-    date_acti = fields.Datetime('Date', readonly=True)
+    date_acti = fields.Date('Date', readonly=True)
     state_act = fields.Selection([('draft', 'Draft'), ('confirm', 'Confirm'),('cancel', 'Cancel'), ('done', 'Done')],'State', readonly=True)
 
 

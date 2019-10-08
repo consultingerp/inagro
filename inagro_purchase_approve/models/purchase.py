@@ -67,3 +67,5 @@ class PurchaseOrder_inherit_approve(models.Model):
             else:
                 order.write({'state': 'to approve'})
         return True
+
+

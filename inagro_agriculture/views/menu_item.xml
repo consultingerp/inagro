@@ -106,7 +106,7 @@
 	        <field name="name">Activity Report</field>
 	        <field name="res_model">crop.activity_report</field>
 	        <field name="view_type">form</field>
-	        <field name="view_mode">pivot,graph,tree</field>
+	        <field name="view_mode">tree,pivot,graph</field>
 	        <field name="context">{'search_default_orders': 1}</field>
 	        <field name="view_id"></field> 
 	        <field name="help">Report Activity</field>

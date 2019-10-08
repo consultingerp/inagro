@@ -7,6 +7,7 @@
                 <tree>
                     <field name="name_act"/>
                     <field name="desc_act"/>
+                    <field name="date_acti"/>
                     <field name="farmer"/>
                     <field name="crop_code"/>
                     <field name="varietas"/>
