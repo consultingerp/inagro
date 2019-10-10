@@ -42,6 +42,8 @@ class inherit_FarmerLocationCrops(models.Model):
 		required=True
 	)
 
+	activity_line = fields.Many2one('crop.activity.line',string='Activity Line')
+
 
 	_sql_constraints = [
         ('name_unique', 'unique(name)', 'Code already exists!')

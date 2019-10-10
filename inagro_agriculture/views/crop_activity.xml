@@ -35,12 +35,13 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name='name' attrs="{'readonly': [('state','!=', 'draft')]}"/>
+                                <!-- <field name='name' attrs="{'readonly': [('state','!=', 'draft')]}"/>
                                 <field name='category_id'/>
-                                <field name='varieties_id'/>
+                                <field name='varieties_id'/> -->
+                                <field name='farmer_id' attrs="{'readonly': [('state','!=', 'draft')]}"/>
                             </group>
                             <group>
-                                <field name='area_location_id'/>
+                                <!-- <field name='area_location_id'/> -->
                                 <field name='date' attrs="{'readonly': [('state','!=', 'draft')]}"/>
                             </group>
                         </group>
@@ -50,17 +51,51 @@
                                     <form>
                                         <sheet>
                                             <group>
-                                                <group>
+                                                <group col="2">
+                                                    <!-- <field name='farmer_id'/> -->
+                                                    <!-- <field name='name'/>
+                                                    <field name='description'/> -->
                                                     <field name='line_id' invisible='1'/>
-                                                    <field name='farmer_id'/>
                                                     <field name='name'/>
+                                                </group>
+                                                
+                                                <group col="2">
                                                     <field name='description'/>
                                                 </group>
                                             </group>
+
+                                            <!-- <group>
+                                                <separator string="Location Area" />
+                                                <field name="area_location_id" colspan="4" nolabel="1" />
+                                                <newline />
+                                                <separator string="Select Crop" />
+                                                <field name="crop_id" colspan="4" string="Crop Code"
+                                                    nolabel="1" />
+                                            </group> -->
+
+                                            <group>
+                                                <group col="2">
+                                                    <field name="area_location_id" />
+                                                </group>
+                                                <group col="2">
+                                                    <field name="category_id"/>
+                                                    <field name="varieties_id"/>
+                                                </group>
+                                            </group>
+
+                                            <group>
+                                                <separator string="Select Crop" />
+                                                <field name="crop_id" colspan="4" string="Crop Code"
+                                                    nolabel="1" />
+                                            </group>
                                         </sheet>
                                     </form>
-                                    <tree string="Activity Detail" editable="bottom"> 
-                                        <field name='farmer_id'/>
+                                    <tree string="Activity Detail"> 
+                                        <!-- <field name='farmer_id'/> -->
+                                        <field name="area_location_id"/>
+                                        <field name="category_id"/>
+                                        <field name="varieties_id"/>
+                                        <field name="crop_id" string="Crop Code" widget="many2many_tags" />
                                         <field name='name'/>
                                         <field name='description'/>
                                     </tree>
@@ -81,11 +116,12 @@
                 <field name="name">Activity Tree View</field>
                 <field name="model">crop.activity</field>
                 <field name="arch" type="xml">
-                    <tree>
-                        <field name='name'/>
+                    <tree default_order='id'>
+                        <!-- <field name='name'/>
                         <field name='varieties_id'/>
                         <field name='category_id'/>
-                        <field name='area_location_id'/>
+                        <field name='area_location_id'/> -->
+                        <field name='farmer_id'/>
                         <field name='date'/>
                         <field name='state'/>
                         <field name='create_uid'/>
