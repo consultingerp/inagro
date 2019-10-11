@@ -33,13 +33,13 @@ class inagro_agri_activity_report(models.Model):
     def _select(self):
         select_str = """
             SELECT
-                min(cal.id) as id,
+                min(flc.id) as id,
+                flc. NAME AS crop_code,
+                cv. NAME AS varietas,
+                cc. NAME AS category,
                 cm. NAME AS name_act,
                 cal.description AS desc_act,
                 rp.display_name AS farmer,
-                flc1. NAME AS crop_code,
-                cv. NAME AS varietas,
-                cc. NAME AS category,
                 area. NAME AS area,
                 ca. DATE AS date_acti,
                 ca. STATE AS state_act
@@ -48,27 +48,27 @@ class inagro_agri_activity_report(models.Model):
 
     def _from(self):
         from_str = """
-            crop_activity_line cal
+            crop_activity_line_crop_rel cal_l
+            LEFT JOIN farmer_location_crops flc on cal_l.farmer_location_crops_id = flc."id" 
+            LEFT JOIN crop_activity_line cal on cal_l.activity_line = cal.id 
             LEFT JOIN crop_masteractivity cm ON cal."name" = cm. ID
             LEFT JOIN crop_activity ca ON cal.line_id = ca. ID
             LEFT JOIN res_partner rp ON ca.farmer_id = rp."id"
             LEFT JOIN crop_varieties cv ON cal.varieties_id = cv. ID
             LEFT JOIN crop_category cc ON cal.category_id = cc. ID
             LEFT JOIN res_partner area ON cal.area_location_id = area."id"
-            LEFT JOIN crop_activity_line_crop_rel cal_l on cal.id = cal_l.activity_line
-            LEFT JOIN farmer_location_crops flc1 on cal_l.farmer_location_crops_id = flc1."id"
         """
         return from_str
 
     def _group_by(self):
         group_by_str = """
             GROUP BY
+                flc. NAME,
+                cv. NAME,
+                cc. NAME,
                 cm.NAME,
                 cal.description,
                 rp.display_name,
-                flc1. NAME,
-                cv. NAME,
-                cc. NAME,
                 area. NAME,
                 ca. DATE,
                 ca."state"

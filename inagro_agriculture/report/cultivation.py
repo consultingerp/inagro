@@ -1,6 +1,7 @@
 
 
 from odoo import api, fields, models, tools
+from odoo.addons import decimal_precision as dp
 
 class inagro_agri_activity_report(models.Model):
     _name = "report.cultivation"
@@ -12,7 +13,7 @@ class inagro_agri_activity_report(models.Model):
     name_varieties = fields.Char('Crop Varieties', readonly=True)
     crop_category = fields.Char('Crop Category', readonly=True)
     product_name = fields.Char('Product', readonly=True)
-    product_uom_qty = fields.Float('Qty', digits=(16, 0), readonly=True)
+    product_uom_qty = fields.Float('Qty', digits=dp.get_precision('Product Unit of Measure'), readonly=True)
     name_uom = fields.Char('UOM', readonly=True)
     reference = fields.Char('Reference', readonly=True)
     surce_location = fields.Char('From', readonly=True)

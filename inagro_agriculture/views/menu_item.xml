@@ -117,7 +117,7 @@
             <field name="name">Cultivation Report</field>
 	        <field name="res_model">report.cultivation</field>
 	        <field name="view_type">form</field>
-	        <field name="view_mode">pivot,graph,tree</field>
+	        <field name="view_mode">tree,graph,pivot</field>
 	        <field name="view_id"></field> 
 	        <field name="help">Report Cultivation Real</field>
         </record>
@@ -146,7 +146,7 @@
             <field name="name">Harvest Real Report</field>
 	        <field name="res_model">report.harvest_real</field>
 	        <field name="view_type">form</field>
-	        <field name="view_mode">pivot,graph,tree</field>
+	        <field name="view_mode">tree,graph,pivot</field>
 	        <field name="view_id"></field> 
 	        <field name="help">Report Harvest Real</field>
         </record>

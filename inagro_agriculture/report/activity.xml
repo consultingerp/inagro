@@ -5,16 +5,15 @@
             <field name="model">crop.activity_report</field>
             <field name="arch" type="xml">
                 <tree>
+                    <field name="crop_code"/>
+                    <field name="varietas"/>
+                    <field name="category"/>
                     <field name="name_act"/>
                     <field name="desc_act"/>
                     <field name="date_acti"/>
                     <field name="farmer"/>
-                    <field name="crop_code"/>
-                    <field name="varietas"/>
-                    <field name="category"/>
                     <field name="area"/>
                     <field name="state_act"/>
-                    <!-- <field name="date_acti"/> -->
                 </tree>
             </field>
         </record>
@@ -39,9 +38,7 @@
             <field name="model">crop.activity_report</field>
             <field name="arch" type="xml">
                 <graph string="Analisys" type="pie">
-                    <!-- <field name="crop_code" type="row"/> -->
                     <field name="varietas"  type="row"/>
-                    <!-- <field name="price_average" type="measure"/> -->
                 </graph>
             </field>
         </record>
