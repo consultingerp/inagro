@@ -24,8 +24,13 @@
             <field name="model">crop.activity_report</field>
             <field name="arch" type="xml">
                 <pivot string="Analisys" disable_linking="True">
+                    <field name="area" type="row"/>
+                    <field name="category" type="row"/>
+                    <field name="varietas" type="row"/>
                     <field name="crop_code" type="row"/>
                     <field name="date_acti"  type="col"/>
+                    <field name="farmer"  type="col"/>
+                    <field name="name_act"  type="col"/>
                 </pivot>
             </field>
         </record>
@@ -33,9 +38,9 @@
             <field name="name">crop.activity_report.graph</field>
             <field name="model">crop.activity_report</field>
             <field name="arch" type="xml">
-                <graph string="Analisys">
-                    <field name="crop_code" type="row"/>
-                    <field name="date_acti"  type="col"/>
+                <graph string="Analisys" type="pie">
+                    <!-- <field name="crop_code" type="row"/> -->
+                    <field name="varietas"  type="row"/>
                     <!-- <field name="price_average" type="measure"/> -->
                 </graph>
             </field>
