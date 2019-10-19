@@ -109,7 +109,7 @@
 
             <line><right>--------</right></line>
             <line class='total'>
-                <left><pre>        TOTAL v</pre></left>
+                <left><pre>        TOTAL</pre></left>
                 <right>
                     <!-- <value t-att-value-decimals='pos.currency.decimals'><t t-esc='receipt.total_with_tax' /></value> -->
                     <t t-esc="widget.format_currency(receipt.total_with_tax)" />
