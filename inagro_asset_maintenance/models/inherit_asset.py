@@ -3,7 +3,7 @@
 from datetime import date, datetime, timedelta
 
 from odoo import api, fields, models, SUPERUSER_ID, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError,ValidationError
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 
 
@@ -29,4 +29,21 @@ class inagro_asset_AccountAssetAsset(models.Model):
     	self.name = self.equipment_id.serial_no
 
     # serial_no = fields.Char('SN Equipment', related="equipment_id.serial_no", store=True)
+
+    @api.multi
+    def validate(self):
+        # print('tes data')\
+
+        if self.is_equipment == True:
+            if len(self.equipment_id) <= 0:
+                raise ValidationError(_('Equipment is not selected'))
+
+        # print(self.crop_id,' id')
+        crop = self.env['maintenance.equipment'].search([('id', '=', int(self.equipment_id))])
+        # print(crop,' mm')
+        crop.write({'is_asset': True})
+        #tambahan baru end
+
+        result = super(inagro_asset_AccountAssetAsset, self).validate()    
+        return result
 

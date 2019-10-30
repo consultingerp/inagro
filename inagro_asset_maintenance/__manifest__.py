@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','account_asset','maintenance'],
+    'depends': ['base','account_asset','maintenance','inagro_asset_agriculture'],
 
     # always loaded
     'data': [
