@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_inagro_asset_maintenance_inagro_asset_maintenance,inagro_asset_maintenance.inagro_asset_maintenance,model_inagro_asset_maintenance_inagro_asset_maintenance,,1,0,0,0

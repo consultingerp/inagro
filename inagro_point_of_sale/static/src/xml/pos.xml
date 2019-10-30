@@ -2,7 +2,7 @@
 <templates id="template" xml:space="preserve">
 
     <t t-name="XmlReceipt">
-         <receipt align='center' width='40' value-thousands-separator='' >
+        <receipt align='center' width='40' value-thousands-separator='' >
             <t t-if='receipt.company.logo'>
                 <img t-att-src='receipt.company.logo' alt="Logo"/>
                 <br/>
@@ -193,5 +193,33 @@
             </div>
 
         </receipt>    
+    </t>
+
+    <t t-name="NumpadWidget">
+        <div class="numpad">
+            <button class="input-button number-char">1</button>
+            <button class="input-button number-char">2</button>
+            <button class="input-button number-char">3</button>
+            <button class="mode-button" data-mode='quantity'>Qty</button>
+            <br />
+            <button class="input-button number-char">4</button>
+            <button class="input-button number-char">5</button>
+            <button class="input-button number-char">6</button>
+            <button></button>
+            <!-- <button class="mode-button" data-mode='discount'>Disc</button> -->
+            <br />
+            <button class="input-button number-char">7</button>
+            <button class="input-button number-char">8</button>
+            <button class="input-button number-char">9</button>
+            <button></button>
+            <!-- <button class="mode-button" data-mode='price'>Price</button> -->
+            <br />
+            <button class="input-button numpad-minus" >+/-</button>
+            <button class="input-button number-char">0</button>
+            <button class="input-button number-char">.</button>
+            <button class="input-button numpad-backspace">
+                <img style="pointer-events: none;" src="/point_of_sale/static/src/img/backspace.png" width="24" height="21" alt="Backspace"/>
+            </button>
+        </div>
     </t>
 </templates>
