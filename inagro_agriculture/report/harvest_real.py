@@ -11,7 +11,7 @@ class inagro_agri_activity_report(models.Model):
 
     name_crop = fields.Char('Crop Name', readonly=True)
     crop_category = fields.Char('Crop Category', readonly=True)
-    name_varieties = fields.Char('Crop Varieties', readonly=True)
+    name_varieties = fields.Char('Crop Varieties', readonly=True) 
     crop_location = fields.Char('Crop Location', readonly=True)
     product_name = fields.Char('Product', readonly=True)
     product_uom_qty = fields.Float('Qty', digits=dp.get_precision('Product Unit of Measure'), readonly=True)
