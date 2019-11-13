@@ -12,6 +12,40 @@ class inagro_asset_MaintenanceEquipment(models.Model):
 
     is_asset = fields.Boolean(string="Is Asset?",default=False)
 
+    asset_id = fields.Many2one('account.asset.asset', string='Asset', domain=[('state', '=', 'open'),('is_equipment', '=', False)], store=True)
+
+    @api.onchange('department_id')
+    def onchange_department(self):
+        asset_category = self.env['account.asset.category'].search([('department_id', '=', int(self.department_id))])
+        domain_asset = [('category_id', '=',int(asset_category))]
+        return {'domain': {'asset_id': domain_asset}}
+
+    @api.onchange('asset_id')
+    def onchange_asset_id(self):
+        self.name = self.asset_id.name
+
+        if len(self.asset_id) > 0:
+            # print ('centang asset')
+            self.is_asset = True
+        else:
+            self.is_asset = False
+
+    @api.model
+    def create(self, values):
+        
+        new_id = super(inagro_asset_MaintenanceEquipment, self).create(values)
+        if values.get('asset_id'):
+            
+            asset = self.env['account.asset.asset'].search([('id', '=', int(values.get('asset_id')))])
+            asset.write({'is_equipment': True,'equipment_id': int(new_id)})
+
+        return new_id
+
+class inagro_asset_AccountAssetCategory(models.Model):
+    _inherit = 'account.asset.category'
+
+    department_id = fields.Many2one('hr.department', string='Department', domain=[('active', '=', True)], store=True,)
+
 class inagro_asset_AccountAssetAsset(models.Model):
     _inherit = 'account.asset.asset'
 

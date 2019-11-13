@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','account_asset','maintenance','inagro_asset_agriculture'],
+    'depends': ['base','account_asset','maintenance','inagro_asset_agriculture','hr_maintenance'],
 
     # always loaded
     'data': [
@@ -27,6 +27,7 @@
         'views/views.xml',
         'views/templates.xml',
         'views/inherit_asset.xml',
+        'views/inherit_equipment.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

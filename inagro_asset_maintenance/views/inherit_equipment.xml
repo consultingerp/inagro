@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="maintenance_equipment_view_form_inherit_hr" model="ir.ui.view">
+        <field name="name"> maintenance.equipment.view.form.inherit.hr.inagro</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="hr_maintenance.maintenance_equipment_view_form_inherit_hr"/>
+        <field name="arch" type="xml">
+
+            <field name="department_id" position="after">
+                <!-- <field name="is_asset"/> -->
+                <field name="asset_id" attrs="{'invisible': ['|', ('equipment_assign_to', '=', 'employee'), ('equipment_assign_to', '=', False)]}"/>
+            </field>
+
+            <field name="serial_no" position="after">
+                <field name="is_asset" readonly="True" force_save="1"/>
+            </field>
+            
+        </field>
+	</record>
+        
+</odoo>
+
