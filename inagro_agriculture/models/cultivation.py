@@ -49,6 +49,12 @@ class inagro_agriculture_Picking_cultivation(models.Model):
         copy=True
     )
 
+    is_organik = fields.Boolean(
+        string='Is Organic?',
+        copy=True, 
+        default=False
+    )
+
     # crop_id = fields.Many2one(
     #     'farmer.location.crops',
     #     domain="[('active','=',True)]",

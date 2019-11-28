@@ -85,6 +85,22 @@
 	        </field>
 		</record>
 
+		<record id="action_crop_cultivation_plan" model="ir.actions.act_window">
+	        <field name="name">Cultivation Plan</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">cultivation.plan</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="context">{}</field>
+	        <field name="help" type="html">
+	          <p class="o_view_nocontent_smiling_face">
+	            Create a new Cultivation Plan
+	          </p>
+	        </field>
+		</record>
+
+
+
 		<record id="action_harvest_real" model="ir.actions.act_window">
 	        <field name="name">Harvest Real</field>
 	        <field name="type">ir.actions.act_window</field>
@@ -207,6 +223,15 @@
 	  	parent="inagro_agriculture.activity"
 	  	groups="odoo_agriculture.group_agriculture_user,inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"
 	  	action="inagro_agriculture.action_crop_cultivation"/>
+
+	  	<menuitem 
+	  	id="crop_cultivation_plan"
+	  	name="Cultivation Plan"
+	  	sequence='1' 
+	  	parent="inagro_agriculture.activity"
+	  	groups="inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"
+	  	action="inagro_agriculture.action_crop_cultivation_plan"/>
+
 
 
 

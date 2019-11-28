@@ -35,6 +35,7 @@
         'views/stock_picking.xml',
         'views/stock_picking_type.xml',
         'views/res_partner.xml',
+        'views/cultivation_plan.xml',
         'report/activity.xml',
         # 'report/stock_move.xml',
         'report/harvest_plan_report.xml',
