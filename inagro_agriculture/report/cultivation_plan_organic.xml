@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+        <record model="ir.ui.view" id="view_cultivation_plan_organic_report_tree">
+                <field name="name">cultivation.plan_organic_report.tree</field>
+                <field name="model">cultivation.plan_organic_report</field>
+                <field name="arch" type="xml">
+                    <tree>
+                        <field name="year"/>
+                        <field name="name_varieties"/>
+                        <field name="name_category"/>
+                        <field name="date_plan_organic"/>
+                        <field name="state"/>
+                    </tree>
+                </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_cultivation_plan_organic_report_pivot">
+            <field name="name">cultivation.plan_organic_report.pivot</field>
+            <field name="model">cultivation.plan_organic_report</field>
+            <field name="arch" type="xml">
+                <pivot string="Analisys" disable_linking="True">
+                    <field name="date_plan_organic" type="row"/>
+                    <field name="name_varieties" type="col"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_cultivation_plan_organic_report_graph">
+            <field name="name">cultivation.plan_organic_report.graph</field>
+            <field name="model">cultivation.plan_organic_report</field>
+            <field name="arch" type="xml">
+                <graph string="Analisys">
+                    <field name="date_plan_organic" type="row"/>
+                    <field name="name_varieties" type="col"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="view_cultivation_plan_organic_report_calendar" model="ir.ui.view">
+        <field name="name">cultivation.plan_organic_report.calendar</field>
+        <field name="model">cultivation.plan_organic_report</field>
+        <field name="arch" type="xml">
+            <calendar string="Analisys" date_start="date_plan_organic" color="state" >
+                <field name="name_varieties" />
+            </calendar>
+        </field>
+    </record>
+       
+
+</odoo>

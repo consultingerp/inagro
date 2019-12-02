@@ -4,3 +4,6 @@
 from . import activity
 from . import harvest_real
 from . import cultivation
+from . import cultivation_plan_organic
+from . import cultivation_plan_an_organic
+

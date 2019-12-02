@@ -41,6 +41,8 @@
         'report/harvest_plan_report.xml',
         'report/harvest_real_report.xml',
         'report/cultivation_report.xml',
+        'report/cultivation_plan_organic.xml',
+        'report/cultivation_plan_an_organic.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

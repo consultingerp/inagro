@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import models, fields, api,_
+from odoo.exceptions import ValidationError, UserError
 from datetime import datetime
 from odoo.addons import decimal_precision as dp
 
@@ -22,6 +23,18 @@ class inagro_cultivation_plan(models.Model):
     @api.multi
     def button_validate(self):
         return self.write({'state': 'done'})
+
+    @api.multi
+    def unlink(self):
+        """
+        Overrides orm unlink method.
+        @param self: The object pointer
+        @return: True/False.
+        """
+        for plan in self:
+            if plan.state != 'draft':
+                raise ValidationError(_('You cannot delete plan'))
+        return super(inagro_cultivation_plan, self).unlink()
 
     # @api.multi
     # def button_cancel(self):

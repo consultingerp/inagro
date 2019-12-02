@@ -138,6 +138,24 @@
 	        <field name="help">Report Cultivation Real</field>
         </record>
 
+        <record id="action_cultivation_plan_organic_report" model="ir.actions.act_window">
+            <field name="name">Cultivation Plan Organic Report</field>
+	        <field name="res_model">cultivation.plan_organic_report</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,graph,pivot,calendar</field>
+	        <field name="view_id"></field> 
+	        <field name="help">Report Cultivation Plan Organic</field>
+        </record>
+
+        <record id="action_cultivation_plan_an_organic_report" model="ir.actions.act_window">
+            <field name="name">Cultivation Plan An Organic Report</field>
+	        <field name="res_model">cultivation.plan_an_organic_report</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,graph,pivot,calendar</field>
+	        <field name="view_id"></field> 
+	        <field name="help">Report Cultivation Plan An Organic</field>
+        </record>
+
 
         <record id="action_harvest_plan_report" model="ir.actions.act_window">
             <field name="name">Harvest Plan Report</field>
@@ -279,6 +297,31 @@
 	  	parent="inagro_agriculture.report_agriculture"
 	  	groups="inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"
 	  	action="inagro_agriculture.action_cultivation_report"/>
+
+	  	<menuitem 
+	  	id="cultivation_plan_report"
+	  	name="Cultivation Plan"
+	  	sequence='2' 
+	  	parent="inagro_agriculture.report_agriculture"
+	  	groups="inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"/>
+
+	  	<menuitem 
+	  	id="cultivation_plan_organic_report"
+	  	name="Cultivation Plan Organic"
+	  	sequence='1' 
+	  	parent="inagro_agriculture.cultivation_plan_report"
+	  	groups="inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"
+	  	action="inagro_agriculture.action_cultivation_plan_organic_report"/>
+
+	  	<menuitem 
+	  	id="cultivation_plan_an_organic_report"
+	  	name="Cultivation Plan An Organic"
+	  	sequence='1' 
+	  	parent="inagro_agriculture.cultivation_plan_report"
+	  	groups="inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager"
+	  	action="inagro_agriculture.action_cultivation_plan_an_organic_report"/>
+
+
 
 	  	<menuitem 
 	  	id="harvest_report"
