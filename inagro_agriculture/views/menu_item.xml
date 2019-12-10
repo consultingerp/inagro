@@ -142,7 +142,7 @@
             <field name="name">Cultivation Plan Organic Report</field>
 	        <field name="res_model">cultivation.plan_organic_report</field>
 	        <field name="view_type">form</field>
-	        <field name="view_mode">tree,graph,pivot,calendar</field>
+	        <field name="view_mode">graph,pivot,calendar</field>
 	        <field name="view_id"></field> 
 	        <field name="help">Report Cultivation Plan Organic</field>
         </record>
@@ -151,7 +151,7 @@
             <field name="name">Cultivation Plan An Organic Report</field>
 	        <field name="res_model">cultivation.plan_an_organic_report</field>
 	        <field name="view_type">form</field>
-	        <field name="view_mode">tree,graph,pivot,calendar</field>
+	        <field name="view_mode">graph,pivot,calendar</field>
 	        <field name="view_id"></field> 
 	        <field name="help">Report Cultivation Plan An Organic</field>
         </record>
