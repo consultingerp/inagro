@@ -11,8 +11,9 @@ import pytz
 
 class inherit_HotelReservation(models.Model):
 
-    _inherit = "hotel.reservation"
-    # _inherit = ['mail.thread']
+#     _inherit = "hotel.reservation"
+    _name = "hotel.reservation"
+    _inherit = ['hotel.reservation','mail.thread']
 
     # is_company = fields.Boolean(string='Is a Company',related="partner_id.is_company",store=True)
     partner_company_type = fields.Selection(string='Company Type',related="partner_id.company_type",
