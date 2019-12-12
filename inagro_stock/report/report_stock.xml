@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<data>
+		<template id="inherit_delivery_slip"
+			inherit_id="stock.report_delivery_document">
+			<xpath expr="//div[@class='page']" position="inside">
+				<table width='100%'>
+					<td width='25%'>Pengirim</td>
+					<td width='25%'>Pemeriksa</td>
+					<td width='25%'>Penyetujui</td>
+					<td width='25%'>
+						Penerima
+						<br/>
+						<span t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [ &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+					</td>
+					<tr>
+						<td><br/><br/><br/><br/>.................</td>
+						<td><br/><br/><br/><br/>.................</td>
+						<td><br/><br/><br/><br/>.................</td>
+						<td><br/><br/><br/><br/>.................</td>
+					</tr>
+				</table>
+			</xpath>
+		</template>
+	</data>
+
+</odoo>
