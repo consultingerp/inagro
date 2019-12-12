@@ -13,11 +13,11 @@
 						<center><span t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [ &quot;name&quot;], &quot;no_marker&quot;: True}"/></center>
 					</td>
 					<tr>
-						<td><br/><br/><br/><br/><center>(..................................)</center></td>
-						<td><br/><br/><br/><br/><center>(..................................)</center></td>
-						<td><br/><br/><br/><br/><center>(..................................)</center></td>
-						<td><br/><br/><br/><br/><center>(..................................)</center></td>
-						<td><br/><br/><br/><br/><center>(..................................)</center></td>
+						<td><br/><br/><br/><br/><center>(.............................)</center></td>
+						<td><br/><br/><br/><br/><center>(.............................)</center></td>
+						<td><br/><br/><br/><br/><center>(.............................)</center></td>
+						<td><br/><br/><br/><br/><center>(.............................)</center></td>
+						<td><br/><br/><br/><br/><center>(.............................)</center></td>
 					</tr>
 				</table>
 			</xpath>
