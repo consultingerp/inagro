@@ -114,7 +114,9 @@ class inagro_agriculture_Picking_cultivation(models.Model):
                     if len(line.crop_id) <= 0:
                         raise UserError(_('Crop Code can not be empty'))
 
-
+        # result = super(inagro_agriculture_Picking_cultivation, self).action_confirm()    
+        # return result
+        
         self.mapped('package_level_ids').filtered(lambda pl: pl.state == 'draft' and not pl.move_ids)._generate_moves()
         # call `_action_confirm` on every draft move
 
@@ -186,7 +188,7 @@ class inagro_agriculture_StockMove(models.Model):
 
     def _action_confirm(self, merge=True, merge_into=False):
 
-        print('move confirm2')
+        # print('move confirm2')
         """ Confirms stock move or put it in waiting if it's linked to another move.
         :param: merge: According to this boolean, a newly confirmed move will be merged
         in another move of the same picking sharing its characteristics.
