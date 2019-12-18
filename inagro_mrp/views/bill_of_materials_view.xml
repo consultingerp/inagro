@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="inherit_mrp_production_form_view" model="ir.ui.view">
+		<field name="name">mrp.production.form.inherit</field>
+		<field name="model">mrp.production</field>
+		<field name="inherit_id" ref="mrp.mrp_production_form_view" />
+		<field name="arch" type="xml">
+			<xpath expr="//form/sheet/notebook/page[3]" position="replace">
+				<page string="Miscellaneous"
+					groups="stock.group_stock_multi_locations, base.group_no_one">
+					<group>
+						<group groups="stock.group_stock_multi_locations">
+							<field name="picking_type_id"
+								domain="[('code', '=', 'mrp_operation')]"
+								attrs="{'readonly': [('has_moves', '=', True)]}" />
+						<field name="location_src_id"
+								domain="[('usage','=','internal')]" readonly="1" force_save="1" />
+							<field name="location_dest_id"
+								domain="[('usage','=','internal')]" readonly="1" force_save="1" />
+						</group>
+						<group>
+							<field name="availability" groups="base.group_no_one" />
+						</group>
+					</group>
+				</page>
+			</xpath>
+
+		</field>
+	</record>
+
+</odoo>
