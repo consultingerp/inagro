@@ -23,7 +23,9 @@
 
     # always loaded
     'data': [
-        'views/bill_of_materials_view.xml',
+#         'views/sequence.xml',
+        'security/security.xml',
+        'views/mrp_production_views.xml',
 
     ],
     'installable': True,
