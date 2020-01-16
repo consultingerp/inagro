@@ -234,6 +234,3 @@ class inagro_agriculture_StockMove(models.Model):
                 if merge:
                     return self._merge_moves(merge_into=merge_into)
         return self
-
-
-

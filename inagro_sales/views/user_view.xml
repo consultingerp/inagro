@@ -21,5 +21,20 @@
                 </data>
             </field>
         </record>
+
+        <!-- <record id="view_order_product_search" model="ir.ui.view">
+            <field name="name">sale.report.search.inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="sale.view_order_product_search"/>
+            <field name="arch" type="xml">
+
+                <data>
+                    <xpath expr="//filter[@name='date']" position="after">
+                        <filter string="Validity Date" name="validity_date" context="{'group_by':'validity_date'}"/>
+                    </xpath>
+                </data>
+            </field>
+        </record> -->
+
     </data>
 </openerp>

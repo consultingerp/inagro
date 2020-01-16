@@ -23,9 +23,13 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'data/v_req_seq.xml',
+        'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        'views/menu_item.xml',
+        'views/vehicle_request.xml',
+        'views/inherit_contract.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
