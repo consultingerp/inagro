@@ -15,6 +15,18 @@
 			<field name="arch" type="xml">
 				<!-- <xpath expr="//field[@name='product_id']" position="before"> <field 
 					name="sequence_char" /> </xpath> -->
+				<xpath expr="//field[@name='product_uom_qty']"
+					position="replace">
+					<field name="product_uom_qty" />
+				</xpath>
+				<xpath expr="//field[@name='reserved_availability']"
+					position="replace">
+					<field name="reserved_availability" />
+				</xpath>
+				<xpath expr="//field[@name='quantity_done']"
+					position="replace">
+					<field name="quantity_done" />
+				</xpath>
 
 				<xpath expr="//form/sheet/notebook/page[3]" position="replace">
 					<page string="Miscellaneous"
@@ -48,7 +60,7 @@
 				</xpath>
 			</field>
 		</record>
-		
+
 		<record id="inherit_mrp_bom_view" model="ir.ui.view">
 			<field name="name">mrp.bom.view.form.inherit</field>
 			<field name="model">mrp.bom</field>
@@ -59,24 +71,59 @@
 				</xpath>
 			</field>
 		</record>
-		
-		<record id="inherit_mrp_production_view" model="ir.ui.view">
-			<field name="name">mrp.production</field>
-			<field name="model">mrp.production</field>
-			<field name="inherit_id" ref="mrp.mrp_production_form_view" />
+
+		<record id="inherit_mrp_product_produce_wizard"
+			model="ir.ui.view">
+			<field name="name">mrp.product.produce.wizard.inherit</field>
+			<field name="model">mrp.product.produce</field>
+			<field name="inherit_id"
+				ref="mrp.view_mrp_product_produce_wizard" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='qty_to_consume']"
+					position="replace">
+					<field name="qty_to_consume" readonly="1" />
+				</xpath>
+				<xpath expr="//field[@name='qty_reserved']" position="replace">
+					<field name="qty_reserved" readonly="1" />
+				</xpath>
+				<xpath expr="//field[@name='qty_done']" position="replace">
+					<field name="qty_done" />
+				</xpath>
+			</field>
+		</record>
+
+		<record id="inherit_mrp_product_produce_wizard"
+			model="ir.ui.view">
+			<field name="name">stock.quant.form.inherit</field>
+			<field name="model">stock.quant</field>
+			<field name="inherit_id" ref="stock.view_stock_quant_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='quantity']" position="replace">
+					<field name="quantity" />
+				</xpath>
+				<xpath expr="//field[@name='reserved_quantity']"
+					position="replace">
+					<field name="reserved_quantity" />
+				</xpath>
+			</field>
+		</record>
+
+		<record id="inherit_stock_move_line_form"
+			model="ir.ui.view">
+			<field name="name">stock.move.line.form.inherit</field>
+			<field name="model">stock.move.line</field>
+			<field name="inherit_id" ref="stock.view_move_line_form" />
 			<field name="arch" type="xml">
 				<xpath expr="//field[@name='product_uom_qty']" position="replace">
 					<field name="product_uom_qty" />
 				</xpath>
-				<xpath expr="//field[@name='reserved_availability']" position="replace">
-					<field name="reserved_availability" />
-				</xpath>
-				<xpath expr="//field[@name='quantity_done']" position="replace">
-					<field name="quantity_done" />
+				<xpath expr="//field[@name='qty_done']"
+					position="replace">
+					<field name="qty_done" />
 				</xpath>
 			</field>
 		</record>
-		
+
 	</data>
 
 </odoo>

@@ -7,6 +7,15 @@ class inherit_MrpProduction(models.Model):
     """ Manufacturing Orders """
     _inherit = 'mrp.production'
     
+#     @api.one
+#     @api.onchange('bom_id')
+#     def _onchange_move_raw_ids(self):
+#         print("Testtt")
+#         new_lines =[]
+#         for record in self.bom_id.bom_line_ids:
+#             vals = record.read(['product_id','product_qty','product_uom_id'])[0]
+            
+    
 #     @api.model
 #     def create(self, values):
 #         values['sequence_char'] = self.env['ir.sequence'].next_by_code('increament_sequence') or _('New')
@@ -53,3 +62,28 @@ class inherit_StockMove(models.Model):
     
     quantity_done = fields.Float('Quantity Done', compute='_quantity_done_compute', digits=(16,3), inverse='_quantity_done_set')
     
+    
+class inherit_MrpProductProduceLine(models.TransientModel):
+    _inherit = "mrp.product.produce.line"
+    
+    qty_to_consume = fields.Float('To Consume',digits=(16,3))
+    qty_reserved = fields.Float('Reserved',digits=(16,3))
+    qty_done = fields.Float('Consumed',digits=(16,3))
+    
+    
+class inherit_StockQuant(models.Model):
+    _inherit = "stock.quant"
+    
+    quantity = fields.Float('Quantity', digits=(16,5),
+        help='Quantity of products in this quant, in the default unit of measure of the product',
+        readonly=True, required=True, oldname='qty')
+    reserved_quantity = fields.Float('Reserved Quantity', digits=(16,5),default=0.0,
+        help='Quantity of reserved products in this quant, in the default unit of measure of the product',
+        readonly=True, required=True)    
+    
+    
+class inherit_StockMoveLine(models.Model):
+    _inherit = "stock.move.line"
+    
+    product_uom_qty = fields.Float('Reserved', default=0.0, digits=(16,5), required=True)
+    qty_done = fields.Float('Done', default=0.0, digits=(16,5), copy=False)
