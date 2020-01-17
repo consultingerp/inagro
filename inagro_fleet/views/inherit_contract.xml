@@ -20,8 +20,93 @@
                 <field name="cost_subtype_id" position="replace">
                 </field>
                 <field name="vehicle_id" position="before">
-                    <field name="cost_subtype_id"/>
+                    <field name="vehicle_type_id"/>
                 </field>
+
+                <field name="vehicle_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','!=', 'futur')]}</attribute>
+                </field>
+
+                <field name="user_id" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','!=', 'futur')]}</attribute>
+                </field>
+
+                <field name="start_date" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','!=', 'futur')]}</attribute>
+                </field>
+
+                <field name="amount" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                </field>
+
+                <field name="cost_generated" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                </field>
+
+                <field name="expiration_date" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                </field>
+
+                <field name="odometer" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                </field>
+
+                <field name="ins_ref" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                </field>
+
+                <field name="cost_ids" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                </field>
+
+                <field name="generated_cost_ids" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                </field>
+
+                <field name="notes" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                </field>
+
+                <field name="cost_frequency" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                </field>
+
+                <button name="act_renew_contract" position="replace">
+                </button>
+
+                <button name="contract_close" position="replace">
+                    <button name="contract_sent_to_progress" states="futur" type="object" class="oe_highlight" string="Sent To Progress" groups="fleet.fleet_group_manager"/>
+
+                    <button name="contract_close" states="sent,open,expired" type="object" class="oe_highlight" string="Close Contract" groups="fleet.fleet_group_manager"/>
+                </button>
+                
+
+                <xpath expr="//page[1]" position="before">
+                    <page string="Passenger">
+                        <group>
+                            <field name="passenger_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="name" />
+                                    <field name="user_req_name" force_save = "1"/>
+                                    <field name="date_start"/>
+                                    <field name="date_end"/>
+                                    <field name="destination"/>
+                                    <field name="vehicle_type_id"/>
+                                    <field name="state"/>
+                                    <field name="t_pass"/>
+                                </tree>
+                            </field>
+
+                        </group>
+                        <div class="oe_right">
+                            <group>
+                                <field name="sum_pass"/>
+                            </group>
+                        </div>
+                    </page>
+                </xpath>
+                
+
             </data>
         </field>
     </record>

@@ -41,7 +41,7 @@
 			</field>
 		</record> -->
 		
-				<record id="inherit_sale_order_view_search_inherit_sale"
+		<record id="inherit_sale_order_view_search_inherit_sale"
 			model="ir.ui.view">
 			<field name="name">sale.order.search.inherit.filter</field>
 			<field name="model">sale.order</field>
@@ -49,8 +49,6 @@
 			<field name="arch" type="xml">
 				<xpath expr="//filter[@name='order_date']" position="after">
 					<filter string="Validity Date" name="validity" date="validity_date"/>
-					<!-- <filter string="This Year" name="this_year"
-						domain="[('validity_date','&lt;=', time.strftime('%Y-%m-%d')),('validity_date','&gt;=',time.strftime('%Y-01-01'))]" /> -->
 				</xpath>
 			</field>
 		</record>
