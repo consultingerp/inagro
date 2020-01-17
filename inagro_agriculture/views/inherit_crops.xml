@@ -27,6 +27,7 @@
 
             <field name="location_id" position="replace">
                 <field name="old_code_id"/>
+                <field name="crop_type" widget="radio" options="{'horizontal': true}" />
             </field>
         </field>
 	</record>

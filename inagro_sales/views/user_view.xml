@@ -13,33 +13,6 @@
 					<field name="warehouse_ids" position="after">
 						<field name="sales_warehouse_ids" widget="many2many_tags" />
 					</field>
-
-<<<<<<< HEAD
-                    <xpath expr="//group[@name='warehouse']" position="after">
-                        <group string="My Sales" name="subordinate_marketing">
-                            <field name="sales_child_ids" widget="many2many_tags"/>
-                        </group>
-                    </xpath>
-                </data>
-            </field>
-        </record>
-
-        <!-- <record id="view_order_product_search" model="ir.ui.view">
-            <field name="name">sale.report.search.inherit</field>
-            <field name="model">res.users</field>
-            <field name="inherit_id" ref="sale.view_order_product_search"/>
-            <field name="arch" type="xml">
-
-                <data>
-                    <xpath expr="//filter[@name='date']" position="after">
-                        <filter string="Validity Date" name="validity_date" context="{'group_by':'validity_date'}"/>
-                    </xpath>
-                </data>
-            </field>
-        </record> -->
-
-    </data>
-=======
 					<xpath expr="//group[@name='warehouse']" position="after">
 						<group string="My Sales" name="subordinate_marketing">
 							<field name="sales_child_ids" widget="many2many_tags" />
@@ -78,5 +51,4 @@
 			</field>
 		</record>
 	</data>
->>>>>>> 3025e1df6bfc6b0dc6dfca43c40d2ad0e32a70b2
 </openerp>

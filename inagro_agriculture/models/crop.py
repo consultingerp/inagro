@@ -19,8 +19,15 @@ class inherit_FarmerLocationCrops(models.Model):
 		string='Crop Period End',
 		required=False
 	)
-	
 
+	crop_type = fields.Selection(
+		[('TBM','TBM'),
+		('TM', 'TM')], 
+		string='Crop Type', 
+		default ='TBM',
+		store = True
+	)
+        
 	area_location_id = fields.Many2one(
 		'res.partner',
 		string='Location Area',
@@ -28,7 +35,7 @@ class inherit_FarmerLocationCrops(models.Model):
 		required=True
 	)
 
-	active = fields.Boolean(string="active",default=True)
+	active = fields.Boolean(string="active", default=True)
 
 	old_code_id = fields.Many2one(
 		'farmer.location.crops',
@@ -42,8 +49,7 @@ class inherit_FarmerLocationCrops(models.Model):
 		required=True
 	)
 
-	activity_line = fields.Many2one('crop.activity.line',string='Activity Line')
-
+	activity_line = fields.Many2one('crop.activity.line', string='Activity Line')
 
 	_sql_constraints = [
         ('name_unique', 'unique(name)', 'Code already exists!')
@@ -52,18 +58,16 @@ class inherit_FarmerLocationCrops(models.Model):
 	@api.onchange('category_id')
 	def _onchange_category(self):
 		print('tes')
-		domain = [('category', '=',self.category_id.id )]
+		domain = [('category', '=', self.category_id.id)]
 		return {'domain': {'varieties_id': domain}}
 		# for item in self:
 		# 	item.varieties_id = self.env['crop.varieties'].search([('category', '=', item.category_id.id)])
-
 	
 	varieties_id = fields.Many2one(
 		'crop.varieties',
 		string='Varieties',
 		required=True
 	)
-
 
 	warehouse_id = fields.Many2one(
 		'stock.warehouse',
@@ -75,6 +79,4 @@ class inherit_FarmerLocationCrops(models.Model):
 		string='Stock Location',
 		required=False
 	)
-	
-
 
