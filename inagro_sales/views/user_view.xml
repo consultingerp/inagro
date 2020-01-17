@@ -33,5 +33,23 @@
 				</xpath>
 			</field>
 		</record>
+
+		<record id="inagro_res_partner_form" model="ir.ui.view">
+			<field name="name">res.partner.form.inherit</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='company_type']" position="replace">
+					<field name="company_type" widget="radio"
+						class="oe_edit_only" options="{'horizontal': true}" />
+				</xpath>
+				<xpath expr="//field[@name='category_id']" position="after">
+					<field name="is_school" invisible="1" force_save="1" />
+					<field name="is_person" invisible="1" force_save="1" />
+					<field name="is_community" invisible="1" force_save="1" />
+					<field name="is_company" invisible="1" force_save="1" />
+				</xpath>
+			</field>
+		</record>
 	</data>
 </openerp>
