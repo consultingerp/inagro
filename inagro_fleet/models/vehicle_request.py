@@ -33,6 +33,8 @@ class inagro_vehicle_request(models.Model):
     vehicle_type_id = fields.Many2one('fleet.vehicle.state', 'Vehicle Type', required=True,readonly=True,
                               states={'draft': [('readonly', False)]})
 
+    contract_id = fields.One2many('vehicle.passenger', 'name', 'contract', copy=False, readonly=True)
+
     @api.multi
     def button_request(self):
         self.name = self.env['ir.sequence'].next_by_code('vehicle.request')
