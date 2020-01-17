@@ -32,7 +32,11 @@
                             <field name="date_end" widget="date"/>
                             <field name="t_pass"/>
                             <field name="destination"/>
-                            <field name="contract_id"/>
+                            <field name="contract_id" nolabel="1" readonly="1">
+                                <tree editable="bottom">
+                                    <field name="parent_id"/>
+                                </tree>
+                            </field>
                         </group>
                     </group>
                     <group string="Information">

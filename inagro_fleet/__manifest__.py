@@ -25,6 +25,7 @@
     'data': [
         'data/v_req_seq.xml',
         'security/ir.model.access.csv',
+        'security/group.xml',
         'views/views.xml',
         'views/templates.xml',
         'views/menu_item.xml',

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="group_fleet_mgr" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="implied_ids" 
+            	eval="[(4,ref('fleet.fleet_group_manager'))]"/>
+            <field name="category_id" ref="fleet.module_fleet_category"/>
+        </record>
+
+        <record id="fleet_admin_request" model="ir.rule">
+            <field name="name">Admin Fleet</field>
+            <field name="model_id" ref="inagro_fleet.model_vehicle_request"/>
+            <field name="global" eval="True"/>
+            <field name="groups" eval="[(4, ref('fleet.fleet_group_manager'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
+        <record id="fleet_user_request" model="ir.rule">
+            <field name="name">User Fleet</field>
+            <field name="model_id" ref="inagro_fleet.model_vehicle_request"/>
+            <field name="global" eval="True"/>
+            <field name="groups" eval="[(4, ref('fleet.fleet_group_user'))]"/>
+            <field name="domain_force">[('create_uid','=',user.id)]</field>
+        </record>
+
+	</data>
+</odoo>

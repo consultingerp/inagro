@@ -1,4 +1,5 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError, AccessError
 from dateutil.relativedelta import relativedelta
 
 class inagro_FleetVehicleLogContract(models.Model):
@@ -46,11 +47,9 @@ class inagro_FleetVehicleLogContract(models.Model):
 
     @api.onchange('vehicle_type_id')
     def onchange_vehicle_type_id(self):
-        # self.vehicle_id = self.env['fleet.vehicle'].search([('state_id', '=', self.vehicle_type_id.id)])
         res = {}
         res['domain']={'vehicle_id':[('state_id', '=', self.vehicle_type_id.id)]}
         return res
-        # print(self.vehicle_id,' ddd')
 
 
     @api.model
@@ -76,12 +75,31 @@ class inagro_FleetVehicleLogContract(models.Model):
         # now_running_contracts = self.search([('state', '=', 'futur'), ('start_date', '<=', fields.Date.today())])
         # now_running_contracts.write({'state': 'open'})
 
+    @api.multi
+    def contract_sent_to_progress(self):
+        for record in self:
+            record.state = 'sent'
+
+    @api.multi
+    def contract_open(self):
+        for record in self:
+            record.state = 'open'
+            for line in record.passenger_ids:
+                return line.name.write({'state': 'confirm'})
+
+    @api.multi
+    def unlink(self):
+        for record in self:
+            if record.state != 'futur':
+                raise UserError(_('You cannot delete this data !!!'))
+            return super(inagro_FleetVehicleLogContract, self).unlink()
+
 
 
 class inagro_Fleet_passenger(models.Model):
     _name = 'vehicle.passenger'
 
-    name = fields.Many2one('vehicle.request','Request Number',ondelete='cascade')
+    name = fields.Many2one('vehicle.request','Request Number',ondelete='cascade',domain="[('state','=','request')]")
     user_req_name = fields.Char('User Request',readonly=True,store=True)
     state = fields.Selection([('draft', 'Draft'), ('request', 'Request'), ('confirm', 'Confirm'),
                               ('cancel', 'Cancel')],
