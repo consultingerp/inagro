@@ -14,6 +14,82 @@
 	        </field>
 		</record>
 
+		<record id="action_fleet_schedule" model="ir.actions.act_window">
+	        <field name="name">Schedule</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">fleet.schedule</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">calendar</field>
+	        <field name="context">{}</field>
+	        <field name="help" type="html">
+	          <p class="o_view_nocontent_smiling_face">
+	            Create a new Request
+	          </p>
+	        </field>
+		</record>
+
+		<delete id="fleet.fleet_vehicles" model="ir.ui.menu"/>
+
+		<menuitem 
+			name="Vehicles" 
+			parent="fleet.menu_root" 
+			id="fleet.fleet_vehicles" 
+			sequence="2" 
+			groups="fleet.fleet_group_manager"/>
+
+		<delete id="fleet.fleet_vehicle_menu" model="ir.ui.menu"/>
+		<menuitem 
+			action="fleet.fleet_vehicle_action" 
+			parent="fleet.fleet_vehicles" 
+			id="fleet.fleet_vehicle_menu" 
+			groups="fleet.fleet_group_manager"/>
+
+		<delete id="fleet.fleet_vehicle_model_menu" model="ir.ui.menu"/>
+    	<menuitem 
+    		action="fleet.fleet_vehicle_model_action" 
+	    	parent="fleet.fleet_vehicles" 
+	    	id="fleet.fleet_vehicle_model_menu" 
+	    	sequence="11"/>
+
+	    <delete id="fleet.fleet_vehicle_odometer_menu" model="ir.ui.menu"/>
+	    <menuitem 
+	    	action="fleet.fleet_vehicle_odometer_action" 
+		    parent="fleet.fleet_vehicles" 
+		    id="fleet.fleet_vehicle_odometer_menu" 
+		    groups="fleet.fleet_group_manager"/>
+
+		<delete id="fleet.fleet_vehicle_costs_menu" model="ir.ui.menu"/>
+		<menuitem 
+			action="fleet.fleet_vehicle_costs_action" 
+			parent="fleet.fleet_vehicles" 
+			id="fleet.fleet_vehicle_costs_menu" 
+			groups="fleet.fleet_group_manager"/>
+
+		<delete id="fleet.fleet_vehicle_log_contract_menu" model="ir.ui.menu"/>
+		<menuitem 
+			action="fleet.fleet_vehicle_log_contract_action" 
+			parent="fleet.fleet_vehicles" 
+			id="fleet.fleet_vehicle_log_contract_menu" 
+			groups="fleet.fleet_group_manager"/>
+
+		<delete id="fleet.fleet_vehicle_log_fuel_menu" model="ir.ui.menu"/>
+		<menuitem 
+			action="fleet.fleet_vehicle_log_fuel_action" 
+			parent="fleet.fleet_vehicles" 
+			id="fleet.fleet_vehicle_log_fuel_menu" 
+			groups="fleet.fleet_group_manager"/>
+
+		<delete id="fleet.fleet_vehicle_log_services_menu" model="ir.ui.menu"/>
+		<menuitem 
+			action="fleet.fleet_vehicle_log_services_action" 
+			parent="fleet.fleet_vehicles" 
+			id="fleet.fleet_vehicle_log_services_menu" 
+			groups="fleet.fleet_group_manager"/>
+
+		<!-- <record model="ir.ui.menu" id="fleet.fleet_vehicles">
+		    <field name="fleet.fleet_group_user" eval="[(6,0,[ref('make_invisible')])]"/>
+		</record> -->
+
 	   
 	  	<menuitem 
 	  	id="fleet_request"
@@ -27,6 +103,14 @@
 	  	name="Vehicle Request"
 	  	sequence='1' 
 	  	action="inagro_fleet.action_vehicle_request"
+	  	parent="fleet_request"
+	  	groups="fleet.fleet_group_user,fleet.fleet_group_manager"/>
+
+	  	<menuitem 
+	  	id="fleet_schedule"
+	  	name="Schedule"
+	  	sequence='2' 
+	  	action="inagro_fleet.action_fleet_schedule"
 	  	parent="fleet_request"
 	  	groups="fleet.fleet_group_user,fleet.fleet_group_manager"/>
 

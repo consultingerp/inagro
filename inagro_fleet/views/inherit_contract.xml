@@ -8,6 +8,10 @@
         <field name="inherit_id" ref="fleet.fleet_vehicle_log_contract_view_form"/>
         <field name="arch" type="xml">
             <data>
+                <field name="vehicle_id" position="before">
+                    <field name="name" readonly="1" force_save="1"/>
+                </field>
+
                 <field name="date" position="replace">
                     <field name="date" string="Invoice Date" invisible="1"/>
                 </field>
@@ -118,5 +122,17 @@
         </field>
     </record>
     
+
+    <record model="ir.ui.view" id="fleet_vehicle_log_contract_view_tree">
+        <field name="name">fleet.vehicle.log.contract.tree.inherit</field>
+        <field name="model">fleet.vehicle.log.contract</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_log_contract_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="start_date" position="before">
+                <field name="name"/>
+            </field>
+            
+        </field>
+    </record>
 
 </odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_fleet_schedule_calendar" model="ir.ui.view">
+        <field name="name">Schedule Calendar</field>
+        <field name="model">fleet.schedule</field>
+        <field name="arch" type="xml">
+            <calendar string="Schedule" date_start="start_date" color="state"
+                date_stop="expiration_date">
+                <field name="name" />
+                <field name="vehicle_type" />
+                <field name="state" />
+            </calendar>
+        </field>
+    </record>
+        
+
+</odoo>

@@ -5,6 +5,9 @@ from dateutil.relativedelta import relativedelta
 class inagro_FleetVehicleLogContract(models.Model):
     _inherit = 'fleet.vehicle.log.contract'
 
+    expiration_date = fields.Date('Contract Expiration Date', default=fields.Date.context_today,
+        help='Date when the coverage of the contract expirates (by default, one year after begin date)')
+
     state = fields.Selection([
         ('futur', 'Incoming'),
         ('sent', 'Sent to Progress'),
@@ -28,6 +31,24 @@ class inagro_FleetVehicleLogContract(models.Model):
     #     # self.vehicle_id = self.env['fleet.vehicle'].search([('user_id', '=', self.user_id.id)])
     #     print('tes')
         
+    @api.depends('vehicle_id', 'cost_subtype_id', 'start_date')
+    def _compute_contract_name(self):
+        for record in self:
+            name = 'New'
+            if len(record.vehicle_id) > 0:
+                name = record.vehicle_id.name
+                # if record.cost_subtype_id.name:
+                #     name += ' / ' + record.cost_subtype_id.name
+                if record.start_date:
+                    name += ' / ' + str(record.start_date)
+            record.name = name
+
+    # @api.onchange('start_date', 'expiration_date')
+    # def _cek_date(self):
+    #     for record in self:
+    #         if start_date > expiration_date:
+    #             raise UserError(_('Start date is greater than the expiration date!'))
+
 
     @api.depends('passenger_ids.t_pass')
     def _sum_all(self):
@@ -39,7 +60,7 @@ class inagro_FleetVehicleLogContract(models.Model):
             order.update({
                 'sum_pass': (int(sum_pass))
             })
-            print(order.sum_pass,' order.sum_pass')
+            # print(order.sum_pass,' order.sum_pass')
     sum_pass = fields.Integer('Total Passenger', store=True, readonly=True, compute='_sum_all')
 
     vehicle_type_id = fields.Many2one('fleet.vehicle.state', 'Vehicle Type', required=True,readonly=True,
