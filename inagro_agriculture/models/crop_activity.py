@@ -62,7 +62,7 @@ class inagro_crop_activity_line(models.Model):
     area_location_id = fields.Many2one('res.partner',string='Location Area',domain="[('is_location','=',True)]",required=True)
     category_id = fields.Many2one(
         'crop.category',
-        string='Category',
+        string='Commodity',
         required=True
     )
 

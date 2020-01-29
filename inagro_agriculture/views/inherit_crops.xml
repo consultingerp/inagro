@@ -17,7 +17,7 @@
             </field>
 
             <field name="name" position="after">
-                <field name="category_id"/>
+                <field name="category_id" string="Commodity"/>
                 <field name="varieties_id"/>
             </field>
 
@@ -28,6 +28,7 @@
             <field name="location_id" position="replace">
                 <field name="old_code_id"/>
                 <field name="crop_type" widget="radio" options="{'horizontal': true}" />
+                <field name="commodity_type"/>
             </field>
         </field>
 	</record>
@@ -38,7 +39,8 @@
         <field name="inherit_id" ref="odoo_agriculture.view_farmer_location_crop_tree"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="category_id"/>
+                <field name="commodity_type"/>
+                <field name="category_id" string="Commodity"/>
                 <field name="varieties_id"/>
             </field>
             <field name="warehouse_id" position="replace">
