@@ -39,7 +39,12 @@ class inherit_MrpBomLine(models.Model):
 class inherit_MrpBom(models.Model):
     _inherit = 'mrp.bom'
     
-    picking_id = fields.Many2one('stock.picking.type','Stock Operation', required=True)
+    picking_id = fields.Many2one('stock.picking.type','Stock Operation', required=True, domain=[('code', '=', 'mrp_operation')])
+    
+    @api.onchange('picking_id')
+    def onchange_picking_id(self):
+        if self.picking_id:
+            self.picking_type_id = self.picking_id
     
     
 class inherit_StockMove(models.Model):

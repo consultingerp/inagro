@@ -26,6 +26,7 @@
 #         'views/sequence.xml',
         'security/security.xml',
         'views/mrp_production_views.xml',
+        'views/product_views.xml',
 
     ],
     'installable': True,

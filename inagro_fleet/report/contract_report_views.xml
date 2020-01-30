@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<report string="Surat Keterangan Jalan Kendaraan"
+			id="action_contract_vehicle" model="fleet.vehicle.log.contract"
+			report_type="qweb-pdf" name="inagro_fleet.contract_vehicle"
+			file="inagro_fleet.contract_vehicle"
+			print_report_name="'Delivery Slip'" />
+	</data>
+</odoo>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- <template id="report_contract_document"> <t t-call="web.html_container"> 
+		<t t-call="web.external_layout"> <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" 
+		/> </t></t> </template> -->
+
+	<template id="report_contract_document">
+		<t t-call="web.external_layout">
+			<t t-set="doc"
+				t-value="doc.with_context({'lang':doc.user_id.partner_id.lang})" />
+			<div class="page">
+				<div class="oe_structure" />
+				<center>
+					<u>
+						<h3>Surat Keterangan Jalan Kendaraan</h3>
+					</u>
+					<div class="text-left">
+						<p>
+							<strong>No :</strong>
+							<br t-field="doc.name" class="m-0" />
+						</p>
+					</div>
+					<div class="text-left">
+						<p>
+							<strong>Tanggal : </strong>
+							<br t-field="doc.start_date"
+								t-options='{"format": "dd MMMM yyyy"}' class="m-0" />
+						</p>
+					</div>
+				</center>
+				<br>Dikeluarkan 1 unit Mobil dengan spesifik sebagai berikut :</br>
+
+				<!-- <div id="address_informations" class="row mt32 mb32"> <div class="col-3"> -->
+
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<td style="width:25%">Merk</td>
+							<td style="width:5%">:</td>
+							<td>
+								<t t-set="doc"
+									t-value="doc.with_context({'lang':doc.user_id.partner_id.lang})" />
+								<span t-field="doc.vehicle_id.model_id.brand_id.name" />
+							</td>
+						</tr>
+
+						<tr>
+							<td style="width:25%">Type</td>
+							<td style="width:5%">:</td>
+							<td>
+								<span t-field="doc.vehicle_type_id" />
+							</td>
+						</tr>
+
+						<tr>
+							<td style="width:25%">No. Polisi</td>
+							<td style="width:5%">:</td>
+							<td>
+								<span t-field="doc.vehicle_id.license_plate" />
+							</td>
+						</tr>
+
+						<!-- <tr> <td style="width:40%">Nama Pemilik</td> <td style="width:5%">:</td> 
+							<td> <span/> </td> </tr> -->
+						<!-- <tr> <td style="width:40%">Untuk dipinjam pakai oleh</td> <td 
+							style="width:5%">:</td> <td> <span/> </td> </tr> -->
+						<tr>
+							<td style="width:25%">Dengan Driver</td>
+							<td style="width:5%">:</td>
+							<td>
+								<span t-field="doc.purchaser_id" />
+							</td>
+						</tr>
+						<tr>
+							<td style="width:25%">Berangkat Tgl/Pulang Tgl</td>
+							<td style="width:5%">:</td>
+							<t t-if="doc.start_date and doc.expiration_date">
+								<td>
+									<span t-esc="doc.start_date" />
+									<span>/</span>
+									<span t-esc="doc.expiration_date" />
+								</td>
+							</t>
+						</tr>
+
+						<tr>
+							<td style="width:25%">Informasi</td>
+							<td style="width:5%">:</td>
+							<td>
+								<span t-field="doc.notes" />
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+			<br>Demikian Surat Keterangan Jalan Kendaraan ini dikeluarkan untuk
+				dipergunakan sebagaimana mestinya dan dengan rasa tanggung jawab
+			</br>
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td style="width:33%">
+							Diperiksa Oleh,
+							<br>Tgl. : ..........................</br>
+							<br>Jam. : ..........................</br>
+							<br />
+							<br />
+							<br>
+								<div>
+									<center>(...................................)</center>
+								</div>
+							</br>
+						</td>
+						<td style="width:34%">
+							Penanggungjawab Oleh,
+							<br>Tgl. : ..........................</br>
+							<br>Jam. : ..........................</br>
+							<br />
+							<br />
+							<br>
+								<div>
+									<center>(...................................)</center>
+								</div>
+							</br>
+						</td>
+						<td style="width:33%">
+							Disiapkan Oleh,
+							<br>Tgl. : ..........................</br>
+							<br>Jam. : ..........................</br>
+							<br />
+							<br />
+							<br>
+								<div>
+									<center>(...................................)</center>
+								</div>
+							</br>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- </div> -->
+			<!-- </div> -->
+		</t>
+
+	</template>
+
+
+
+	<template id="contract_vehicle">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="doc">
+				<t t-call="inagro_fleet.report_contract_document"
+					t-lang="doc.user_id.partner_id.lang" />
+			</t>
+		</t>
+	</template>
+</odoo>

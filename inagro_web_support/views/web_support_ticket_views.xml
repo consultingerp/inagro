@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record id="department_support_view_form" model="ir.ui.view">
+			<field name="name">department.support form view</field>
+			<field name="model">department.support</field>
+			<field name="arch" type="xml">
+			<group>
+				<form>
+					<field name="name" string="Department" options="{'no_create_edit': True}"/>
+				</form>
+				</group>
+			</field>
+		</record>
+		
+		<record id="department_support_view_tree" model="ir.ui.view">
+			<field name="name">department.support tree view</field>
+			<field name="model">department.support</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+
+
+
+		<record id="inherit_website_support_ticket_category_view_form"
+			model="ir.ui.view">
+			<field name="name">inherit website.support.ticket.category form view
+			</field>
+			<field name="model">website.support.ticket.category</field>
+			<field name="inherit_id"
+				ref="website_support.website_support_ticket_category_view_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='cat_user_ids']" position="after">
+					<field name="department_id" />
+				</xpath>
+			</field>
+		</record>
+		
+		<record id="inherit_website_support_ticket_view_form" model="ir.ui.view">
+			<field name="name">inherit website.support.ticket form view </field>
+			<field name="model">website.support.ticket</field>
+			<field name="inherit_id" ref="website_support.website_support_ticket_view_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='sub_category_id']" position="after">
+					<field name="department_id" />
+				</xpath>
+			</field>
+		</record>
+		
+	<record id="department_support_action" model="ir.actions.act_window">
+        <field name="name">Department Support</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">department.support</field>
+        <!-- <field name="view_type">form</field> -->
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>Create for which Department can support</p>
+        </field>
+    </record>
+
+	</data>
+</odoo>
+	
