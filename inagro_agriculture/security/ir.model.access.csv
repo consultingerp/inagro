@@ -1,5 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
+cr_ct_a_user,group_a_user_cr_ct,model_crop_category,inagro_agriculture.group_agriculture_another_user,1,0,0,0
+cr_vr_a_user,group_a_user_cr_vr,model_crop_varieties,inagro_agriculture.group_agriculture_another_user,1,0,0,0
+access_farmer_location_crops_a_user,access_farmer_location_crops_a_user,odoo_agriculture.model_farmer_location_crops,inagro_agriculture.group_agriculture_another_user,1,1,1,1
+
+access_farmer_cr_crops_a_user,access_farmer_cr_crops_a_user,odoo_agriculture.model_farmer_cropping_request,inagro_agriculture.group_agriculture_another_user,0,0,0,0
+
 cr_ct_user,group_user_cr_ct,model_crop_category,odoo_agriculture.group_agriculture_user,1,0,0,0
 cr_vr_user,group_user_cr_vr,model_crop_varieties,odoo_agriculture.group_agriculture_user,1,0,0,0
 cr_mas_act_user,group_user_cr_mas_act,model_crop_masteractivity,odoo_agriculture.group_agriculture_user,1,0,0,0
@@ -54,4 +60,7 @@ cv_plan_line_organic_date_mgr,group_cv_plan_line_organic_date_mgr,model_cultivat
 cv_plan_organic_report_mgr,group_cv_plan_organic_report_mgr,model_cultivation_plan_organic_report,odoo_agriculture.group_agriculture_manager,1,1,1,1
 cv_plan_an_organic_report_mgr,group_cv_plan_an_organic_report_mgr,model_cultivation_plan_an_organic_report,odoo_agriculture.group_agriculture_manager,1,1,1,1
 commodity_type_mgr,group_commodity_type_mgr,model_commodity_type,odoo_agriculture.group_agriculture_manager,1,1,1,1
+
+
+commodity_type_admin_system,group_commodity_type_admin_system,model_commodity_type,base.group_system,1,1,1,1
 

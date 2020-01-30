@@ -12,3 +12,4 @@ from . import stock_picking_type
 from . import res_partner
 from . import cultivation_plan
 from . import commodity_type
+from . import inherit_user
