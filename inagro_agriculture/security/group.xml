@@ -148,5 +148,33 @@
             <field name="domain_force">[(1,'=',1)]</field>
         </record> -->
 
+        <record id="filter_user_commodity_type_crop" model="ir.rule">
+            <field name="name">Filter to commodity type</field>
+            <field name="model_id" search="[('model','=','farmer.location.crops')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('odoo_agriculture.group_agriculture_user')),(4, ref('inagro_agriculture.group_agriculture_another_user'))]"/>
+            <field name="domain_force">[('category_id.commodity_type.id','in', [ p.id for p in user.commodity_type_ids ])]</field>
+        </record>
+
+        <record id="filter_user_commodity_type_category" model="ir.rule">
+            <field name="name">Filter to commodity type</field>
+            <field name="model_id" search="[('model','=','crop.category')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('odoo_agriculture.group_agriculture_user')),(4, ref('inagro_agriculture.group_agriculture_another_user'))]"/>
+            <field name="domain_force">[('commodity_type.id','in', [ p.id for p in user.commodity_type_ids ])]</field>
+        </record>
+
+        <record id="filter_mgr_commodity_type_crop" model="ir.rule">
+            <field name="name">Filter to commodity type</field>
+            <field name="model_id" search="[('model','=','farmer.location.crops')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('odoo_agriculture.group_agriculture_manager'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
+        <record id="filter_mgr_commodity_type_category" model="ir.rule">
+            <field name="name">Filter to commodity type</field>
+            <field name="model_id" search="[('model','=','crop.category')]" model="ir.model"/>
+            <field name="groups" eval="[(4, ref('odoo_agriculture.group_agriculture_manager'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
 	</data>
 </odoo>

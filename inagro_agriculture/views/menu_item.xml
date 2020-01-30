@@ -199,6 +199,25 @@
 	        <field name="help">Report Harvest Real</field>
         </record>
 
+        <!-- <delete id="odoo_agriculture.agricultural_management_topmenu" model="ir.ui.menu"/>
+        <menuitem 
+	 	id="odoo_agriculture.agricultural_management_topmenu"
+	 	name="Agriculture"
+	 	/>
+
+	 	<delete id="odoo_agriculture.agriculture_topmenu" model="ir.ui.menu"/>
+	 	<menuitem 
+		  	id="odoo_agriculture.agriculture_topmenu"
+		  	name="Agriculture" 
+		  	parent="odoo_agriculture.agricultural_management_topmenu"/>
+
+		<delete id="odoo_agriculture.croping_request_submenu" model="ir.ui.menu"/>
+		<menuitem 
+		  	id="odoo_agriculture.croping_request_submenu"
+		  	name="Crop Requests" 
+		  	sequence='1' 
+		  	parent="odoo_agriculture.agricultural_management_topmenu"/> -->
+
 
 	   
 	  	<menuitem 
