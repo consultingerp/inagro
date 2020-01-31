@@ -94,6 +94,38 @@
 
 					</tbody>
 				</table>
+
+				<table class="table table-bordered">
+	                <thead>
+	                    <tr>
+	                        <!-- <t t-set="colspan" t-value="5"/> -->
+	                        <th class="text-left">No Request</th>
+	                        <th class="text-Left">User</th>
+	                        <th class="text-center">Status</th>
+	                        <th class="text-left">Tujuan</th>
+	                        <th class="text-left">Jumlah Penumpang</th>
+	                    </tr>
+	                </thead>
+	                <tbody class="sale_tbody">
+
+	                    <!-- <t t-set="current_subtotal" t-value="0"/> -->
+
+	                    <t t-foreach="doc.passenger_ids" t-as="line">
+
+	                        <!-- <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"/> -->
+
+	                        <tr>
+	                            
+                                <td><span t-field="line.name"/></td>
+                                <td><span t-field="line.user_req_name"/></td>
+                                <td class="text-center"><span t-field="line.state"/></td>
+                                <td><span t-field="line.destination"/></td>
+                                <td class="text-center"><span t-field="line.t_pass"/></td>
+	                        </tr>
+	                    </t>
+	                </tbody>
+	            </table>
+
 			</div>
 			<br>Demikian Surat Keterangan Jalan Kendaraan ini dikeluarkan untuk
 				dipergunakan sebagaimana mestinya dan dengan rasa tanggung jawab
