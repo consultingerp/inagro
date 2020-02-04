@@ -41,7 +41,7 @@
                 <field name="area_location_id" attrs="{'column_invisible': [('parent.is_cultivation', '=', False)]}"/>
                 <field name="varieties_id" attrs="{'column_invisible': [('parent.is_cultivation', '=', False)]}"/>
                 <field name="crop_id" attrs="{'column_invisible': [('parent.is_harvest', '=', False)]}"/>
-                <field name="crop_varieties_id" />
+                <field name="crop_varieties_id" attrs="{'column_invisible': [('parent.is_harvest', '=', False)]}"/>
             </xpath>
 
         </field>
