@@ -6,20 +6,21 @@
 			<field name="name">department.support form view</field>
 			<field name="model">department.support</field>
 			<field name="arch" type="xml">
-			<group>
 				<form>
-					<field name="name" string="Department" options="{'no_create_edit': True}"/>
+					<group>
+						<field name="name" string="Department"
+							options="{'no_create_edit': True}" />
+					</group>
 				</form>
-				</group>
 			</field>
 		</record>
-		
+
 		<record id="department_support_view_tree" model="ir.ui.view">
 			<field name="name">department.support tree view</field>
 			<field name="model">department.support</field>
 			<field name="arch" type="xml">
 				<tree>
-					<field name="name"/>
+					<field name="name" />
 				</tree>
 			</field>
 		</record>
@@ -39,28 +40,78 @@
 				</xpath>
 			</field>
 		</record>
-		
-		<record id="inherit_website_support_ticket_view_form" model="ir.ui.view">
-			<field name="name">inherit website.support.ticket form view </field>
-			<field name="model">website.support.ticket</field>
-			<field name="inherit_id" ref="website_support.website_support_ticket_view_form" />
+
+		<record model="ir.ui.view"
+			id="view_website_support_ticket_category_tree_inherit">
+			<field name="name">website.support.ticket.category.tree.inherit
+			</field>
+			<field name="model">website.support.ticket.category</field>
+			<field name="type">tree</field>
+			<field name="inherit_id"
+				ref="website_support.website_support_ticket_category_view_tree" />
 			<field name="arch" type="xml">
-				<xpath expr="//field[@name='sub_category_id']" position="after">
+				<xpath expr="//tree/field[@name='name']" position="after">
 					<field name="department_id" />
 				</xpath>
 			</field>
 		</record>
-		
-	<record id="department_support_action" model="ir.actions.act_window">
-        <field name="name">Department Support</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">department.support</field>
-        <!-- <field name="view_type">form</field> -->
-        <field name="view_mode">tree,form</field>
-        <field name="help" type="html">
-            <p>Create for which Department can support</p>
-        </field>
-    </record>
+
+		<record id="inherit_website_support_ticket_view_form"
+			model="ir.ui.view">
+			<field name="name">inherit website.support.ticket form view </field>
+			<field name="model">website.support.ticket</field>
+			<field name="inherit_id"
+				ref="website_support.website_support_ticket_view_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='category_id']" position="replace">
+					<field name="department_id" />
+					<field name="category_id" domain="[('department_id','=',department_id)]" />
+				</xpath>
+				
+				<xpath expr="//form//sheet//group//group[2]" position="replace">
+				<group>
+							<field name="employee_id" string="Assign User" domain="[('department_id','=',dept_rel_id)]" />
+							<field name="dept_rel_id" invisible="1" />
+							<field name="user_id" domain="[('share','=',False)]" invisible="1"/>
+                            <field name="partner_id" attrs="{'readonly':[('id','>',0)]}"/>
+                            <field name="person_name" attrs="{'readonly':[('id','>',0)]}"/>
+                            <field name="email" attrs="{'readonly':[('id','>',0)]}"/>
+                            <field name="approval_id"/>
+                            <field name="support_rating" readonly="1"/>
+                            <field name="close_time"/>
+                            <field name="closed_by_id" invisible="1" />
+                            <field name="closed_rel_id" string="Closed by" domain="[('department_id','=',dept_rel_id)]" />
+                            <field name="support_comment" readonly="1"/>
+                            <field name="id" invisible="1" />
+                            </group>
+				</xpath>
+			</field>
+		</record>
+				
+			<!-- 	<xpath expr="//field[@name='user_id']" position="replace">
+					<field name="employee_id" string="Assign User"
+						domain="[('department_id','=',dept_rel_id)]" />
+					<field name="dept_rel_id" invisible="1" />
+					<field name="user_id" invisible="1" />
+				</xpath>
+
+				<xpath expr="//field[@name='closed_by_id']" position="replace">
+					<field name="closed_by_id" invisible="1" />
+					<field name="closed_rel_id" string="Closed by" domain="[('department_id','=',dept_rel_id)]" />
+				</xpath> -->
+
+
+		<record id="department_support_action"
+			model="ir.actions.act_window">
+			<field name="name">Department Support</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">department.support</field>
+			<!-- <field name="view_type">form</field> -->
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p>Create for which Department can support</p>
+			</field>
+		</record>
 
 	</data>
 </odoo>

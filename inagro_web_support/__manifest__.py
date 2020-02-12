@@ -23,6 +23,8 @@
 
     # always loaded
     'data': [
+        'data/res.groups.xml',
+        'security/security.xml',
         'views/templates.xml', 
         'views/web_support_ticket_views.xml',
         'views/menus.xml',
