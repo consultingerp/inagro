@@ -532,6 +532,7 @@
 
                           $("#category").change(function() {
                               update_sub_categories()
+                              alert('test');
                           });
 
                           function update_sub_categories() {

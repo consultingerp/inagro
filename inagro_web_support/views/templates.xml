@@ -1,18 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data>
-<template id="inherit_support_submit_ticket" inherit_id="website_support.support_submit_ticket" >
-<xpath expr="//div[@class='container']//form//div[3]" position="before" >
-                  <div t-attf-class="form-group #{error and 'department' in error and 'has-error' or ''}">
-                      <label class="control-label" for="name">Department</label>
-                      <select class="form-control" id="department" name="department">
-                          <t t-foreach="department_id" t-as="department">
-                              <option t-attf-value="#{department.id}" t-esc="department.name"></option>
-                          </t>
-                      </select>
+	<data>
+		<template id="inherit_support_submit_ticket" inherit_id="website_support.support_submit_ticket">
+		<xpath expr="//div[@class='container']//form//div[2]"
+				position="replace">
+				<div name="email_from_container" t-attf-class="form-group #{error and 'email' in error and 'has-error' or ''}">
+                      <label class="control-label" for="email">Email</label>
+                      <input type="email" class="form-control" name="email" required="True" t-attf-value="#{email or ''}" t-att-readonly="'readonly' if email else None"/>
                   </div>
-</xpath>
-</template>
-</data>
+              </xpath>
+			<xpath expr="//div[@class='container']//form//div[3]"
+				position="before">
+				<div
+					t-attf-class="form-group #{error and 'department' in error and 'has-error' or ''}">
+					<label class="control-label" for="name">Department</label>
+					<select class="form-control" id="department"
+						name="department">
+						<t t-foreach="department_id" t-as="department">
+							<option t-attf-value="#{department.name}"
+								t-esc="department.name.name"></option>
+						</t>
+					</select>
+				</div>
+			</xpath>
+			
+			<xpath expr="//script" position="before">
+				<script>
+				$(document).ready(function() {
+
+                          update_categories()
+
+                          $("#department").change(function() {
+                              update_categories()
+                              alert('test');
+                          });
+
+                          function update_categories() {
+                          $.ajax({url: "/support/subcategories/fetch_department?department=" + $("#department").val(), success: function(result){
+                                  $("#category").html(result);
+                                  update_sub_categories();
+                                  
+                              }});
+                          }
+                          
+                           $(document).on('change',"#category", function(){
+                              update_sub_categories()
+                              alert('test');
+                          });
+                          
+                          function update_sub_categories() {
+                              $.ajax({url: "/support/subcategories/fetch?category=" + $("#category").val(), success: function(result){
+                                  $("#subcategoy_container").html(result);
+                                  update_sub_category_fields();
+                              }});
+                          }
+                          
+                          $(document).on('change',"#subcategory", function(){
+                              update_sub_category_fields();
+                          });
+                          
+                          function update_sub_category_fields() {
+                              $.ajax({url: "/support/subcategories/field/fetch?subcategory=" + $("#subcategory").val(), success: function(result){
+                                  $("#subcategoy_fields").html(result);
+                              }});
+                          }
+
+                      });
+     
+
+                          
+                      
+                      </script>
+			</xpath>
+		</template>
+	</data>
 
 </odoo>
