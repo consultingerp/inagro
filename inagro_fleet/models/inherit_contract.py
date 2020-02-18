@@ -14,6 +14,7 @@ class inagro_FleetVehicleLogContract(models.Model):
         ('open', 'In Progress'),
         # ('diesoon', 'Expiring Soon'),
         ('expired', 'Expired'),
+        ('cancel', 'Cancel'),
         ('closed', 'Closed')
         ], 'Status', default='futur', readonly=True,
         help='Choose whether the contract is still valid or not',
@@ -107,6 +108,13 @@ class inagro_FleetVehicleLogContract(models.Model):
             record.state = 'open'
             for line in record.passenger_ids:
                 return line.name.write({'state': 'confirm'})
+
+    @api.multi
+    def contract_cancel(self):
+        for record in self:
+            record.state = 'cancel'
+            for line in record.passenger_ids:
+                return line.name.write({'state': 'cancel'})
 
     @api.multi
     def unlink(self):

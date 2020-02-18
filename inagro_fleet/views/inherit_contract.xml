@@ -89,6 +89,8 @@
                     <button name="contract_open" states="sent" type="object" class="oe_highlight" string="Confirm" groups="inagro_fleet.group_fleet_mgr" confirm="Are you sure to Confirm?"/>
 
                     <button name="contract_close" states="sent,open,expired" type="object" class="oe_highlight" string="Close Contract" groups="fleet.fleet_group_manager" confirm="Are you sure to Close?"/>
+
+                    <button name="contract_cancel" states="sent,open,expired" type="object" class="oe_highlight" string="Cancel" groups="fleet.fleet_group_manager" confirm="Are you sure to Cancel?"/>
                 </button>
                 
 
