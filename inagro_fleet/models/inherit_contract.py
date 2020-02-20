@@ -3,7 +3,8 @@ from odoo.exceptions import UserError, AccessError
 from dateutil.relativedelta import relativedelta
 
 class inagro_FleetVehicleLogContract(models.Model):
-    _inherit = 'fleet.vehicle.log.contract'
+    _name = 'fleet.vehicle.log.contract'
+    _inherit = ['fleet.vehicle.log.contract', 'portal.mixin']
 
     expiration_date = fields.Date('Contract Expiration Date', default=fields.Date.context_today,
         help='Date when the coverage of the contract expirates (by default, one year after begin date)')
@@ -25,6 +26,11 @@ class inagro_FleetVehicleLogContract(models.Model):
         help='Person to which the contract is signed for')
 
     passenger_ids = fields.One2many('vehicle.passenger', 'parent_id', 'Passenger', copy=False, readonly=True, states={'futur': [('readonly', False)]})
+    
+    def _compute_access_url(self):
+        super(inagro_FleetVehicleLogContract, self)._compute_access_url()
+        for order in self:
+            order.access_url = '/my/fleetlogcontract/%s' % (order.id)
     
     # @api.onchange('cost_subtype_id')
     # def onchange_cost_subtype_id(self):
@@ -114,6 +120,11 @@ class inagro_FleetVehicleLogContract(models.Model):
             if record.state != 'futur':
                 raise UserError(_('You cannot delete this data !!!'))
             return super(inagro_FleetVehicleLogContract, self).unlink()
+        
+        
+#     @api.model
+#     def mail_to_manager(self):
+#         
 
 
 

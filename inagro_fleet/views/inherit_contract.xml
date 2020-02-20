@@ -91,6 +91,9 @@
                     <button name="contract_close" states="sent,open,expired" type="object" class="oe_highlight" string="Close Contract" groups="fleet.fleet_group_manager" confirm="Are you sure to Close?"/>
                 </button>
                 
+               <!--  <xpath expr="//form//header" position="inside">
+                	<button class="oe_highlight" name="mail_to_manager" type="object" string="Mail to Manager" groups="fleet.fleet_group_manager"/>
+                </xpath>  -->
 
                 <xpath expr="//page[1]" position="before">
                     <page string="Passenger">

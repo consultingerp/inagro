@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<template id="portal_my_home_menu_contract" name="Portal layout : contract menu entries" inherit_id="portal.portal_breadcrumbs" priority="50">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'contract' or contract" t-attf-class="breadcrumb-item #{'active ' if not contract else ''}">
+                <a t-if="contract" t-attf-href="/my/fleetlogcontract?{{ keep_query() }}">Vehicle Log Contract</a>
+                <t t-else="">Vehicle Log Contract</t>
+            </li>
+            <li t-if="contract" class="breadcrumb-item active">
+                <t t-esc="contract.name"/>
+            </li>
+        </xpath>
+    </template>
+    
+    <template id="portal_my_home_contract" name="Portal My Home : contract entry" inherit_id="portal.portal_my_home" priority="50">
+    <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+        <t t-if="contract_count" t-call="portal.portal_docs_entry">
+            <t t-set="title">Vehicle Log Contract</t>
+            <t t-set="url" t-value="'/my/fleetlogcontract'"/>
+            <t t-set="count" t-value="contract_count"/>
+        </t>
+    </xpath>
+  </template>
+  
+  <template id="portal_log_contract" name="Portal: My Vehicle Log Contract">
+      <t t-call="portal.portal_layout">
+      <t t-call="portal.portal_searchbar">
+        <t t-set="title">Vehicle Log Contract</t>
+      </t>
+      <t t-set="o_portal_fullwidth_alert" >
+      	<t t-call="portal.portal_back_in_edit_mode">
+       		<t t-set="backend_url" t-value="'/web#return_label=Website&amp;model=fleet.vehicle.log.contract&amp;id=%s&amp;action=%s&amp;view_type=form' % (contract.id, contract.env.ref('fleet.fleet_vehicle_log_contract_action').id)"/>
+           </t>
+        </t>
+      </t>
+    </template>
+
+</odoo>
