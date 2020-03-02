@@ -8,5 +8,13 @@
             <field name="padding">5</field>
         </record>
     </data>
+    
+            <record id="model_fleet_vehicle_log_contract_action_share" model="ir.actions.server">
+            <field name="name">Share</field>
+            <field name="model_id" ref="fleet.model_fleet_vehicle_log_contract"/>
+            <field name="binding_model_id" ref="fleet.model_fleet_vehicle_log_contract"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_share()</field>
+        </record>
 
 </odoo>

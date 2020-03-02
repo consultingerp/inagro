@@ -13,7 +13,7 @@
 				position="before">
 				<div
 					t-attf-class="form-group #{error and 'department' in error and 'has-error' or ''}">
-					<label class="control-label" for="name">Department</label>
+					<label class="control-label" for="name">Department To</label>
 					<select class="form-control" id="department"
 						name="department">
 						<t t-foreach="department_id" t-as="department">
@@ -32,20 +32,17 @@
 
                           $("#department").change(function() {
                               update_categories()
-                              alert('test');
                           });
 
                           function update_categories() {
                           $.ajax({url: "/support/subcategories/fetch_department?department=" + $("#department").val(), success: function(result){
                                   $("#category").html(result);
                                   update_sub_categories();
-                                  
                               }});
                           }
                           
                            $(document).on('change',"#category", function(){
                               update_sub_categories()
-                              alert('test');
                           });
                           
                           function update_sub_categories() {

@@ -31,9 +31,11 @@
         'views/menu_item.xml',
         'views/vehicle_request.xml',
         'views/inherit_contract.xml',
+#         'views/inherit_company.xml',
         'report/schedule_view.xml',
         'report/contract_report_views.xml',
         'report/contract_vehicle.xml',
+        'views/portal_templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

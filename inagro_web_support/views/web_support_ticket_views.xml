@@ -60,9 +60,12 @@
 			model="ir.ui.view">
 			<field name="name">inherit website.support.ticket form view </field>
 			<field name="model">website.support.ticket</field>
-			<field name="inherit_id"
-				ref="website_support.website_support_ticket_view_form" />
+			<field name="inherit_id" ref="website_support.website_support_ticket_view_form" />
 			<field name="arch" type="xml">
+				<field name="sla_timer" position="replace">
+	                <field name="sla_timer" widget="float_time" readonly="1" force_save="1"/>
+	            </field>
+
 				<xpath expr="//field[@name='category_id']" position="replace">
 					<field name="department_id" />
 					<field name="category_id" domain="[('department_id','=',department_id)]" />

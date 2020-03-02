@@ -110,6 +110,9 @@ class inherit_inagro_PurchaseRequest(models.Model):
     def make_purchase_quotation(self):
         view_id = self.env.ref('purchase.purchase_order_form')
 
+        # print ('ddddd')
+        # exit()
+
         # vals = {
         #     'partner_id': partner.id,
         #     'picking_type_id': self.rule_id.picking_type_id.id,
@@ -142,7 +145,7 @@ class inherit_inagro_PurchaseRequest(models.Model):
                                     'price_unit' : 0,
                                    'date_planned' :  datetime.today().strftime(DEFAULT_SERVER_DATETIME_FORMAT),
                                    # 'taxes_id' : ((6,0,[taxes_id.id])),
-                                   'currency_id' : line.currency_id,
+                                   # 'currency_id' : line.currency_id,
                                    'company_id' : self.env.user.company_id.id,
                                    'product_qty' : line.product_qty,
                                    'name' : line.product_id.name
@@ -151,9 +154,9 @@ class inherit_inagro_PurchaseRequest(models.Model):
 
         rfq_sequence = self.env['ir.sequence'].next_by_code('purchase.order')
 
-        print(rfq_sequence,' sequence rfq')
+        # print(rfq_sequence,' sequence rfq')
 
-        print('tes sequence')
+        # print('tes sequence')
 
         vals = {
             'order_line' : order_line,

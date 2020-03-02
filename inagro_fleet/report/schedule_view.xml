@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="view_fleet_schedule_form" model="ir.ui.view">
+            <field name="name">Schedule</field>
+            <field name="model">fleet.schedule</field>
+            <field name="arch" type="xml">
+                <form>
+                    
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name='name'/>
+                                <field name='vehicle_type'/>
+                                <field name='state'/>
+                            </group>
+
+                            <group>
+                                <field name='start_date'/>
+                                <field name='expiration_date'/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page name="Passenger" string="Passenger">
+                                <field name="passenger_ids" widget="section_and_note_one2many" mode="tree" >
+                                    <!-- <form>
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name='line_id' invisible='1'/>
+                                                    <field name='name'/>
+                                                    <field name='category'/>
+                                                    <field name='organic_date'/>
+                                                    <field name='an_organic_date'/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form> -->
+                                    <tree editable="bottom">
+                                        <field name="name" />
+                                        <field name="user_req_name" force_save = "1"/>
+                                        <field name="date_start"/>
+                                        <field name="date_end"/>
+                                        <field name="destination"/>
+                                        <field name="vehicle_type_id"/>
+                                        <field name="state"/>
+                                        <field name="t_pass"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
     <record id="view_fleet_schedule_calendar" model="ir.ui.view">
         <field name="name">Schedule Calendar</field>
         <field name="model">fleet.schedule</field>

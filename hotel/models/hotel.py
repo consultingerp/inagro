@@ -533,8 +533,9 @@ class HotelFolio(models.Model):
                     folio_room_line_obj.create(vals)
             if len(list(new_rooms)) == 0:
                 room_list_obj = product_obj.browse(room_lst1)
+                # exit()
                 for rom in room_list_obj:
-                    room_obj = h_room_obj.search([('name', '=', rom.name)])
+                    room_obj = h_room_obj.search([('name', 'in', rom.name)])
                     room_obj.write({'isroom': False})
                     room_vals = {'room_id': room_obj.id,
                                  'check_in': rec.checkin_date,

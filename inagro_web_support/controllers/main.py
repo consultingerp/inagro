@@ -3,14 +3,15 @@
 import re 
 from odoo import http
 from odoo.http import request
+# import website_support 
+# from website_support.controllers.main import SupportTicketController
 
-from inagro.website_support.controllers.main import SupportTicketController
-
-class CustomSupportTicketController(SupportTicketController):
+# class CustomSupportTicketController(SupportTicketController):
+class CustomSupportTicketController(http.Controller):
     
     @http.route('/support/ticket/submit', type='http', auth="user", website=True)
     def support_submit_ticket(self, **kw):
-        res = super(CustomSupportTicketController, self).support_submit_ticket(**kw)
+        # res = super(CustomSupportTicketController, self).support_submit_ticket(**kw)
         
         person_name = ""
         if http.request.env.user.name != "Public user":

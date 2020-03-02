@@ -16,9 +16,11 @@ class fleet_schedule(models.Model):
         ('sent', 'Sent to Progress'),
         ('open', 'In Progress'),
         ('expired', 'Expired'),
+        ('cancel', 'Cancel'),
         ('closed', 'Closed')
         ], 'Status')
     vehicle_type = fields.Char('Type', readonly=True)
+    passenger_ids = fields.One2many('vehicle.passenger', 'parent_id', 'Passenger', copy=False, readonly=True)
 
 
     @api.model_cr
@@ -40,7 +42,8 @@ class fleet_schedule(models.Model):
                 a .start_date,
                 a .expiration_date,
                 a .state,
-                b. name AS vehicle_type
+                b. name AS vehicle_type,
+                c. id as passenger_ids
         """
         return select_str
 
@@ -48,6 +51,7 @@ class fleet_schedule(models.Model):
         from_str = """
                 fleet_vehicle_log_contract a
                 LEFT JOIN fleet_vehicle_state b ON a .vehicle_type_id = b. id
+                LEFT JOIN vehicle_passenger c ON a.id = c.parent_id
         """
         return from_str
 
@@ -58,7 +62,8 @@ class fleet_schedule(models.Model):
                 a .start_date,
                 a .expiration_date,
                 a .state,
-                b. name
+                b. name,
+                c. id
         """
         return group_by_str
 

@@ -42,39 +42,39 @@
                 </field>
 
                 <field name="amount" position="attributes">
-                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                    <attribute name="attrs">{'readonly':[('state','in', ['closed','cancel'])]}</attribute>
                 </field>
 
                 <field name="cost_generated" position="attributes">
-                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                    <attribute name="attrs">{'readonly':[('state','in', ['closed','cancel'])]}</attribute>
                 </field>
 
                 <field name="expiration_date" position="attributes">
-                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                    <attribute name="attrs">{'readonly':[('state','in', ['closed','cancel'])]}</attribute>
                 </field>
 
                 <field name="odometer" position="attributes">
-                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                    <attribute name="attrs">{'readonly':[('state','in', ['closed','cancel'])]}</attribute>
                 </field>
 
                 <field name="ins_ref" position="attributes">
-                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                    <attribute name="attrs">{'readonly':[('state','in', ['closed','cancel'])]}</attribute>
                 </field>
 
                 <field name="cost_ids" position="attributes">
-                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                    <attribute name="attrs">{'readonly':[('state','in', ['closed','cancel'])]}</attribute>
                 </field>
 
                 <field name="generated_cost_ids" position="attributes">
-                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                    <attribute name="attrs">{'readonly':[('state','in', ['closed','cancel'])]}</attribute>
                 </field>
 
                 <field name="notes" position="attributes">
-                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                    <attribute name="attrs">{'readonly':[('state','in', ['closed','cancel'])]}</attribute>
                 </field>
 
                 <field name="cost_frequency" position="attributes">
-                    <attribute name="attrs">{'readonly':[('state','=', 'closed')]}</attribute>
+                    <attribute name="attrs">{'readonly':[('state','in', ['closed','cancel'])]}</attribute>
                 </field>
 
                 <button name="act_renew_contract" position="replace">
@@ -93,6 +93,9 @@
                     <button name="contract_cancel" states="sent,open,expired" type="object" class="oe_highlight" string="Cancel" groups="fleet.fleet_group_manager" confirm="Are you sure to Cancel?"/>
                 </button>
                 
+               <!--  <xpath expr="//form//header" position="inside">
+                	<button class="oe_highlight" name="mail_to_manager" type="object" string="Mail to Manager" groups="fleet.fleet_group_manager"/>
+                </xpath>  -->
 
                 <xpath expr="//page[1]" position="before">
                     <page string="Passenger">
