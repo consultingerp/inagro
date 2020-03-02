@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError, AccessError
 from datetime import datetime
 
 class inagro_vehicle_request(models.Model):
@@ -47,4 +48,11 @@ class inagro_vehicle_request(models.Model):
     @api.multi
     def button_draft(self):
         return self.write({'state': 'draft'})
+
+    @api.multi
+    def unlink(self):
+        for record in self:
+            if record.state != 'draft':
+                raise UserError(_('You cannot delete this data !!!'))
+            return super(inagro_vehicle_request, self).unlink()
 
