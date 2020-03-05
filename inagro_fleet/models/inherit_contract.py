@@ -103,6 +103,10 @@ class inagro_FleetVehicleLogContract(models.Model):
         # now_running_contracts = self.search([('state', '=', 'futur'), ('start_date', '<=', fields.Date.today())])
         # now_running_contracts.write({'state': 'open'})
 
+    def run_scheduler(self):
+        self.scheduler_manage_auto_costs()
+        # self.scheduler_manage_contract_expiration()
+
     @api.multi
     def contract_sent_to_progress(self):
         for record in self:
