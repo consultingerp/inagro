@@ -3,7 +3,7 @@
 	<data>
 
 		<record id="department_support_view_form" model="ir.ui.view">
-			<field name="name">department.support form view</field>
+			<field name="name">department.support.form</field>
 			<field name="model">department.support</field>
 			<field name="arch" type="xml">
 				<form>
@@ -16,7 +16,7 @@
 		</record>
 
 		<record id="department_support_view_tree" model="ir.ui.view">
-			<field name="name">department.support tree view</field>
+			<field name="name">department.support.tree</field>
 			<field name="model">department.support</field>
 			<field name="arch" type="xml">
 				<tree>
@@ -58,7 +58,7 @@
 
 		<record id="inherit_website_support_ticket_view_form"
 			model="ir.ui.view">
-			<field name="name">inherit website.support.ticket form view </field>
+			<field name="name">inherit website.support.ticket.form </field>
 			<field name="model">website.support.ticket</field>
 			<field name="inherit_id" ref="website_support.website_support_ticket_view_form" />
 			<field name="arch" type="xml">
@@ -69,6 +69,14 @@
 				<xpath expr="//field[@name='category_id']" position="replace">
 					<field name="department_id" />
 					<field name="category_id" domain="[('department_id','=',department_id)]" />
+				</xpath>
+				
+				<xpath expr="//field[@name='state_id']" position="replace" >
+					<field name ="state_id" readonly="1" force_save="1" />
+					<label for="time_response"/>
+					<div class="o_row" name="time_response">
+						<field name="time_response" readonly="1" /><span>minutes</span>
+					</div>
 				</xpath>
 				
 				<xpath expr="//form//sheet//group//group[2]" position="replace">
