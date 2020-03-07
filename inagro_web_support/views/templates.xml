@@ -70,6 +70,29 @@
                       </script>
 			</xpath>
 		</template>
+		
+		<template id="inherit_support_help_pages" inherit_id="website_support.support_help_pages">
+		<xpath expr="//div[@class='text-right']" position="replace">
+		<div class="text-right">
+                        <t t-if="request.env.user.partner_id.name == 'Public user'">
+                            <t t-if="setting_allow_user_signup">
+                                <a href="/support/account/create">Create Account</a> |
+                            </t>
+                        </t>
+                        <t t-if="group_support== True">
+                        	<a href="/support/ticket/submit">Submit a Ticket</a>
+                        </t>
+                        <t t-if="group_support== True">
+                            | <a href="/support/ticket/view">My Tickets</a> |
+                        </t>
+                        <t t-if="manager">
+                            | <a href="/support/ticket/reporting">Reporting</a>
+                        </t>
+                    </div>
+                    </xpath>
+                    </template>
+                    
+		
 	</data>
 
 </odoo>

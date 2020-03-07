@@ -41,10 +41,8 @@
 			</field>
 		</record>
 
-		<record model="ir.ui.view"
-			id="view_website_support_ticket_category_tree_inherit">
-			<field name="name">website.support.ticket.category.tree.inherit
-			</field>
+		<record model="ir.ui.view" id="view_website_support_ticket_category_tree_inherit">
+			<field name="name">website.support.ticket.category.tree.inherit </field>
 			<field name="model">website.support.ticket.category</field>
 			<field name="type">tree</field>
 			<field name="inherit_id"
@@ -56,8 +54,7 @@
 			</field>
 		</record>
 
-		<record id="inherit_website_support_ticket_view_form"
-			model="ir.ui.view">
+		<record id="inherit_website_support_ticket_view_form" model="ir.ui.view">
 			<field name="name">inherit website.support.ticket.form </field>
 			<field name="model">website.support.ticket</field>
 			<field name="inherit_id" ref="website_support.website_support_ticket_view_form" />
@@ -73,29 +70,41 @@
 				
 				<xpath expr="//field[@name='state_id']" position="replace" >
 					<field name ="state_id" readonly="1" force_save="1" />
-					<label for="time_response"/>
-					<div class="o_row" name="time_response">
-						<field name="time_response" readonly="1" /><span>minutes</span>
-					</div>
+						<label for="time_response"/>
+						<div class="o_row" name="time_response">
+							<field name="time_response" readonly="1" /><span>minutes</span>
+						</div>
 				</xpath>
 				
 				<xpath expr="//form//sheet//group//group[2]" position="replace">
-				<group>
-							<field name="employee_id" string="Assign User" domain="[('department_id','=',dept_rel_id)]" />
-							<field name="dept_rel_id" invisible="1" />
-							<field name="user_id" domain="[('share','=',False)]" invisible="1"/>
-                            <field name="partner_id" attrs="{'readonly':[('id','>',0)]}"/>
-                            <field name="person_name" attrs="{'readonly':[('id','>',0)]}"/>
-                            <field name="email" attrs="{'readonly':[('id','>',0)]}"/>
-                            <field name="approval_id"/>
-                            <field name="support_rating" readonly="1"/>
-                            <field name="close_time"/>
-                            <field name="closed_by_id" invisible="1" />
-                            <field name="closed_rel_id" string="Closed by" domain="[('department_id','=',dept_rel_id)]" />
-                            <field name="support_comment" readonly="1"/>
-                            <field name="id" invisible="1" />
-                            </group>
+					<group>
+						<field name="employee_id" string="Assign User" domain="[('department_id','=',dept_rel_id)]" />
+						<field name="dept_rel_id" invisible="1" />
+						<field name="user_id" domain="[('share','=',False)]" invisible="1"/>
+                        <field name="partner_id" attrs="{'readonly':[('id','>',0)]}"/>
+                        <field name="person_name" attrs="{'readonly':[('id','>',0)]}"/>
+                        <field name="email" attrs="{'readonly':[('id','>',0)]}"/>
+                        <field name="approval_id"/>
+                        <field name="support_rating" readonly="1"/>
+                        <field name="close_time"/>
+                        <field name="closed_by_id" invisible="1" />
+                        <field name="closed_rel_id" string="Closed by" domain="[('department_id','=',dept_rel_id)]" />
+                        <field name="support_comment" readonly="1"/>
+                        <field name="id" invisible="1" />
+                    </group>
 				</xpath>
+				
+				<xpath expr="//form//sheet//notebook//page[4]" position="replace" >
+					<page string="SLA">
+                    	<group>
+                        	<field name="sla_id" readonly="1"/>
+                            <field name="sla_active" readonly="1"/>
+                            <field name="sla_timer" widget="float_time" readonly="1"/>
+                           	<field name="sla_rule_id" domain="[('vsa_id','=',sla_id)]" readonly="1"/>
+                        </group>
+                 	</page>
+				</xpath>
+				
 			</field>
 		</record>
 				
@@ -111,9 +120,29 @@
 					<field name="closed_rel_id" string="Closed by" domain="[('department_id','=',dept_rel_id)]" />
 				</xpath> -->
 
-
-		<record id="department_support_action"
-			model="ir.actions.act_window">
+	<record id="view_manager_support" model="ir.ui.view">
+		<field name="name">inherit website.support.ticket manager</field>
+        <field name="model">website.support.ticket</field>
+        <field name="inherit_id" ref="inagro_web_support.inherit_website_support_ticket_view_form" />
+        <field name="groups_id" eval="[(6, 0, [ref('website_support.support_manager')])]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sla_id']" position="attributes">
+                <attribute name="readonly">False</attribute>
+            </xpath>
+            <xpath expr="//field[@name='sla_active']" position="attributes">
+                <attribute name="readonly">False</attribute>
+            </xpath>
+            <xpath expr="//field[@name='sla_timer']" position="attributes">
+                <attribute name="readonly">False</attribute>
+            </xpath>
+            <xpath expr="//field[@name='sla_rule_id']" position="attributes">
+                <attribute name="readonly">False</attribute>
+            </xpath>
+        </field>
+    </record>
+		
+		
+		<record id="department_support_action" model="ir.actions.act_window">
 			<field name="name">Department Support</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">department.support</field>
