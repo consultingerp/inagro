@@ -63,9 +63,11 @@ class WebsiteSupportTicketCompose(models.Model):
             self.ticket_id.approval_message = self.body
             self.ticket_id.sla_active = False
             
-        sla = self.env['website.support.sla'].search([('id', '=', 1)], limit=1)
-        sla_rule = self.env['website.support.sla.rule'].search([('id', '=', 2)], limit=1)
+
+        
         if not self.ticket_id.sla_id or not self.ticket_id.sla_rule_id:
+            self.ticket_id.sla_id = sla = self.env['website.support.sla'].search([('id', '=', 1)], limit=1)
+            self.ticket_id.sla_rule_id = sla_rule = self.env['website.support.sla.rule'].search([('id', '=', 1)], limit=1)
             if not sla or not sla_rule:
                 raise ValidationError(_('You must first select SLA and SLA Rule.'))
 
@@ -102,8 +104,8 @@ class WebsiteSupportTicketCompose(models.Model):
                     support_ticket = self.env['website.support.ticket'].search([('id', '=', self.ticket_id.id)], limit=1)
                     self.ticket_id.time_response =  (support_ticket.write_date - support_ticket.create_date).total_seconds()/60
                     self.ticket_id.sla_active = True
-                    self.ticket_id.sla_id = sla.id
-                    self.ticket_id.sla_rule_id = sla_rule.id
+                    # self.ticket_id.sla_id = sla.id
+                    # self.ticket_id.sla_rule_id = sla_rule.id
                 
              
                 
