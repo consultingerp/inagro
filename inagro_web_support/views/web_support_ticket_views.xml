@@ -59,20 +59,27 @@
 			<field name="model">website.support.ticket</field>
 			<field name="inherit_id" ref="website_support.website_support_ticket_view_form" />
 			<field name="arch" type="xml">
-				<field name="sla_timer" position="replace">
-	                <field name="sla_timer" widget="float_time" readonly="1" force_save="1"/>
-	            </field>
-
+			    
+			    <xpath expr="//div[@class='oe_title']" position="replace" >
+			    	<div class="oe_title">
+                        <label for="subject" class="oe_edit_only"/>
+                        <h1><field name="subject" attrs="{'readonly':[('id','>',0)]}"/></h1>
+                    </div>
+			    </xpath>				
 				<xpath expr="//field[@name='category_id']" position="replace">
 					<field name="department_id" />
-					<field name="category_id" domain="[('department_id','=',department_id)]" />
+					<field name="category_id" domain="[('department_id','=',department_id)]" attrs="{'readonly':[('id','>',0)]}" />
+				</xpath>
+				
+				<xpath expr="//field[@name='sub_category_id']" position="replace">
+					<field name="sub_category_id" domain="[('parent_category_id','=',category_id)]" attrs="{'readonly':[('id','>',0)]}"/>
 				</xpath>
 				
 				<xpath expr="//field[@name='state_id']" position="replace" >
 					<field name ="state_id" readonly="1" force_save="1" />
 						<label for="time_response"/>
 						<div class="o_row" name="time_response">
-							<field name="time_response" readonly="1" /><span>minutes</span>
+							<field name="time_response" readonly="1" widget="float_time"/><span>minutes</span>
 						</div>
 				</xpath>
 				
@@ -86,9 +93,9 @@
                         <field name="email" attrs="{'readonly':[('id','>',0)]}"/>
                         <field name="approval_id"/>
                         <field name="support_rating" readonly="1"/>
-                        <field name="close_time"/>
-                        <field name="closed_by_id" invisible="1" />
-                        <field name="closed_rel_id" string="Closed by" domain="[('department_id','=',dept_rel_id)]" />
+                        <field name="close_time" readonly="1"/>
+                        <field name="closed_by_id" readonly="1"/>
+                        <!-- <field name="closed_rel_id" string="Closed by" domain="[('department_id','=',dept_rel_id)]" /> -->
                         <field name="support_comment" readonly="1"/>
                         <field name="id" invisible="1" />
                     </group>
@@ -99,7 +106,7 @@
                     	<group>
                         	<field name="sla_id" readonly="1"/>
                             <field name="sla_active" readonly="1"/>
-                            <field name="sla_timer" widget="float_time" readonly="1"/>
+                            <field name="sla_timer" widget="float_time" readonly="1" force_save="1"/>
                            	<field name="sla_rule_id" domain="[('vsa_id','=',sla_id)]" readonly="1"/>
                         </group>
                  	</page>
