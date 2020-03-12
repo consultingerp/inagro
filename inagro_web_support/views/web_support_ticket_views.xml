@@ -45,8 +45,7 @@
 			<field name="name">website.support.ticket.category.tree.inherit </field>
 			<field name="model">website.support.ticket.category</field>
 			<field name="type">tree</field>
-			<field name="inherit_id"
-				ref="website_support.website_support_ticket_category_view_tree" />
+			<field name="inherit_id" ref="website_support.website_support_ticket_category_view_tree" />
 			<field name="arch" type="xml">
 				<xpath expr="//tree/field[@name='name']" position="after">
 					<field name="department_id" />
@@ -79,7 +78,11 @@
 					<field name ="state_id" readonly="1" force_save="1" />
 						<label for="time_response"/>
 						<div class="o_row" name="time_response">
+<<<<<<< HEAD
 							<field name="time_response" readonly="1" widget="float_time"/><span>minutes</span>
+=======
+							<field name="time_response" widget="float_time" readonly="1" />
+>>>>>>> 8f5d576a40d600e3360509192d2c73a0edb6cbfa
 						</div>
 				</xpath>
 				
@@ -112,6 +115,18 @@
                  	</page>
 				</xpath>
 				
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="website_support_ticket_view_tree">
+			<field name="name">website.support.ticket.tree.view.inherit </field>
+			<field name="model">website.support.ticket</field>
+			<field name="type">tree</field>
+			<field name="inherit_id" ref="website_support.website_support_ticket_view_tree" />
+			<field name="arch" type="xml">
+				<field name="sla_timer" position="after">
+	                <field name="time_response" widget="float_time"/>
+	            </field>
 			</field>
 		</record>
 				
