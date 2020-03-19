@@ -28,6 +28,7 @@
         'security/security.xml',
         'views/templates.xml', 
         'views/web_support_ticket_views.xml',
+        'views/web_support_ticket_compose_views.xml',
         'views/menus.xml',
         'views/support_ticket_view.xml',
 

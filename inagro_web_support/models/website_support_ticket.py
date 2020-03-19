@@ -31,7 +31,7 @@ class inherit_WebsiteSupportTicket(models.Model):
     department_id = fields.Many2one('department.support', string ='Department', related="category_id.department_id", store=True)
     employee_id = fields.Many2one('hr.employee', string='User',store=True)
     dept_rel_id = fields.Many2one('hr.department', string='Department Related', related='department_id.name')
-    closed_rel_id = fields.Many2one('hr.employee', string='Closed by Related')
+#     closed_rel_id = fields.Many2one('hr.employee', string='Closed by Related')
     time_response = fields.Float('Time Response')       
     
     @api.onchange('employee_id')
@@ -39,15 +39,17 @@ class inherit_WebsiteSupportTicket(models.Model):
         if self.employee_id:
             self.user_id = self.employee_id.user_id
             
-    @api.onchange('closed_rel_id')
-    def onchange_closedby_id(self):
-        if self.closed_rel_id:
-            self.closed_by_id = self.closed_rel_id.user_id
+#     @api.onchange('closed_rel_id')
+#     def onchange_closedby_id(self):
+#         if self.closed_rel_id:
+#             self.closed_by_id = self.closed_rel_id.user_id
             
             
 class WebsiteSupportTicketCompose(models.Model):
 
     _inherit = "website.support.ticket.compose"
+    
+    attachment_ids = fields.Many2many('ir.attachment', 'mail_ticket_attachment_rel', 'compose_id', 'attachment_id', 'Attachment File')
     
     @api.one
     def send_reply(self):
@@ -98,7 +100,8 @@ class WebsiteSupportTicketCompose(models.Model):
         else:
             #Change the ticket state to staff replied
             staff_replied = self.env['ir.model.data'].get_object('website_support','website_ticket_state_staff_replied')
-            self.ticket_id.state_id = staff_replied.id            
+            if not self.ticket_id.close_time:
+                self.ticket_id.state_id = staff_replied.id            
             if self.ticket_id.state_id.id == 2:
                 if self.ticket_id.time_response == 0:
                     support_ticket = self.env['website.support.ticket'].search([('id', '=', self.ticket_id.id)], limit=1)
