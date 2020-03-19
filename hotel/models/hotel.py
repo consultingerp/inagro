@@ -630,13 +630,14 @@ class HotelFolio(models.Model):
 
     @api.multi
     def action_confirm(self):
-        print(datetime.today(),' date')
+        # print(datetime.today(),' date')
         # exit()
 
 
         for order in self.order_id:
             order.state = 'sale'
             order.confirmation_date = datetime.today()
+            # print('ddd')
             if not order.analytic_account_id:
                 for line in order.order_line:
                     if line.product_id.invoice_policy == 'cost':
@@ -740,11 +741,11 @@ class HotelFolioLine(models.Model):
         @return: raise warning depending on the validation
         '''
 
-        print(self.order_line_id.product_id,' product')
+        # print(self.order_line_id.product_id,' product')
         room = self.env["hotel.room"].search([('product_id','=',self.order_line_id.product_id.id)])
-        print(room,' dd')
-        print(room.categ_id,' categ')
-        print(room.categ_id.id,' categ ww')
+        # print(room,' dd')
+        # print(room.categ_id,' categ')
+        # print(room.categ_id.id,' categ ww')
         # if room.categ_id.id == 9:
         #     if self.checkin_date.date() > self.checkout_date.date():
         #             print('satu-satu')

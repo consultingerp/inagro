@@ -7,11 +7,9 @@
         <field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
 
-            <xpath expr="//button[@name='button_validate']" position="replace">
-                <!-- <button name="button_validate" attrs="{'invisible': ['|', ('state', 'in', ('waiting','confirmed')), ('show_validate', '=', False)]}" string="Validate" type="object" class="oe_highlight" groups="stock.group_stock_user,inagro_agriculture.group_agriculture_spv,odoo_agriculture.group_agriculture_manager,stock.group_stock_user,stock.group_stock_manager"/> -->
-
+            <!-- <xpath expr="//button[@name='button_validate']" position="replace">
                 <button name="button_validate" attrs="{'invisible': ['|', ('state', 'in', ('waiting','confirmed')), ('show_validate', '=', False)]}" string="Validate" type="object" class="oe_highlight" groups="stock.group_stock_user,stock.group_stock_manager"/>
-            </xpath>
+            </xpath> -->
             
             <!-- <field name="location_dest_id" position="after">
                 <field name="crop_id" attrs="{'invisible': [('is_cultivation', '=', False)],'readonly': [('state', '!=', 'draft')]}"/>

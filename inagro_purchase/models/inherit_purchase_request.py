@@ -70,6 +70,14 @@ class inherit_PurchaseRequest(models.Model):
         else:
             self.bis_type = None
 
+    # bis_type = fields.Many2one('hr.department', string='Department', compute='_compute_department', store=True,)
+    # bis_type = fields.Selection(selection=_business_type,
+    #                          string='Business Type',
+    #                          index=True,
+    #                          required=True,
+    #                          compute='_compute_bis_type',
+    #                          default='operasional')
+
     bis_type = fields.Many2one('bis.type', 'Business Type', compute='_compute_bis_type', store=True, required=True)
 
     @api.depends('line_ids.price_unit')
@@ -316,6 +324,11 @@ class inherit_PurchaseOrder(models.Model):
                     order.write({'state': 'to approve'})
         return True
 
+
+# class inherit_PurchaseOrder_line(models.Model):
+#     _inherit = "purchase.order.line"
+
+#     product_qty = fields.Float(string='Quantity',digits=(16,2), required=True)
 
 
 

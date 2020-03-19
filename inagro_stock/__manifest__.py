@@ -23,7 +23,9 @@
 
     # always loaded
     'data': [
+        'views/stock_picking_views.xml',
         'report/report_stock.xml',
+        
 
     ],
     'installable': True,

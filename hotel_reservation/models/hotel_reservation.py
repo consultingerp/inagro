@@ -352,9 +352,9 @@ class HotelReservation(models.Model):
                         for reserv in room_id.room_reservation_line_ids.\
                                 search([('status', 'in', ('confirm', 'done')),
                                         ('room_id', '=', room_id.id)]):
-                            print(reserv,'reserv')
-                            print(reservation.id,'reservation.id')
-                            print(reserv.reservation_id,'reserv.reservation_id')
+                            # print(reserv,'reserv')
+                            # print(reservation.id,'reservation.id')
+                            # print(reserv.reservation_id,'reserv.reservation_id')
                             check_in = reserv.check_in
                             check_out = reserv.check_out
                             if check_in <= reserv_checkin <= check_out and int(reservation.id) != int(reserv.reservation_id):
@@ -368,9 +368,9 @@ class HotelReservation(models.Model):
                                 room_bool = True
                             if reserv_checkin <= check_in and \
                                     reserv_checkout >= check_out:
-                                print(reserv_checkin, '<=' ,check_in, 'and' ,reserv_checkout,'>=' ,check_out,' tiga')
-                                print(reserv,'reserv2')
-                                print('tiga')
+                                # print(reserv_checkin, '<=' ,check_in, 'and' ,reserv_checkout,'>=' ,check_out,' tiga')
+                                # print(reserv,'reserv2')
+                                # print('tiga')
                                 room_bool = True
                             mytime = "%Y-%m-%d"
                             r_checkin = (reservation.checkin).date()
@@ -610,10 +610,10 @@ class HotelReservation(models.Model):
 
 
         # revisi ray jr start
-        print(checkin_date.date(),' date cek in')
+        # print(checkin_date.date(),' date cek in')
         d1 = datetime.strptime(str(checkin_date.date()), "%Y-%m-%d")
         d2 = datetime.strptime(str(checkout_date.date()), "%Y-%m-%d")
-        print(d1,' : ',d2,' date range')
+        # print(d1,' : ',d2,' date range')
         duration = abs((d2 - d1).days)
         # revisi ray jr end
 
@@ -623,8 +623,8 @@ class HotelReservation(models.Model):
 
     @api.multi
     def to_folio(self):
-        print('to folio')
-        print('reservation_id ',self.id)
+        # print('to folio')
+        # print('reservation_id ',self.id)
         return {
                 'name': ('Generate Folio'),
                 'view_type':'form',
@@ -666,8 +666,8 @@ class HotelReservationLine(models.Model):
         hotel_room_ids = hotel_room_obj.search([('categ_id', '=',
                                                  self.categ_id.id)])
 
-        print(hotel_room_ids,'ids')
-        print(self.categ_id.id,' : ',self.categ_id.name,' nnn')
+        # print(hotel_room_ids,'ids')
+        # print(self.categ_id.id,' : ',self.categ_id.name,' nnn')
 
 
         room_ids = []
@@ -676,8 +676,8 @@ class HotelReservationLine(models.Model):
                                      select a Check in date or a Check out \
                                      date in the reservation form.'))
         for room in hotel_room_ids:
-            print(room,'room1') 
-            print(room.room_reservation_line_ids,' dd')
+            # print(room,'room1') 
+            # print(room.room_reservation_line_ids,' dd')
             assigned = False
             for line in room.room_reservation_line_ids:
                 print(room.room_reservation_line_ids,' room.room_reservation_line_ids')
@@ -713,7 +713,7 @@ class HotelReservationLine(models.Model):
                             assigned = True
 
 
-            print(room.room_line_ids,' dd2')
+            # print(room.room_line_ids,' dd2')
             for rm_line in room.room_line_ids:
                 # print(room.room_line_ids,' room.room_line_ids')
                 # print(rm_line.room_id.categ_id.id,' line2')
@@ -750,15 +750,15 @@ class HotelReservationLine(models.Model):
             # print(assigned,' assigned')  
             # print(room,'room')
             # print(room.id,'room id') 
-            print(room_ids.append(room.id),'append')    
+            # print(room_ids.append(room.id),'append')    
             if not assigned:
-                print('tes')
+                # print('tes')
                 room_ids.append(room.id)
         domain = {'reserve': [('id', 'in', room_ids)]}
 
 
-        print(domain)
-        print('domain room')
+        print(domain,' eeee')
+        # print('domain room')
         return {'domain': domain}
 
     @api.multi
